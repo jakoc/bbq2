@@ -1,6 +1,8 @@
+using BobsBBQApi.DAL.Repositories.Interfaces;
+
 namespace BobsBBQApi.DAL.Repositories;
 
-public class ReservationRepository
+public class ReservationRepository : IReservationRepository
 {
     
 }

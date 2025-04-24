@@ -1,6 +1,8 @@
+using BobsBBQApi.BLL.Interfaces;
+
 namespace BobsBBQApi.BLL;
 
-public class UserLogic
+public class UserLogic: IUserLogic
 {
     
 }
