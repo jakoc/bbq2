@@ -7,6 +7,7 @@ public class BobsBBQContext : DbContext
 {
     public DbSet<User> Users { get; set; }
     public DbSet<Reservation> Reservations { get; set; }
+    public DbSet<Table> RestaurantTables { get; set; }
     
     public BobsBBQContext(DbContextOptions<BobsBBQContext> options) : base(options)
     {
