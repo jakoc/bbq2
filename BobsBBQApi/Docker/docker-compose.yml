@@ -1,0 +1,6 @@
+﻿services:
+  bobsbbqapi:
+    image: bobsbbqapi
+    build:
+      context: .
+      dockerfile: BobsBBQApi/Docker/Dockerfile

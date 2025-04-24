@@ -1,0 +1,30 @@
+name: workflow.yml
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  update-config:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Install required tools
+        run: |
+          dotnet tool install --global dotnet-reportgenerator-globaltool
+          dotnet tool install --global dotnet-stryker
+          dotnet tool install -g dotnet-sonarscanner
+          
+      - name: Application Version
+        id: semver-app
+        uses: paulhatch/semantic-version@v5.4.0
+        with:
+          bump_each_commit: true
+          bump_each_commit_patch_pattern: 'bugfix'
+          tag_prefix: "v"
+
+      - name: Display Version
+        run: echo "Generated version is ${{ steps.semver-app.outputs.version}}"

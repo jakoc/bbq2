@@ -1,0 +1,6 @@
+@BobsBBQApi_HostAddress = http://localhost:5251
+
+GET {{BobsBBQApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
