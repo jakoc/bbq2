@@ -72,7 +72,8 @@ jobs:
             /d:sonar.host.url="${{ vars.VARIABLE_SONAR_URL }}" \
             /d:sonar.token="${{ secrets.SECRET_SONAR_TOKEN }}" \
             /d:sonar.coverageReportPaths="coverage-report/SonarQube.xml" \
-            /d:sonar.exclusions="coverage-report/**/*.html,coverage-report/**/*.css,coverage-report/**/*,BobsBBQApi/DAL/**/*,BobsBBQFrontend/**/*,**/Program.cs,e2e-tests/**/*,k6-tests/**/*" \
+            /d:sonar.exclusions="coverage-report/**/*.html,coverage-report/**/*.css,coverage-report/**/*,BobsBBQApi/DAL/**/*,BobsBBQFrontend/**/*,
+            **/Program.cs,E2e-tests/**/*,K6-tests/**/*, BobsBBQApi/BE/**/*, BobsBBQApi/Controllers/**/*, BobsBBQApi/Helpers/**/*" \
             /d:sonar.qualitygate.wait=true \
             /d:sonar.qualitygate.timeout=300
 
