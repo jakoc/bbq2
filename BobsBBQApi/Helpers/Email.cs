@@ -1,9 +1,10 @@
+using BobsBBQApi.Helpers.Interfaces;
 using MailKit.Net.Smtp;
 using MimeKit;
 
 namespace BobsBBQApi.Helpers;
 
-public class Email
+public class Email : IEmail
 {
     private readonly string _smtpServer;
     private readonly int _smtpPort;
@@ -18,7 +19,7 @@ public class Email
         _smtpPass = smtpPass;
     }
 
-    public async Task SendSuccessfullAccountCreationEmail(string toEmail, string firstName, string lastName)
+    public async Task SendSuccessfullAccountCreationEmail(string toEmail, string firstName)
     {
         var email = new MimeMessage();
         email.From.Add(new MailboxAddress("Bobs BBQ", _smtpUser));
@@ -28,8 +29,8 @@ public class Email
         email.Body = new TextPart("html")
         {
             Text = $@"
-                <p>Hello dear {firstName} {lastName}!</p>
-                <p>We are happy to inform you that you have been successfully registered on Bobs BBQ</p>
+                <p>Hello dear {firstName} !</p>
+                <p>We are happy to inform you that you have been successfully registered at Bobs BBQ</p>
                 <p>We hope to see you soon for a nice meal!</p>
                 <p>Kind regards,</p>
                 <p>Bobs BBQ</p>
@@ -53,7 +54,7 @@ public class Email
         }
     }
     
-    public async Task SendSuccessfullTableReservationEmail(string toEmail, string firstName, string lastName, 
+    public async Task SendSuccessfullTableReservationEmail(string toEmail, string firstName, 
         DateTime reservationDate, DateTime reservationTime)
     {
         var email = new MimeMessage();
@@ -64,7 +65,7 @@ public class Email
         email.Body = new TextPart("html")
         {
             Text = $@"
-                <p>Hello dear {firstName} {lastName}!</p>
+                <p>Hello dear {firstName}!</p>
                 <p>This is a confirmation mail for your reservation at Bobs BBQ</p>
                 <p>Your reservation date it {reservationDate} at {reservationTime}</p>
                 <p>We hope you will enjoy your meal</p>

@@ -1,12 +1,72 @@
+using BobsBBQApi.BLL.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BobsBBQApi.Controllers;
 
-public class UserController : Controller
+public class UserController : ControllerBase
 {
-    // GET
-    public IActionResult Index()
+
+    private readonly IUserLogic _userLogic;
+
+
+    public UserController( IUserLogic userLogic)
     {
-        return View();
+        _userLogic = userLogic;
+    }
+
+    [HttpPost("[action]")]
+    public IActionResult LoginUser(string email, string password)
+    {
+        if (string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(password))
+        {
+            return BadRequest("Email and password are required.");
+        }
+
+        try
+        {
+            var (user, token) = _userLogic.LoginUser(email, password);
+            if (user != null && token != null)
+            {
+                var userResponse = new
+                {
+                    userId = user.UserId,
+                    token = token
+                };
+                return Ok(userResponse);
+            }
+            else
+            {
+                return BadRequest("Invalid username or password");
+            }
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, "Error logging in user");
+        }
+    }
+    [HttpPost("[action]")]
+    public IActionResult RegisterUser(string username, string password, string email, int phoneNumber)
+    {
+        if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password) || string.IsNullOrWhiteSpace(email))
+        {
+            return BadRequest("Username, password and email are required.");
+        }
+
+        try
+        {
+            var user = _userLogic.RegisterUser(username, password, email, phoneNumber);
+            if (user != null)
+            {
+                return Ok(user);
+            }
+            else
+            {
+                return BadRequest("Error registering user");
+            }
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, "Error registering user");
+        }
     }
 }

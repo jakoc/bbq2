@@ -27,15 +27,10 @@ public class Program
         {
             options.UseSqlServer(builder.Configuration.GetConnectionString("DBConnection"));
         });
-
-        builder.Services.AddScoped<IReservationLogic, ReservationLogic>();
-        builder.Services.AddScoped<IUserLogic, UserLogic>();
-        builder.Services.AddScoped<IUserRepository, UserRepository>();
-        builder.Services.AddScoped<IReservationRepository, ReservationRepository>();
+        //helpers
         builder.Services.AddScoped<IPasswordEncrypter, PasswordEncrypter>();
         builder.Services.AddScoped<IJwtToken, JwtToken>();
-        
-        builder.Services.AddSingleton<Email>(sp =>
+        builder.Services.AddSingleton<IEmail, Email>(sp =>
         {
             var configuration = sp.GetRequiredService<IConfiguration>();
             var smtpServer = configuration["Email:SmtpServer"];
@@ -44,6 +39,16 @@ public class Program
             var smtpPass = configuration["Email:SmtpPass"];
             return new Email(smtpServer, smtpPort, smtpUser, smtpPass);
         });
+        //BLL
+        builder.Services.AddScoped<IReservationLogic, ReservationLogic>();
+        builder.Services.AddScoped<IUserLogic, UserLogic>();
+        //DAL
+        builder.Services.AddScoped<IReservationRepository, ReservationRepository>();
+        builder.Services.AddScoped<IUserRepository, UserRepository>();
+        
+        
+        
+        
         
         var key = Encoding.ASCII.GetBytes("your_new_32_byte_or_longer_key_here_12345");
         builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>

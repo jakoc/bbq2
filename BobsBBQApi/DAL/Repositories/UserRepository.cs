@@ -12,10 +12,10 @@ public class UserRepository : IUserRepository
         _context = context;
     }
 
-    public void RegisterUser(User user)
+    public bool RegisterUser(User user)
     {
         _context.Users.Add(user);
-        _context.SaveChanges();
+        return _context.SaveChanges() > 0;
     }
     public User GetUserByEmail(string email)
     {

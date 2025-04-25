@@ -4,6 +4,6 @@ namespace BobsBBQApi.DAL.Repositories.Interfaces;
 
 public interface IUserRepository
 {
-    void RegisterUser(User user);
+    bool RegisterUser(User user);
     User GetUserByEmail(string email);
 }
