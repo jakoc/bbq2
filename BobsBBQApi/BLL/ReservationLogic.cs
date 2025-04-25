@@ -25,18 +25,21 @@ public class ReservationLogic : IReservationLogic
 
         foreach(var table in allTables)
         {
-            if (table.Capacity < partySize)
+            if (table.Capacity >= partySize)
             {
-                throw new ArgumentException("Party size exceeds table capacity.");
+                var availableslots = defaultSlots
+                    .Where(slot => !reservedSlots.Contains(slot))
+                    .ToList();
+                if (availableslots.Any())
+                {
+                    availableTimeSlots.AddRange(availableslots);
+                }
             }
-            var availableslots = defaultSlots
-                .Where(slot => !reservedSlots.Contains(slot))
-                .ToList();
-            if (availableslots.Any())
+            else
             {
-                availableTimeSlots.AddRange(availableslots);
+                throw new ArgumentException("no table available for this party size");
             }
-
+            
         }
 
         return availableTimeSlots;
