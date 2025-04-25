@@ -5,7 +5,7 @@ on:
       - main
 
 jobs:
-  update-config:
+  integration:
     runs-on: ubuntu-latest
 
     steps:
@@ -16,7 +16,7 @@ jobs:
         run: |
           dotnet tool install --global dotnet-reportgenerator-globaltool
           dotnet tool install --global dotnet-stryker
-          dotnet tool install -g dotnet-sonarscanner
+          dotnet tool install --global dotnet-sonarscanner
           
       - name: Application Version
         id: semver-app
