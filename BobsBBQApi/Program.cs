@@ -42,9 +42,11 @@ public class Program
         //BLL
         builder.Services.AddScoped<IReservationLogic, ReservationLogic>();
         builder.Services.AddScoped<IUserLogic, UserLogic>();
+        builder.Services.AddScoped<ITableLogic, TableLogic>();
         //DAL
         builder.Services.AddScoped<IReservationRepository, ReservationRepository>();
         builder.Services.AddScoped<IUserRepository, UserRepository>();
+        builder.Services.AddScoped<ITableRepository, TableRepository>();
         
         
         

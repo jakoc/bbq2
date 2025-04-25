@@ -1,3 +1,4 @@
+using BobsBBQApi.BE;
 using BobsBBQApi.DAL.Repositories.Interfaces;
 using BobsBBQApi.Helpers;
 
@@ -22,5 +23,10 @@ public class ReservationRepository : IReservationRepository
 
         return reservedSlots;
     }
-    
+
+    public void ReserveTable(Reservation reservation)
+    {
+        _context.Reservations.Add(reservation);
+        _context.SaveChanges();
+    }
 }

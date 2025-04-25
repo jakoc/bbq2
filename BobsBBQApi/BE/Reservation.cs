@@ -12,5 +12,5 @@ public class Reservation
     public DateTime TimeSlot { get; set; }
     public Guid UserId { get; set; }
     public int PartySize { get; set; }
-    public string? Notes { get; set; }
+    public string? Note { get; set; }
 }
