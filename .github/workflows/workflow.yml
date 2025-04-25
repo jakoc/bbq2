@@ -30,6 +30,9 @@ jobs:
 
       - name: Display Version
         run: echo "Generated version is ${{ steps.semver-app.outputs.version}}"
+        
+      - name: Check git tags
+        run: git tag
 
       - name: Run unit tests
         run: |
