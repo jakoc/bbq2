@@ -17,7 +17,7 @@ jobs:
           dotnet tool install --global dotnet-reportgenerator-globaltool
           dotnet tool install --global dotnet-stryker
           dotnet tool install --global dotnet-sonarscanner
-          
+
       - name: Application Version
         id: semver-app
         uses: paulhatch/semantic-version@v5.4.0
@@ -28,7 +28,7 @@ jobs:
 
       - name: Display Version
         run: echo "Generated version is ${{ steps.semver-app.outputs.version}}"
-        
+
       - name: Run unit tests
         run: |
           dotnet test --collect:"XPlat Code Coverage" --results-directory coverage
@@ -54,7 +54,7 @@ jobs:
         with:
           name: stryker-report
           path: StrykerOutput
-          
+
       - name: Check Secret Variables
         run: |
           echo "Sonar URL: ${{ vars.SECRET_SONAR_URL }}"
