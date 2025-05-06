@@ -155,3 +155,4 @@ C:\Users\Anders\RiderProjects\BobsBBQ\UnitTests\obj\Debug\net8.0\UnitTests.dll
 C:\Users\Anders\RiderProjects\BobsBBQ\UnitTests\obj\Debug\net8.0\refint\UnitTests.dll
 C:\Users\Anders\RiderProjects\BobsBBQ\UnitTests\obj\Debug\net8.0\UnitTests.pdb
 C:\Users\Anders\RiderProjects\BobsBBQ\UnitTests\obj\Debug\net8.0\ref\UnitTests.dll
+C:\Users\Anders\RiderProjects\BobsBBQ\UnitTests\bin\Debug\net8.0\BobsBBQApi.staticwebassets.runtime.json

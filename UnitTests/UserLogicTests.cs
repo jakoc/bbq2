@@ -4,8 +4,6 @@ using BobsBBQApi.DAL.Repositories.Interfaces;
 using BobsBBQApi.Helpers.Interfaces;
 using Moq;
 
-namespace UnitTests;
-
 [TestFixture]
 public class UserLogicTests
 {

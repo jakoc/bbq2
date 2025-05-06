@@ -76,38 +76,28 @@ public class ReservationLogic : IReservationLogic
     private  void ValidateReservationInputs(DateTime reservationDate, DateTime timeSlot, int partySize,
         Guid userId, int tableNumber)
     {
+ 
+        if (reservationDate.Date < DateTime.Now.Date)
+            throw new ArgumentException("Reservation date cannot be in the past.");
+
+        if (timeSlot < DateTime.Now)
+            throw new ArgumentException("Time slot cannot be in the past.");
+
+        if (timeSlot.Hour <= 9 || timeSlot.Hour >= 23)
+            throw new ArgumentException("Time slot must be between 10 AM and 10 PM.");
+
+        if (partySize <= 0 || partySize >= 11)
+            throw new ArgumentException("Party size must be between 1 and 10.");
+
+        if (userId == Guid.Empty)
+            throw new ArgumentException("User ID cannot be empty.");
+
+        if (tableNumber <= 0)
+            throw new ArgumentException("Table number must be greater than zero.");
         
         var availableTimeSlots = GetAvailableTimeSlot(reservationDate, partySize);
-        
+
         if (!availableTimeSlots.Any(x => x.Hour == timeSlot.Hour))
-        {
             throw new ArgumentException("The selected time slot is not available.");
-        }
-        
-        if (tableNumber == null || tableNumber <= 0)
-        {
-            throw new ArgumentException("Table number must be greater than zero.");
-        }
-    
-        if (reservationDate.Date < DateTime.Now.Date)
-        {
-            throw new ArgumentException("Reservation date cannot be in the past.");
-        }
-        if (timeSlot.Date < DateTime.Now.Date)
-        {
-            throw new ArgumentException("Time slot cannot be in the past.");
-        }
-        if (timeSlot.Hour < 10 || timeSlot.Hour > 22)
-        {
-            throw new ArgumentException("Time slot must be between 10 AM and 10 PM.");
-        }
-        if (partySize < 1|| partySize > 10)
-        {
-            throw new ArgumentException("Party size must be between 1 and 10.");
-        }
-        if (userId == Guid.Empty)
-        {
-            throw new ArgumentException("User ID cannot be empty.");
-        }
     }
 }
