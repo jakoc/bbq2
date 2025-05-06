@@ -88,6 +88,8 @@ public class Program
         app.UseAuthentication();
         app.UseAuthorization();
         app.UseCors();
+        app.UseDefaultFiles();   
+        app.UseStaticFiles();
         app.MapControllers();
         app.Run();
     }

@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="FrontPageStyle.css">
+</head>
+<body>
+
+<header>
+    <div class="logo">Bob's BBQ</div>
+    <nav id="nav-buttons">
+        <!-- Knapper genereres via JS -->
+    </nav>
+</header>
+
+<div class="hero">
+    Velkommen til Bob's BBQ
+</div>
+
+<div class="content">
+    <h2>Om os</h2>
+
+    <div id="about-text">
+        <p id="about-paragraph">
+            Hos Bob's BBQ serverer vi saftige grillretter og hygge med hjertet. Vi har røgede specialiteter, hjemmelavet BBQ-sauce og en stemning, du aldrig vil glemme.
+        </p>
+        <textarea id="about-editor" style="display: none;"></textarea>
+        <button id="edit-button" style="display: none;">Redigér tekst</button>
+    </div>
+    <img src="lokation.png" alt="Lokation af Bob's BBQ" class="location-image">
+</div>
+
+<!-- Login Modal -->
+<div id="loginModal" class="modal">
+    <div class="modal-content">
+        <span id="closeLoginModal" class="close">&times;</span>
+        <form id="loginForm">
+            <div class="input-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div class="input-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <div class="button-group">
+                <button type="submit" id="loginBtn">Login</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Sign Up Modal -->
+<div id="signupModal" class="modal">
+    <div class="modal-content">
+        <span id="closeSignupModal" class="close">&times;</span>
+        <h2>Sign Up</h2>
+        <form id="signupForm">
+            <div class="input-group">
+                <label for="signupName">Navn</label>
+                <input type="text" id="signupName" name="name" required>
+            </div>
+            <div class="input-group">
+                <label for="signupEmail">Email</label>
+                <input type="email" id="signupEmail" name="email" required>
+            </div>
+            <div class="input-group">
+                <label for="signupPhone">Telefon</label>
+                <input type="tel" id="signupPhone" name="phone" required>
+            </div>
+            <div class="input-group">
+                <label for="signupPassword">Password</label>
+                <input type="password" id="signupPassword" name="password" required>
+            </div>
+            <div class="button-group">
+                <button type="submit">Opret Konto</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    const loginModal = document.getElementById('loginModal');
+    const signupModal = document.getElementById('signupModal');
+    const closeLoginModal = document.getElementById('closeLoginModal');
+    const closeSignupModal = document.getElementById('closeSignupModal');
+    const editButton = document.getElementById('edit-button');
+    const paragraph = document.getElementById('about-paragraph');
+    const editor = document.getElementById('about-editor');
+    const nav = document.getElementById('nav-buttons');
+
+    // Modal handling
+    window.addEventListener('click', (event) => {
+        if (event.target === loginModal) loginModal.style.display = 'none';
+        if (event.target === signupModal) signupModal.style.display = 'none';
+    });
+    closeLoginModal.addEventListener('click', () => loginModal.style.display = 'none');
+    closeSignupModal.addEventListener('click', () => signupModal.style.display = 'none');
+
+    // Hent token
+    let token = localStorage.getItem('jwtToken');
+
+    // Hent brugerrolle fra API
+    async function fetchUserRole() {
+        if (!token) return '';
+        try {
+            const res = await fetch('https://din-api-url.com/brugerinformatioon', {
+                headers: { 'Authorization': `Bearer ${token}` }
+            });
+            if (!res.ok) throw new Error('Brugerinfo fejl');
+            const data = await res.json();
+            return data.UserRole || '';
+        } catch (err) {
+            console.error(err);
+            return '';
+        }
+    }
+
+    // Opsæt navbar
+    async function setupNavbar() {
+        const role = await fetchUserRole();
+        nav.innerHTML = '';
+        editButton.style.display = 'none';
+
+        if (!token || role === '') {
+            nav.innerHTML = `
+                <button id="loginBtnOpen">Login</button>
+                <button id="signupBtnOpen">Sign Up</button>`;
+            document.getElementById('loginBtnOpen').onclick = () => loginModal.style.display = 'block';
+            document.getElementById('signupBtnOpen').onclick = () => signupModal.style.display = 'block';
+        } else if (role === 'Customer') {
+            nav.innerHTML = `
+                <a href="BordBestilling.html"><button>Bestil Bord</button></a>
+                <button id="logoutBtn">Log Ud</button>`;
+            document.getElementById('logoutBtn').onclick = logout;
+        } else if (role === 'Admin') {
+            nav.innerHTML = `
+                <a href="OpretBord.html"><button>Opret Bord</button></a>
+                <button id="logoutBtn">Log Ud</button>`;
+            document.getElementById('logoutBtn').onclick = logout;
+            editButton.style.display = 'inline-block';
+        }
+    }
+
+    document.getElementById('signupForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const name = document.getElementById('signupName').value;
+        const email = document.getElementById('signupEmail').value;
+        const phone = document.getElementById('signupPhone').value;
+        const password = document.getElementById('signupPassword').value;
+
+        try {
+            const res = await fetch('http://localhost:5251/RegisterUser', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ name, email, phone, password })
+            });
+            if (!res.ok) throw new Error('Signup fejlede');
+            signupModal.style.display = 'none';
+            alert('Bruger oprettet. Du kan nu logge ind.');
+        } catch (err) {
+            alert('Oprettelse fejlede – prøv igen.');
+            console.error(err);
+        }
+    });
+
+    // Login form
+    document.getElementById('loginForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const username = document.getElementById('username').value;
+        const password = document.getElementById('password').value;
+
+        try {
+            const res = await fetch('http://localhost:5251/LoginUser', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ username, password })
+            });
+            if (!res.ok) throw new Error('Login fejlede');
+            const data = await res.json();
+            localStorage.setItem('jwtToken', data.token);
+            token = data.token;
+            loginModal.style.display = 'none';
+            await setupNavbar();
+        } catch (err) {
+            alert('Login mislykkedes – prøv igen.');
+            console.error(err);
+        }
+    });
+
+    // Redigér knap
+    editButton.addEventListener('click', () => {
+        if (editor.style.display === 'none') {
+            editor.value = paragraph.textContent.trim();
+            paragraph.style.display = 'none';
+            editor.style.display = 'block';
+            editButton.textContent = 'Gem';
+        } else {
+            paragraph.textContent = editor.value;
+            editor.style.display = 'none';
+            paragraph.style.display = 'block';
+            editButton.textContent = 'Redigér tekst';
+        }
+    });
+
+    // Log ud
+    function logout() {
+        localStorage.removeItem('jwtToken');
+        token = null;
+        location.reload();
+    }
+
+    window.onload = () => {
+        setupNavbar();
+    };
+</script>
+
+</body>
+</html>

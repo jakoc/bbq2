@@ -140,3 +140,4 @@ C:\Users\Anders\RiderProjects\BobsBBQ\BobsBBQApi\obj\Debug\net8.0\BobsBBQApi.dll
 C:\Users\Anders\RiderProjects\BobsBBQ\BobsBBQApi\obj\Debug\net8.0\refint\BobsBBQApi.dll
 C:\Users\Anders\RiderProjects\BobsBBQ\BobsBBQApi\obj\Debug\net8.0\BobsBBQApi.pdb
 C:\Users\Anders\RiderProjects\BobsBBQ\BobsBBQApi\obj\Debug\net8.0\ref\BobsBBQApi.dll
+C:\Users\Anders\RiderProjects\BobsBBQ\BobsBBQApi\bin\Debug\net8.0\BobsBBQApi.staticwebassets.runtime.json

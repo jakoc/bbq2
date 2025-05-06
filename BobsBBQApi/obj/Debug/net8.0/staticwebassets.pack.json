@@ -1,0 +1,33 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\Users\\Anders\\RiderProjects\\BobsBBQ\\BobsBBQApi\\wwwroot\\FrontPageStyle.css",
+      "PackagePath": "staticwebassets\\FrontPageStyle.css"
+    },
+    {
+      "Id": "C:\\Users\\Anders\\RiderProjects\\BobsBBQ\\BobsBBQApi\\wwwroot\\Lokation.png",
+      "PackagePath": "staticwebassets\\Lokation.png"
+    },
+    {
+      "Id": "C:\\Users\\Anders\\RiderProjects\\BobsBBQ\\BobsBBQApi\\wwwroot\\index.html",
+      "PackagePath": "staticwebassets\\index.html"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.BobsBBQApi.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.BobsBBQApi.props",
+      "PackagePath": "build\\BobsBBQApi.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.BobsBBQApi.props",
+      "PackagePath": "buildMultiTargeting\\BobsBBQApi.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.BobsBBQApi.props",
+      "PackagePath": "buildTransitive\\BobsBBQApi.props"
+    }
+  ],
+  "ElementsToRemove": []
+}
