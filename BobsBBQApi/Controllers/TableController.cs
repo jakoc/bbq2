@@ -22,7 +22,7 @@ public class TableController : ControllerBase
 
         try
         {
-            _tableLogic.AddTable(capacity, tableNumber);
+            _tableLogic.AddTable(capacity);
             return Ok("Table added successfully.");
         }
         catch (Exception ex)

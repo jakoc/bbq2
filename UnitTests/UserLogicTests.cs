@@ -39,11 +39,13 @@ public class UserLogicTests
             var password = "password123";
             var email = "test@example.com";
             var phoneNumber = 1234567890;
+            var note = "Test note";
 
             // Act & Assert
-            var ex = Assert.Throws<ArgumentException>(() => _userLogic.RegisterUser(username, password, email, phoneNumber));
+            var ex = Assert.Throws<ArgumentException>(() => _userLogic.RegisterUser(username, password, email, phoneNumber, note));
             Assert.AreEqual("Username cannot be null or empty.", ex.Message);
         }
+        
 
         [Test]
         public void RegisterUser_ShouldThrowArgumentException_WhenPasswordIsEmpty()
@@ -53,9 +55,10 @@ public class UserLogicTests
             var password = "";
             var email = "test@example.com";
             var phoneNumber = 1234567890;
+            var note = "Test note";
 
             // Act & Assert
-            var ex = Assert.Throws<ArgumentException>(() => _userLogic.RegisterUser(username, password, email, phoneNumber));
+            var ex = Assert.Throws<ArgumentException>(() => _userLogic.RegisterUser(username, password, email, phoneNumber, note));
             Assert.AreEqual("Password cannot be null or empty.", ex.Message);
         }
 
@@ -67,10 +70,11 @@ public class UserLogicTests
             var password = "password123";
             var email = "test@example.com";
             var phoneNumber = 1234567890;
+            var note = "Test note";
             _mockUserRepository.Setup(r => r.GetUserByEmail(email)).Returns(new User());  // Simulate existing user
 
             // Act & Assert
-            var ex = Assert.Throws<ArgumentException>(() => _userLogic.RegisterUser(username, password, email, phoneNumber));
+            var ex = Assert.Throws<ArgumentException>(() => _userLogic.RegisterUser(username, password, email, phoneNumber, note));
             Assert.AreEqual("Email is already taken.", ex.Message);
         }
 
@@ -82,6 +86,7 @@ public class UserLogicTests
             var password = "password123";
             var email = "test@example.com";
             var phoneNumber = 1234567890;
+            var note = "Test note";
 
             var salt = "randomSalt";
             var hash = "hashedPassword";
@@ -90,9 +95,12 @@ public class UserLogicTests
             _mockUserRepository.Setup(r => r.RegisterUser(It.IsAny<User>())).Returns(true);  // Simulate successful registration
 
             // Act
-            var user = _userLogic.RegisterUser(username, password, email, phoneNumber);
+            var user = _userLogic.RegisterUser(username, password, email, phoneNumber, note);
 
             // Assert
+            Assert.IsNotNull(user);
+            Assert.AreEqual(username, user.UserName);
+            Assert.AreEqual(email, user.Email);
             _mockEmail.Verify(e => e.SendSuccessfullAccountCreationEmail(email, username), Times.Once);
         }
 

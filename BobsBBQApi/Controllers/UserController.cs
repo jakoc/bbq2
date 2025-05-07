@@ -45,16 +45,16 @@ public class UserController : ControllerBase
         }
     }
     [HttpPost("[action]")]
-    public IActionResult RegisterUser(string username, string password, string email, int phoneNumber)
+    public IActionResult RegisterUser(string username, string password, string email, int phoneNumber, string role)
     {
-        if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password) || string.IsNullOrWhiteSpace(email))
+        if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password) || string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(role))
         {
-            return BadRequest("Username, password and email are required.");
+            return BadRequest("Username, password, email and role are required.");
         }
 
         try
         {
-            var user = _userLogic.RegisterUser(username, password, email, phoneNumber);
+            var user = _userLogic.RegisterUser(username, password, email, phoneNumber, role);
             if (user != null)
             {
                 return Ok(user);

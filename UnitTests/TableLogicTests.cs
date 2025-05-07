@@ -26,47 +26,32 @@ public class TableLogicTests
     {
         // Arrange
         int invalidCapacity = 0;
-        int validTableNumber = 1;
 
         // Act & Assert
         var ex = Assert.Throws<ArgumentException>(() =>
-            _tableLogic.AddTable(invalidCapacity, validTableNumber));
+            _tableLogic.AddTable(invalidCapacity));
         Assert.AreEqual("Capacity and table number must be greater than zero.", ex.Message);
     }
 
-    [Test]
-    public void AddTable_ShouldThrowArgumentException_WhenTableNumberIsZeroOrNegative()
-    {
-        // Arrange
-        int validCapacity = 4;
-        int invalidTableNumber = 0;
-
-        // Act & Assert
-        var ex = Assert.Throws<ArgumentException>(() =>
-            _tableLogic.AddTable(validCapacity, invalidTableNumber));
-        Assert.AreEqual("Capacity and table number must be greater than zero.", ex.Message);
-    }
+ 
 
     [Test]
     public void AddTable_ShouldCallAddTableMethodInRepository_WhenArgumentsAreValid()
     {
         // Arrange
         int validCapacity = 4;
-        int validTableNumber = 1;
         var table = new Table
         {
             TableId = Guid.NewGuid(),
             Capacity = validCapacity,
-            TableNumber = validTableNumber
         };
 
         // Act
-        _tableLogic.AddTable(validCapacity, validTableNumber);
+        _tableLogic.AddTable(validCapacity);
 
         // Assert
         _tableRepositoryMock.Verify(r => r.AddTable(It.Is<Table>(t =>
-            t.Capacity == validCapacity && 
-            t.TableNumber == validTableNumber
+            t.Capacity == validCapacity 
         )), Times.Once);
     }
 

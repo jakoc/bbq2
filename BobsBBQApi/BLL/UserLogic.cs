@@ -51,7 +51,7 @@ public class UserLogic: IUserLogic
         return (user, token);
 
     }
-    public User RegisterUser(string username, string password, string email, int phoneNumber)
+    public User RegisterUser(string username, string password, string email, int phoneNumber, string role)
     {
         if (string.IsNullOrWhiteSpace(username))
         {
@@ -61,6 +61,10 @@ public class UserLogic: IUserLogic
         if (string.IsNullOrWhiteSpace(password))
         {
             throw new ArgumentException("Password cannot be null or empty.");
+        }
+        if (string.IsNullOrWhiteSpace(role))
+        {
+            throw new ArgumentException("Role cannot be null or empty.");
         }
 
         var existingUser = _userRepository.GetUserByEmail(email);
@@ -79,7 +83,7 @@ public class UserLogic: IUserLogic
             UserName = username,
             Email = email,
             PhoneNumber = phoneNumber,
-            UserRole = "Customer"
+            UserRole = role,
         };
         
         var success = _userRepository.RegisterUser(user);

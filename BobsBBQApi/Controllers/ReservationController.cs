@@ -11,17 +11,16 @@ public class ReservationController : Controller
        _reservationLogic = reservationLogic;
    }
    [HttpPost("[action]")]
-    public IActionResult ReserveTable(DateTime reservationDate, DateTime timeSlot, int partySize, string note, Guid userId,
-         int tableNumber)
+    public IActionResult ReserveTable(DateTime reservationDate, int timeSlot, int partySize, string note, Guid userId)
     {
-         if (reservationDate == default || timeSlot == default || partySize <= 0 || partySize > 10 || string.IsNullOrWhiteSpace(note) || userId == Guid.Empty || tableNumber <= 0)
+         if (reservationDate == default || timeSlot == default || partySize <= 0 || partySize > 10 || string.IsNullOrWhiteSpace(note) || userId == Guid.Empty )
          {
               return BadRequest("All fields are required.");
          }
     
          try
          {
-              _reservationLogic.ReserveTable(reservationDate, timeSlot, partySize, note, userId, tableNumber);
+              _reservationLogic.ReserveTable(reservationDate, timeSlot, partySize, note, userId );
               return Ok("Reservation created successfully.");
          }
          catch (Exception ex)

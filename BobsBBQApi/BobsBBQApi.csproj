@@ -24,11 +24,4 @@
       <Folder Include="dbmigration\" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Content Include="..\.dockerignore">
-        <Link>Docker\.dockerignore</Link>
-      </Content>
-      <Content Include=".github\workflows\workflow.yml" />
-    </ItemGroup>
-
 </Project>

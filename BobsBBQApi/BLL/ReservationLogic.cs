@@ -18,72 +18,74 @@ public class ReservationLogic : IReservationLogic
     }
     public List<DateTime> GetAvailableTimeSlot(DateTime date, int partySize)
     {
-        var reservedSlots = _reservationRepository.GetReservedSlots(date);
-        var allTables = _tableRepository.GetTables();
-        var defaultSlots = DefaultTimeSlots.GetSlots(date);
-        var availableTimeSlots = new List<DateTime>();
+        var tables = _tableRepository.GetTables()
+            .Where(t => t.Capacity >= partySize)
+            .ToList();
 
-        foreach(var table in allTables)
+        if (!tables.Any())
+            throw new ArgumentException("No tables available for this party size.");
+
+        var defaultSlots = DefaultTimeSlots.GetSlots(date);
+        var availableSlots = new List<DateTime>();
+
+        foreach (var slot in defaultSlots)
         {
-            if (table.Capacity >= partySize)
+            int slotHour = slot.Hour;
+
+            bool hasFreeTable = tables.Any(table => 
+                !_reservationRepository.IsTableReservedAt(table.TableId, date, slotHour));
+
+            if (hasFreeTable)
             {
-                var availableslots = defaultSlots
-                    .Where(slot => !reservedSlots.Contains(slot))
-                    .ToList();
-                if (availableslots.Any())
-                {
-                    availableTimeSlots.AddRange(availableslots);
-                }
+                availableSlots.Add(slot);
             }
-            else
-            {
-                throw new ArgumentException("no table available for this party size");
-            }
-            
         }
 
-        return availableTimeSlots;
+        return availableSlots;
     }
     
     
-    public void ReserveTable( DateTime reservationDate, DateTime timeSlot, int partySize, string note, Guid userId, int tableNumber)
+
+        
+    public void ReserveTable(DateTime reservationDate, int timeSlot, int partySize, string note, Guid userId)
     {
-        
-        
-        ValidateReservationInputs(reservationDate, timeSlot, partySize, userId, tableNumber);
-  
-        var table = _tableRepository.GetTables().FirstOrDefault(x=> x.TableNumber == tableNumber);
-        var tableId = table.TableId;
-        
-        if (table == null)
-        {
-            throw new ArgumentException("Table not found.");
-        }
-        
+        ValidateReservationInputs(reservationDate, timeSlot, partySize, userId);
+    
+        var tables = _tableRepository.GetTables()
+            .Where(t => t.Capacity >= partySize)
+            .ToList();
+    
+        var availableTables = tables
+            .Where(t => !_reservationRepository.IsTableReservedAt(t.TableId, reservationDate ,timeSlot))
+            .ToList();
+    
+        if (!availableTables.Any())
+            throw new InvalidOperationException("No available table at this time slot.");
+    
+        var selectedTable = availableTables[new Random().Next(availableTables.Count)];
+    
         var reservation = new Reservation
         {
             ReservationId = Guid.NewGuid(),
-            TableId = tableId,
-            UserId = userId,
+            TableId = selectedTable.TableId,
             ReservationDate = reservationDate,
-            TimeSlot = timeSlot,
+            UserId = userId,
             PartySize = partySize,
+            TimeSlot = timeSlot,
             Note = note
         };
+    
         _reservationRepository.ReserveTable(reservation);
     }
 
-    private  void ValidateReservationInputs(DateTime reservationDate, DateTime timeSlot, int partySize,
-        Guid userId, int tableNumber)
+    private  void ValidateReservationInputs(DateTime reservationDate, int timeSlot, int partySize,
+        Guid userId)
     {
  
         if (reservationDate.Date < DateTime.Now.Date)
             throw new ArgumentException("Reservation date cannot be in the past.");
 
-        if (timeSlot < DateTime.Now)
-            throw new ArgumentException("Time slot cannot be in the past.");
-
-        if (timeSlot.Hour <= 9 || timeSlot.Hour >= 23)
+        if (timeSlot <= 9 || timeSlot >= 23)
             throw new ArgumentException("Time slot must be between 10 AM and 10 PM.");
 
         if (partySize <= 0 || partySize >= 11)
@@ -91,13 +93,10 @@ public class ReservationLogic : IReservationLogic
 
         if (userId == Guid.Empty)
             throw new ArgumentException("User ID cannot be empty.");
-
-        if (tableNumber <= 0)
-            throw new ArgumentException("Table number must be greater than zero.");
         
         var availableTimeSlots = GetAvailableTimeSlot(reservationDate, partySize);
 
-        if (!availableTimeSlots.Any(x => x.Hour == timeSlot.Hour))
+        if (!availableTimeSlots.Any(x => x.Hour == timeSlot))
             throw new ArgumentException("The selected time slot is not available.");
     }
 }

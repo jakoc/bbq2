@@ -11,17 +11,19 @@ public class TableLogic : ITableLogic
     {
         _tableRepository = tableRepository;
     }
-    public void AddTable( int capacity, int tableNumber)
+    public void AddTable( int capacity)
     {
-        if (capacity <= 0 || tableNumber <= 0)
+        if (capacity <= 0 )
         {
             throw new ArgumentException("Capacity and table number must be greater than zero.");
         }
+
+        var tableNumber = _tableRepository.GetTables().Count();
         var table = new Table
         {
             TableId = Guid.NewGuid(),
             Capacity = capacity,
-            TableNumber = tableNumber
+            TableNumber = tableNumber +1
         };
         
         _tableRepository.AddTable(table);
