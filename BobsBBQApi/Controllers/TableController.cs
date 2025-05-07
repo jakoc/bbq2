@@ -13,11 +13,11 @@ public class TableController : ControllerBase
     }
 
     [HttpPost("[action]")]
-    public IActionResult AddTable(int capacity, int tableNumber)
+    public IActionResult AddTable(int capacity)
     {
-        if (capacity <= 0 || tableNumber <= 0)
+        if (capacity <= 0)
         {
-            return BadRequest("Capacity and table number must be greater than zero.");
+            return BadRequest("Capacity must be greater than zero.");
         }
 
         try
