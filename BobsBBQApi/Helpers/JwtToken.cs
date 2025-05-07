@@ -8,7 +8,7 @@ namespace BobsBBQApi.Helpers;
 
 public class JwtToken : IJwtToken
 {
-    public string GenerateJwtToken(string email, string role)
+    public string GenerateJwtToken(Guid userId, string email, string role)
     {
         var tokenHandler = new JwtSecurityTokenHandler();
         var key = Encoding.ASCII.GetBytes("your_new_32_byte_or_longer_key_here_12345");
@@ -16,6 +16,7 @@ public class JwtToken : IJwtToken
         {
             Subject = new ClaimsIdentity(new[]
             {
+                new Claim("userId", userId.ToString()),
                 new Claim("email", email), 
                 new Claim("role", role)
             }),

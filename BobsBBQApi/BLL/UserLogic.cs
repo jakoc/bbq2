@@ -20,7 +20,7 @@ public class UserLogic: IUserLogic
         _email = email;
 
     }
-    public (User, string token) LoginUser(string email, string password)
+    public string LoginUser(string email, string password)
     {
 
         if (string.IsNullOrWhiteSpace(email))
@@ -46,9 +46,9 @@ public class UserLogic: IUserLogic
             throw new ArgumentException("Invalid email or password.");
         }
 
-        var token = _jwtToken.GenerateJwtToken(user.Email, user.UserRole);
+        var token = _jwtToken.GenerateJwtToken(user.UserId, user.Email, user.UserRole);
 
-        return (user, token);
+        return token;
 
     }
     public User RegisterUser(string username, string password, string email, int phoneNumber, string role)

@@ -160,29 +160,26 @@ public class UserLogicTests
         }
 
         [Test]
-        public void LoginUser_ShouldReturnUserAndToken_WhenLoginIsSuccessful()
+        public void LoginUser_ShouldReturnToken_WhenLoginIsSuccessful()
         {
             // Arrange
+            var userId = Guid.NewGuid();
             var email = "test@example.com";
             var password = "password123";
             var userSalt = "randomSalt";
             var userHash = "hashedPassword";
             var role = "Customer";
-            var existingUser = new User { Email = email, UserSalt = userSalt, UserHash = userHash, UserRole = role };
+            var existingUser = new User { UserId = userId, Email = email, UserSalt = userSalt, UserHash = userHash, UserRole = role };
 
-            // Ensure the mock setups are correct
-            _mockUserRepository.Setup(r => r.GetUserByEmail(email)).Returns(existingUser);  // Simulate user found
-            _mockPasswordEncrypter.Setup(p => p.EncryptPasswordWithUsersSalt(password, userSalt)).Returns(userHash);  // Ensure password is correctly hashed
-            _mockJwtToken.Setup(j => j.GenerateJwtToken(email, role)).Returns("fakeToken");
+            _mockUserRepository.Setup(r => r.GetUserByEmail(email)).Returns(existingUser);
+            _mockPasswordEncrypter.Setup(p => p.EncryptPasswordWithUsersSalt(password, userSalt)).Returns(userHash);
+            _mockJwtToken.Setup(j => j.GenerateJwtToken(userId, email, role)).Returns("fakeToken");
 
             // Act
-            var (user, token) = _userLogic.LoginUser(email, password);
+            var token = _userLogic.LoginUser(email, password);
 
             // Assert
-            Assert.AreEqual(email, user.Email);  // Check if the email matches
-            Assert.AreEqual("fakeToken", token);  // Check if the token is returned
-
-            // Verify that GenerateJwtToken was called exactly once
-            _mockJwtToken.Verify(j => j.GenerateJwtToken(email, "Customer"), Times.Once);
+            Assert.AreEqual("fakeToken", token.ToString());  // Ensure both are of the same type
+            _mockJwtToken.Verify(j => j.GenerateJwtToken(userId, email, role), Times.Once);
         }
 }

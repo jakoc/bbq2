@@ -24,13 +24,12 @@ public class UserController : ControllerBase
 
         try
         {
-            var (user, token) = _userLogic.LoginUser(email, password);
-            if (user != null && token != null)
+            var token = _userLogic.LoginUser(email, password);
+            if (token != null)
             {
                 var userResponse = new
                 {
-                    userId = user.UserId,
-                    token = token
+                    userToken = token
                 };
                 return Ok(userResponse);
             }
