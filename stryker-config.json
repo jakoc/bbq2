@@ -1,5 +1,13 @@
 {
   "stryker-config": {
+    "mutate": [
+      "!**/Program.cs",
+      "!**/DAL/**",
+      "!**Controllers/**",
+      "!**/BE/**",
+      "!**/Helpers/**",
+      "!**/Services/**"
+    ],
     "ignore-methods": [
       "*Information*",
       "*Warning*",

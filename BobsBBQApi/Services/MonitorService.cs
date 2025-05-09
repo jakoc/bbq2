@@ -19,6 +19,7 @@ public class MonitorService
 
     static MonitorService()
     {
+        
         //OpenTelemetry
         TracerProvider = Sdk.CreateTracerProviderBuilder()
             .AddConsoleExporter()
