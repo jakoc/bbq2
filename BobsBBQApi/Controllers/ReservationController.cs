@@ -1,3 +1,4 @@
+using BobsBBQApi.BE;
 using BobsBBQApi.BLL.Interfaces;
 using BobsBBQApi.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -12,12 +13,32 @@ public class ReservationController : Controller
        _reservationLogic = reservationLogic;
    }
    [HttpPost("[action]")]
-    public IActionResult ReserveTable(DateTime reservationDate, int timeSlot, int partySize, string note, Guid userId)
+    public IActionResult ReserveTable([FromBody] ReserveTableDto dto)
     {
+        if (dto == null)
+        {
+            MonitorService.Log.Warning("Invalid table data received");
+            return BadRequest("Invalid table data.");
+        }
+        if (!ModelState.IsValid)
+        {
+            MonitorService.Log.Warning("Model state is invalid");
+            return BadRequest(ModelState);
+        }
+        DateTime reservationDate = dto.ReservationDate;
+        int timeSlot = dto.TimeSlot;
+        int partySize = dto.PartySize;
+        string note = dto.Note ?? string.Empty;
+        Guid userId = dto.UserId;
+        
             using var activity = MonitorService.ActivitySource.StartActivity("Reserve table controller");
             activity?.SetTag("reservation.date", reservationDate);
             activity?.SetTag("reservation.timeSlot", timeSlot);
             activity?.SetTag("reservation.partySize", partySize);
+            if (!string.IsNullOrWhiteSpace(note))
+            {
+                activity?.SetTag("reservation.note", note);
+            }
             activity?.SetTag("reservation.userId", userId);
             MonitorService.Log.Information("Received reservation request: {@reservationDate}, {@timeSlot}, {@partySize}, {@note}, {@userId}", 
                 reservationDate, timeSlot, partySize, note, userId);
@@ -42,9 +63,22 @@ public class ReservationController : Controller
     }
     
     [HttpGet("[action]")]
-    public IActionResult GetAvailableTimeSlots(DateTime date, int partySize)
+    public IActionResult GetAvailableTimeSlots([FromBody] GetAvailableTimeSlotDto dto)
     {
         using var activity = MonitorService.ActivitySource.StartActivity("GetAvailableTimeSlots called from controller");
+        if (dto == null)
+        {
+            MonitorService.Log.Warning("Invalid timeslot data received");
+            return BadRequest("Invalid table data.");
+        }
+        if (!ModelState.IsValid)
+        {
+            MonitorService.Log.Warning("Model state is invalid");
+            return BadRequest(ModelState);
+        }
+        DateTime date = dto.Date;
+        int partySize = dto.PartySize;
+        
         activity?.SetTag("reservation.date", date);
         activity?.SetTag("reservation.partySize", partySize);
         MonitorService.Log.Information("Received request for available time slots: {@date}, {@partySize}", date, partySize);
@@ -73,6 +107,4 @@ public class ReservationController : Controller
         }
     }
 
-
-   
 }

@@ -17,27 +17,39 @@ public class UserController : ControllerBase
     }
 
     [HttpPost("[action]")]
-    public IActionResult LoginUser(string email, string password)
+    public IActionResult LoginUser([FromBody] LogInDto dto)
     {
+        if (dto == null)
+        {
+            MonitorService.Log.Warning("Invalid user data received");
+            return BadRequest("Invalid user data.");
+        }
+
+        if (!ModelState.IsValid)
+        {
+            MonitorService.Log.Warning("Model state is invalid");
+            return BadRequest(ModelState);
+        }
+
+        string email = dto.Email;
+        string password = dto.Password;
+
         using var activity = MonitorService.ActivitySource.StartActivity("Login user called from controller");
         activity?.SetTag("user.email", email);
+
         if (string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(password))
         {
             return BadRequest("Email and password are required.");
         }
+
         try
         {
             MonitorService.Log.Information("LoginUser in UserLogic called from controller");
             var token = _userLogic.LoginUser(email, password);
             if (token != null)
             {
-                MonitorService.Log.Information("checking if password is correct");
-                var userResponse = new
-                {
-                    userToken = token
-                };
                 MonitorService.Log.Information("User logged in successfully");
-                return Ok(userResponse);
+                return Ok(new { userToken = token });
             }
             else
             {
@@ -46,7 +58,7 @@ public class UserController : ControllerBase
         }
         catch (Exception ex)
         {
-            MonitorService.Log.Error(ex, "Error logging in user @{email}", email);
+            MonitorService.Log.Error(ex, "Error logging in user {@email}", email);
             return StatusCode(500, "Error logging in user");
         }
     }
@@ -54,10 +66,7 @@ public class UserController : ControllerBase
     public IActionResult RegisterUser([FromBody] RegisterUserDto dto)
     {
         using var activity = MonitorService.ActivitySource.StartActivity("Register user called from controller");
-        activity?.SetTag("user.username", dto.UserName);
-        activity?.SetTag("user.email", dto.Email);
-        activity?.SetTag("user.phoneNumber", dto.PhoneNumber);
-        activity?.SetTag("user.role", dto.UserRole);
+        
         if (dto == null)
         {
             MonitorService.Log.Warning("Invalid user data received");
@@ -74,7 +83,10 @@ public class UserController : ControllerBase
         string email = dto.Email;
         int phoneNumber = dto.PhoneNumber;
         string role = dto.UserRole;
-        
+        activity?.SetTag("user.username", username);
+        activity?.SetTag("user.email", email);
+        activity?.SetTag("user.phoneNumber", phoneNumber);
+        activity?.SetTag("user.role", role);
         try
         {
             MonitorService.Log.Information("Sending user data to UserLogic");

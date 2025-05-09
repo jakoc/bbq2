@@ -1,3 +1,4 @@
+using BobsBBQApi.BE;
 using BobsBBQApi.BLL.Interfaces;
 using BobsBBQApi.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -14,9 +15,20 @@ public class TableController : ControllerBase
     }
 
     [HttpPost("[action]")]
-    public IActionResult AddTable(int capacity)
+    public IActionResult AddTable([FromBody] AddTableDto dto)
     {
         using var activity = MonitorService.ActivitySource.StartActivity("Add table called from controller");
+        if (dto == null)
+        {
+            MonitorService.Log.Warning("Invalid table data received");
+            return BadRequest("Invalid table data.");
+        }
+        if (!ModelState.IsValid)
+        {
+            MonitorService.Log.Warning("Model state is invalid");
+            return BadRequest(ModelState);
+        }
+        int capacity = dto.Capacity;
         activity?.SetTag("table.capacity", capacity);
         if (capacity <= 0)
         {

@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("BobsBBQApi")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c2740027e3602ac384ed426fc435d649650f0f39")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ede4b41cd692289aa1ac894075f2597a170a42be")]
 [assembly: System.Reflection.AssemblyProductAttribute("BobsBBQApi")]
 [assembly: System.Reflection.AssemblyTitleAttribute("BobsBBQApi")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
