@@ -11,7 +11,7 @@ public class JwtToken : IJwtToken
 {
     public string GenerateJwtToken(Guid userId, string email, string role)
     {
-        MonitorService.Log.Information("Generating JWT token for userId: {@userId}, email: {@email}, role: {@role}",
+        MonitorService.Log.Information("Generating JWT token for userId: {@UserId}, email: {@Email}, role: {@Role}",
             userId, email, role);
         var tokenHandler = new JwtSecurityTokenHandler();
         var key = Encoding.ASCII.GetBytes("your_new_32_byte_or_longer_key_here_12345");
@@ -29,17 +29,17 @@ public class JwtToken : IJwtToken
         };
         try
         {
-            MonitorService.Log.Information("Attempting to create JWT token for userId: {@userId}", userId);
+            MonitorService.Log.Information("Attempting to create JWT token for userId: {@uUerId}", userId);
 
             var token = tokenHandler.CreateToken(tokenDescription);
 
-            MonitorService.Log.Information("JWT token successfully created for userId: {@userId}", userId);
+            MonitorService.Log.Information("JWT token successfully created for userId: {@UserId}", userId);
 
             return tokenHandler.WriteToken(token);
         }
         catch (Exception ex)
         {
-            MonitorService.Log.Error(ex, "Error occurred while generating JWT token for userId: {@userId}", userId);
+            MonitorService.Log.Error(ex, "Error occurred while generating JWT token for userId: {@UserId}", userId);
             throw;
         }
     }

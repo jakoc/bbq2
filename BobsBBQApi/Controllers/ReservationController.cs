@@ -40,7 +40,7 @@ public class ReservationController : Controller
                 activity?.SetTag("reservation.note", note);
             }
             activity?.SetTag("reservation.userId", userId);
-            MonitorService.Log.Information("Received reservation request: {@reservationDate}, {@timeSlot}, {@partySize}, {@note}, {@userId}", 
+            MonitorService.Log.Information("Received reservation request: {@ReservationDate}, {@TimeSlot}, {@PartySize}, {@Note}, {@UserId}", 
                 reservationDate, timeSlot, partySize, note, userId);
          if (reservationDate == default || timeSlot == default || partySize <= 0 || partySize > 10 || string.IsNullOrWhiteSpace(note) || userId == Guid.Empty )
          {
@@ -56,7 +56,7 @@ public class ReservationController : Controller
          }
          catch (Exception ex)
          {
-              MonitorService.Log.Error(ex, "Error creating reservation: {@reservationDate}, {@timeSlot}, {@partySize}, {@note}, {@userId}", 
+              MonitorService.Log.Error(ex, "Error creating reservation: {@ReservationDate}, {@TimeSlot}, {@PartySize}, {@Note}, {@UserId}", 
                   reservationDate, timeSlot, partySize, note, userId);
               return StatusCode(500, "Error creating reservation: " + ex.Message);
          }
@@ -81,10 +81,10 @@ public class ReservationController : Controller
         
         activity?.SetTag("reservation.date", date);
         activity?.SetTag("reservation.partySize", partySize);
-        MonitorService.Log.Information("Received request for available time slots: {@date}, {@partySize}", date, partySize);
+        MonitorService.Log.Information("Received request for available time slots: {@Date}, {@PartySize}", date, partySize);
         if (partySize <= 0 || partySize > 10)
         {
-            MonitorService.Log.Warning("{@partySize} is not a valid party size", partySize);
+            MonitorService.Log.Warning("{@PartySize} is not a valid party size", partySize);
             return BadRequest("Party size must be between 1 and 10.");
         }
         if (date == default)
@@ -102,7 +102,7 @@ public class ReservationController : Controller
         }
         catch (Exception ex)
         {
-            MonitorService.Log.Error(ex, "Error retrieving available time slots: {@date}, {@partySize}", date, partySize);
+            MonitorService.Log.Error(ex, "Error retrieving available time slots: {@Date}, {@PartySize}", date, partySize);
             return StatusCode(500, "Error retrieving available time slots: " + ex.Message);
         }
     }

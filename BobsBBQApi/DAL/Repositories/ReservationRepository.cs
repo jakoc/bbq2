@@ -24,7 +24,7 @@ public class ReservationRepository : IReservationRepository
             .Where(r => r.ReservationDate == targetDate)
             .Select(r => r.TimeSlot) // TimeSlot is int
             .ToList();
-        MonitorService.Log.Information("Found {@reservedSlotCount} reserved slots for date {@targetDate}",
+        MonitorService.Log.Information("Found {@ReservedSlotCount} reserved slots for date {@TargetDate}",
             reservedHours.Count, targetDate);
 
         // Convert each hour to a DateTime on the target date
@@ -39,23 +39,23 @@ public class ReservationRepository : IReservationRepository
     {
         try
         {
-            MonitorService.Log.Information("ReserveTable called for reservation {@reservationId} with table ID {@tableId}, time slot {@timeSlot}, party size {@partySize}, user ID {@userId}",
+            MonitorService.Log.Information("ReserveTable called for reservation {@ReservationId} with table ID {@TableId}, time slot {@TimeSlot}, party size {@PartySize}, user ID {@UserId}",
                 reservation.ReservationId, reservation.TableId, reservation.TimeSlot, reservation.PartySize, reservation.UserId);
             _context.Reservations.Add(reservation);
             _context.SaveChanges();
 
-            MonitorService.Log.Information("Reservation {@reservationId} successfully saved", reservation.ReservationId);
+            MonitorService.Log.Information("Reservation {@ReservationId} successfully saved", reservation.ReservationId);
         }
         catch (Exception ex)
         {
-            MonitorService.Log.Error(ex, "Error while saving reservation {@reservationId}", reservation.ReservationId);
+            MonitorService.Log.Error(ex, "Error while saving reservation {@ReservationId}", reservation.ReservationId);
             throw;
         }
     }
 
     public bool IsTableReservedAt(Guid tableId, DateTime reservationDate, int timeSlotHour)
     {
-        MonitorService.Log.Information("Checking if table {@tableId} is reserved at {@reservationDate} for time slot {@timeSlotHour}", tableId, reservationDate, timeSlotHour);
+        MonitorService.Log.Information("Checking if table {@TableId} is reserved at {@ReservationDate} for time slot {@TimeSlotHour}", tableId, reservationDate, timeSlotHour);
 
         var targetDate = reservationDate.Date;
         var hour = timeSlotHour;
@@ -65,7 +65,7 @@ public class ReservationRepository : IReservationRepository
             r.ReservationDate.Date == targetDate &&
             r.TimeSlot == hour);
 
-        MonitorService.Log.Information("Table {@tableId} is {reservationStatus} at {@reservationDate} for time slot {@timeSlotHour}",
+        MonitorService.Log.Information("Table {@TableId} is {@ReservationStatus} at {@ReservationDate} for time slot {@TimeSlotHour}",
             tableId, isReserved ? "reserved" : "available", reservationDate, timeSlotHour);
 
         return isReserved;

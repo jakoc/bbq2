@@ -22,7 +22,7 @@ public class Email : IEmail
 
     public async Task SendSuccessfullAccountCreationEmail(string toEmail, string firstName)
     {
-        MonitorService.Log.Information("Preparing to send successful account creation email to {@toEmail} for user {@firstName}",
+        MonitorService.Log.Information("Preparing to send successful account creation email to {@ToEmail} for user {@FirstName}",
             toEmail, firstName);
         var email = new MimeMessage();
         email.From.Add(new MailboxAddress("Bobs BBQ", _smtpUser));
@@ -43,20 +43,16 @@ public class Email : IEmail
         using var smtp = new SmtpClient();
         try
         {
-            MonitorService.Log.Information("Attempting to connect to SMTP server {@smtpServer} on port {@smtpPort}", _smtpServer, _smtpPort);
+            MonitorService.Log.Information("Attempting to connect to SMTP server {@SmtpServer} on port {@SmtpPort}", _smtpServer, _smtpPort);
 
             await smtp.ConnectAsync(_smtpServer, _smtpPort, true);
-            MonitorService.Log.Information("Successfully connected to SMTP server {@smtpServer} on port {@smtpPort}", _smtpServer, _smtpPort);
-
             await smtp.AuthenticateAsync(_smtpUser, _smtpPass);
-            MonitorService.Log.Information("Successfully authenticated with SMTP server");
-
             await smtp.SendAsync(email);
-            MonitorService.Log.Information("Successfully sent account creation email to {@toEmail}", toEmail);
+            MonitorService.Log.Information("Successfully sent account creation email to {@ToEmail}", toEmail);
         }
         catch (Exception ex)
         {
-            MonitorService.Log.Error(ex, "Failed to send account creation email to {@toEmail}", toEmail);
+            MonitorService.Log.Error(ex, "Failed to send account creation email to {@ToEmail}", toEmail);
         }
         
         finally
@@ -70,7 +66,7 @@ public class Email : IEmail
     public async Task SendSuccessfullTableReservationEmail(string toEmail, string firstName, 
         DateTime reservationDate, DateTime reservationTime)
     {
-        MonitorService.Log.Information("Preparing to send successful table reservation email to {@toEmail} for user {@firstName}",
+        MonitorService.Log.Information("Preparing to send successful table reservation email to {@ToEmail} for user {@FirstName}",
             toEmail, firstName);
         var email = new MimeMessage();
         email.From.Add(new MailboxAddress("Bobs BBQ", _smtpUser));
@@ -92,20 +88,16 @@ public class Email : IEmail
         using var smtp = new SmtpClient();
         try
         {
-            MonitorService.Log.Information("Attempting to connect to SMTP server {@smtpServer} on port {@smtpPort}", _smtpServer, _smtpPort);
+            MonitorService.Log.Information("Attempting to connect to SMTP server {@SmtpServer} on port {@SmtpPort}", _smtpServer, _smtpPort);
 
             await smtp.ConnectAsync(_smtpServer, _smtpPort, true);
-            MonitorService.Log.Information("Successfully connected to SMTP server {@smtpServer} on port {@smtpPort}", _smtpServer, _smtpPort);
-
             await smtp.AuthenticateAsync(_smtpUser, _smtpPass);
-            MonitorService.Log.Information("Successfully authenticated with SMTP server");
-
             await smtp.SendAsync(email);
-            MonitorService.Log.Information("Successfully sent account creation email to {@toEmail}", toEmail);
+            MonitorService.Log.Information("Successfully sent account creation email to {@ToEmail}", toEmail);
         }
         catch (Exception ex)
         {
-            MonitorService.Log.Error(ex, "Failed to send account creation email to {@toEmail}", toEmail);
+            MonitorService.Log.Error(ex, "Failed to send account creation email to {@ToEmail}", toEmail);
       
         }
         finally

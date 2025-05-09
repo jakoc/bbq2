@@ -17,41 +17,41 @@ public class UserRepository : IUserRepository
     {
         try
         {
-            MonitorService.Log.Information("Registering user with email {@userEmail}", user.Email);
+            MonitorService.Log.Information("Registering user with email {@UserEmail}", user.Email);
 
             _context.Users.Add(user);
             var result = _context.SaveChanges() > 0;
 
             if (result)
             {
-                MonitorService.Log.Information("User with email {@userEmail} successfully registered", user.Email);
+                MonitorService.Log.Information("User with email {@UserEmail} successfully registered", user.Email);
             }
             else
             {
-                MonitorService.Log.Warning("User registration failed for email {@userEmail}", user.Email);
+                MonitorService.Log.Warning("User registration failed for email {@UserEmail}", user.Email);
             }
 
             return result;
         }
         catch (Exception ex)
         {
-            MonitorService.Log.Error(ex, "Error occurred while registering user with email {@userEmail}", user.Email);
+            MonitorService.Log.Error(ex, "Error occurred while registering user with email {@UserEmail}", user.Email);
             throw;
         }
     }
     public User GetUserByEmail(string email)
     {
-        MonitorService.Log.Information("Fetching user with email {@userEmail}", email);
+        MonitorService.Log.Information("Fetching user with email {@UserEmail}", email);
 
         var user = _context.Users.FirstOrDefault(u => u.Email == email);
 
         if (user != null)
         {
-            MonitorService.Log.Information("User with email {@userEmail} found", email);
+            MonitorService.Log.Information("User with email {@UserEmail} found", email);
         }
         else
         {
-            MonitorService.Log.Warning("User with email {@userEmail} not found", email);
+            MonitorService.Log.Warning("User with email {@UserEmail} not found", email);
         }
 
         return user;

@@ -58,7 +58,7 @@ public class UserController : ControllerBase
         }
         catch (Exception ex)
         {
-            MonitorService.Log.Error(ex, "Error logging in user {@email}", email);
+            MonitorService.Log.Error(ex, "Error logging in user {@Email}", email);
             return StatusCode(500, "Error logging in user");
         }
     }
@@ -93,7 +93,7 @@ public class UserController : ControllerBase
             var user = _userLogic.RegisterUser(username, password, email, phoneNumber, role);
             if (user != null)
             {
-                MonitorService.Log.Information("User created successfully: {@email}", email);
+                MonitorService.Log.Information("User created successfully: {@Email}", email);
                 return Ok(user);
             }
             else

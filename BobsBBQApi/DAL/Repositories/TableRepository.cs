@@ -17,16 +17,16 @@ public class TableRepository : ITableRepository
     {
         try
         {
-            MonitorService.Log.Information("Adding table {@tableId} with capacity {@capacity}", table.TableId, table.Capacity);
+            MonitorService.Log.Information("Adding table {@TableId} with capacity {@Capacity}", table.TableId, table.Capacity);
 
             _context.RestaurantTables.Add(table);
             _context.SaveChanges();
 
-            MonitorService.Log.Information("Table {@tableId} successfully added", table.TableId);
+            MonitorService.Log.Information("Table {@TableId} successfully added", table.TableId);
         }
         catch (Exception ex)
         {
-            MonitorService.Log.Error(ex, "Error occurred while adding table {@tableId}", table.TableId);
+            MonitorService.Log.Error(ex, "Error occurred while adding table {@TableId}", table.TableId);
             throw;
         }
     }
@@ -37,7 +37,7 @@ public class TableRepository : ITableRepository
 
         var tables = _context.RestaurantTables.ToList();
 
-        MonitorService.Log.Information("Fetched {@tableCount} tables", tables.Count);
+        MonitorService.Log.Information("Fetched {@TableCount} tables", tables.Count);
 
         return tables;
     }

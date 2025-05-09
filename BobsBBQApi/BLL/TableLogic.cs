@@ -14,10 +14,10 @@ public class TableLogic : ITableLogic
     }
     public void AddTable( int capacity)
     {
-        MonitorService.Log.Information("AddTable called in logic with capacity: {@capacity}", capacity);
+        MonitorService.Log.Information("AddTable called in logic with capacity: {@Capacity}", capacity);
         if (capacity <= 0 )
         {
-            MonitorService.Log.Warning("Invalid table capacity received: {@capacity}", capacity);
+            MonitorService.Log.Warning("Invalid table capacity received: {@Capacity}", capacity);
             throw new ArgumentException("Capacity and table number must be greater than zero.");
         }
 
@@ -35,7 +35,7 @@ public class TableLogic : ITableLogic
         }
         catch (Exception e)
         {
-            MonitorService.Log.Error(e, "Error while adding table with capacity: {@capacity}", capacity);
+            MonitorService.Log.Error(e, "Error while adding table with capacity: {@Capacity}", capacity);
             throw new ArgumentException( "Error while adding table", e);
         }
         
