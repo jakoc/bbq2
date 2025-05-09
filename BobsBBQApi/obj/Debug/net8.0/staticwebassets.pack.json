@@ -1,15 +1,15 @@
 {
   "Files": [
     {
-      "Id": "C:\\Users\\Anders\\RiderProjects\\BobsBBQ\\BobsBBQApi\\wwwroot\\FrontPageStyle.css",
+      "Id": "C:\\Users\\Anders\\RiderProjects\\BobsBBQ\\BobsBBQAPI\\wwwroot\\FrontPageStyle.css",
       "PackagePath": "staticwebassets\\FrontPageStyle.css"
     },
     {
-      "Id": "C:\\Users\\Anders\\RiderProjects\\BobsBBQ\\BobsBBQApi\\wwwroot\\Lokation.png",
+      "Id": "C:\\Users\\Anders\\RiderProjects\\BobsBBQ\\BobsBBQAPI\\wwwroot\\Lokation.png",
       "PackagePath": "staticwebassets\\Lokation.png"
     },
     {
-      "Id": "C:\\Users\\Anders\\RiderProjects\\BobsBBQ\\BobsBBQApi\\wwwroot\\index.html",
+      "Id": "C:\\Users\\Anders\\RiderProjects\\BobsBBQ\\BobsBBQAPI\\wwwroot\\index.html",
       "PackagePath": "staticwebassets\\index.html"
     },
     {

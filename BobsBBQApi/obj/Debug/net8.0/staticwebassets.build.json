@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "8gcTR1eaKiJ9HrftD6Oxp1W7PnjGqpSgUKGEEoaWJOU=",
+  "Hash": "ygrW7WttBHpm2DJtL5KtbZ2SP+fn0CpEeCfhFEJmsAA=",
   "Source": "BobsBBQApi",
   "BasePath": "_content/BobsBBQApi",
   "Mode": "Default",
@@ -10,17 +10,17 @@
     {
       "Name": "BobsBBQApi\\wwwroot",
       "Source": "BobsBBQApi",
-      "ContentRoot": "C:\\Users\\Anders\\RiderProjects\\BobsBBQ\\BobsBBQApi\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Anders\\RiderProjects\\BobsBBQ\\BobsBBQAPI\\wwwroot\\",
       "BasePath": "_content/BobsBBQApi",
       "Pattern": "**"
     }
   ],
   "Assets": [
     {
-      "Identity": "C:\\Users\\Anders\\RiderProjects\\BobsBBQ\\BobsBBQApi\\wwwroot\\FrontPageStyle.css",
+      "Identity": "C:\\Users\\Anders\\RiderProjects\\BobsBBQ\\BobsBBQAPI\\wwwroot\\FrontPageStyle.css",
       "SourceId": "BobsBBQApi",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Anders\\RiderProjects\\BobsBBQ\\BobsBBQApi\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Anders\\RiderProjects\\BobsBBQ\\BobsBBQAPI\\wwwroot\\",
       "BasePath": "_content/BobsBBQApi",
       "RelativePath": "FrontPageStyle.css",
       "AssetKind": "All",
@@ -36,10 +36,10 @@
       "OriginalItemSpec": "wwwroot\\FrontPageStyle.css"
     },
     {
-      "Identity": "C:\\Users\\Anders\\RiderProjects\\BobsBBQ\\BobsBBQApi\\wwwroot\\index.html",
+      "Identity": "C:\\Users\\Anders\\RiderProjects\\BobsBBQ\\BobsBBQAPI\\wwwroot\\index.html",
       "SourceId": "BobsBBQApi",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Anders\\RiderProjects\\BobsBBQ\\BobsBBQApi\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Anders\\RiderProjects\\BobsBBQ\\BobsBBQAPI\\wwwroot\\",
       "BasePath": "_content/BobsBBQApi",
       "RelativePath": "index.html",
       "AssetKind": "All",
@@ -55,10 +55,10 @@
       "OriginalItemSpec": "wwwroot\\index.html"
     },
     {
-      "Identity": "C:\\Users\\Anders\\RiderProjects\\BobsBBQ\\BobsBBQApi\\wwwroot\\Lokation.png",
+      "Identity": "C:\\Users\\Anders\\RiderProjects\\BobsBBQ\\BobsBBQAPI\\wwwroot\\Lokation.png",
       "SourceId": "BobsBBQApi",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Anders\\RiderProjects\\BobsBBQ\\BobsBBQApi\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Anders\\RiderProjects\\BobsBBQ\\BobsBBQAPI\\wwwroot\\",
       "BasePath": "_content/BobsBBQApi",
       "RelativePath": "Lokation.png",
       "AssetKind": "All",
