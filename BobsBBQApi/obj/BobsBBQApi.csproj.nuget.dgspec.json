@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Anders\\RiderProjects\\BobsBBQ\\BobsBBQAPI\\BobsBBQApi.csproj": {}
+    "C:\\Users\\Anders\\RiderProjects\\BobsBBQ\\BobsBBQApi\\BobsBBQApi.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Anders\\RiderProjects\\BobsBBQ\\BobsBBQAPI\\BobsBBQApi.csproj": {
+    "C:\\Users\\Anders\\RiderProjects\\BobsBBQ\\BobsBBQApi\\BobsBBQApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Anders\\RiderProjects\\BobsBBQ\\BobsBBQAPI\\BobsBBQApi.csproj",
+        "projectUniqueName": "C:\\Users\\Anders\\RiderProjects\\BobsBBQ\\BobsBBQApi\\BobsBBQApi.csproj",
         "projectName": "BobsBBQApi",
-        "projectPath": "C:\\Users\\Anders\\RiderProjects\\BobsBBQ\\BobsBBQAPI\\BobsBBQApi.csproj",
+        "projectPath": "C:\\Users\\Anders\\RiderProjects\\BobsBBQ\\BobsBBQApi\\BobsBBQApi.csproj",
         "packagesPath": "C:\\Users\\Anders\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Anders\\RiderProjects\\BobsBBQ\\BobsBBQAPI\\obj\\",
+        "outputPath": "C:\\Users\\Anders\\RiderProjects\\BobsBBQ\\BobsBBQApi\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Anders\\AppData\\Roaming\\NuGet\\NuGet.Config",

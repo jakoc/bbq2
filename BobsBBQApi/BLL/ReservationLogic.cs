@@ -83,7 +83,7 @@ public class ReservationLogic : IReservationLogic
             if (!availableTables.Any())
             {
                 MonitorService.Log.Warning("No available tables for reservation date: {@ReservationDate}, time slot: {@TimeSlot}", reservationDate, timeSlot);
-                throw new InvalidOperationException("No available table at this time slot.");
+                throw new ArgumentException("No available table at this time slot.");
             }
 
             var selectedTable = availableTables[new Random().Next(availableTables.Count)];
@@ -116,9 +116,6 @@ public class ReservationLogic : IReservationLogic
     {
         MonitorService.Log.Information("Validating reservation inputs: {@ReservationDate}, {@TimeSlot}, {@PartySize}, {@UserId}", 
             reservationDate, timeSlot, partySize, userId);
-        if (reservationDate.Date < DateTime.Now.Date)
-            throw new ArgumentException("Reservation date cannot be in the past.");
-        
 
         if (reservationDate.Date < DateTime.Now.Date)
         {

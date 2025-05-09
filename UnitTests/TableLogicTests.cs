@@ -33,8 +33,6 @@ public class TableLogicTests
         Assert.AreEqual("Capacity and table number must be greater than zero.", ex.Message);
     }
 
- 
-
     [Test]
     public void AddTable_ShouldCallAddTableMethodInRepository_WhenArgumentsAreValid()
     {
@@ -72,6 +70,40 @@ public class TableLogicTests
         // Assert
         Assert.AreEqual(tables.Count, result.Count());
         Assert.AreEqual(tables, result);
+    }
+
+    [Test]
+    public void AddTable_ShouldAssignCorrectTableNumber_BasedOnExistingCount()
+    {
+        // Arrange
+        var existingTables = new List<Table>
+        {
+            new Table { TableId = Guid.NewGuid(), Capacity = 2, TableNumber = 1 },
+            new Table { TableId = Guid.NewGuid(), Capacity = 4, TableNumber = 2 }
+        };
+
+        // Mocking GetTables to return the existing tables
+        _tableRepositoryMock.Setup(repo => repo.GetTables())
+            .Returns(existingTables);
+
+        Table addedTable = null;
+
+        // Mocking AddTable to track the added table
+        _tableRepositoryMock.Setup(repo => repo.AddTable(It.IsAny<Table>()))
+            .Callback<Table>(t => addedTable = t);
+
+        int newTableCapacity = 6;
+
+        // Act
+        _tableLogic.AddTable(newTableCapacity); // Assuming this method assigns table number and adds the table
+
+        // Assert
+        Assert.IsNotNull(addedTable);
+        Assert.That(addedTable.TableNumber, Is.EqualTo(3)); // Expecting next available table number
+        Assert.That(addedTable.Capacity, Is.EqualTo(newTableCapacity));
+
+        // Verify AddTable was called with the expected parameters
+        _tableRepositoryMock.Verify(r => r.AddTable(It.Is<Table>(t => t.TableNumber == 3 && t.Capacity == newTableCapacity)), Times.Once);
     }
 }
 

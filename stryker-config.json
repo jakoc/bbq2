@@ -1,0 +1,14 @@
+{
+  "stryker-config": {
+    "ignore-methods": [
+      "*Information*",
+      "*Warning*",
+      "*Error*",
+      "*Critical*",
+      "*Debug*",
+      "*Trace*",
+      "Log*",
+      "MonitorSercies*"
+    ]
+  }
+}
