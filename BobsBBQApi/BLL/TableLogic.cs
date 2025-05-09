@@ -1,5 +1,6 @@
 using BobsBBQApi.BE;
 using BobsBBQApi.DAL.Repositories.Interfaces;
+using BobsBBQApi.Services;
 
 namespace BobsBBQApi.BLL.Interfaces;
 
@@ -13,23 +14,35 @@ public class TableLogic : ITableLogic
     }
     public void AddTable( int capacity)
     {
+        MonitorService.Log.Information("AddTable called in logic with capacity: {@capacity}", capacity);
         if (capacity <= 0 )
         {
+            MonitorService.Log.Warning("Invalid table capacity received: {@capacity}", capacity);
             throw new ArgumentException("Capacity and table number must be greater than zero.");
         }
 
-        var tableNumber = _tableRepository.GetTables().Count();
-        var table = new Table
+        try
         {
-            TableId = Guid.NewGuid(),
-            Capacity = capacity,
-            TableNumber = tableNumber +1
-        };
+            var tableNumber = _tableRepository.GetTables().Count();
+            var table = new Table
+            {
+                TableId = Guid.NewGuid(),
+                Capacity = capacity,
+                TableNumber = tableNumber +1
+            };
         
-        _tableRepository.AddTable(table);
+            _tableRepository.AddTable(table);
+        }
+        catch (Exception e)
+        {
+            MonitorService.Log.Error(e, "Error while adding table with capacity: {@capacity}", capacity);
+            throw new ArgumentException( "Error while adding table", e);
+        }
+        
     }
     public IEnumerable<Table> GetTables()
     {
+        MonitorService.Log.Information("GetTables called in logic");
         return _tableRepository.GetTables();
     }
 }

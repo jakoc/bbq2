@@ -2,6 +2,7 @@ using BobsBBQApi.BE;
 using BobsBBQApi.BLL.Interfaces;
 using BobsBBQApi.DAL.Repositories.Interfaces;
 using BobsBBQApi.Helpers;
+using BobsBBQApi.Services;
 
 namespace BobsBBQApi.BLL;
 
@@ -18,28 +19,42 @@ public class ReservationLogic : IReservationLogic
     }
     public List<DateTime> GetAvailableTimeSlot(DateTime date, int partySize)
     {
+        MonitorService.Log.Information("GetAvailableTimeSlot called with date: {@date} and party size: {@partySize}", date, partySize);
         var tables = _tableRepository.GetTables()
             .Where(t => t.Capacity >= partySize)
             .ToList();
 
         if (!tables.Any())
-            throw new ArgumentException("No tables available for this party size.");
-
-        var defaultSlots = DefaultTimeSlots.GetSlots(date);
-        var availableSlots = new List<DateTime>();
-
-        foreach (var slot in defaultSlots)
         {
-            int slotHour = slot.Hour;
-
-            bool hasFreeTable = tables.Any(table => 
-                !_reservationRepository.IsTableReservedAt(table.TableId, date, slotHour));
-
-            if (hasFreeTable)
+            MonitorService.Log.Warning("No tables available for party size: {@partySize}", partySize);
+            throw new ArgumentException("No tables available for this party size.");
+        }
+        
+        
+        var availableSlots = new List<DateTime>();
+        try
+        {
+            MonitorService.Log.Information("Checking available time slots for date: {@date}", date);
+            var defaultSlots = DefaultTimeSlots.GetSlots(date);
+            foreach (var slot in defaultSlots)
             {
-                availableSlots.Add(slot);
+                int slotHour = slot.Hour;
+
+                bool hasFreeTable = tables.Any(table => 
+                    !_reservationRepository.IsTableReservedAt(table.TableId, date, slotHour));
+
+                if (hasFreeTable)
+                {
+                    availableSlots.Add(slot);
+                }
             }
         }
+        catch (Exception e)
+        {
+            MonitorService.Log.Error(e, "Error while checking available time slots for date: {@date}", date);
+            throw new Exception("Error while checking available time slots", e);
+        }
+        
 
         return availableSlots;
     }
@@ -49,54 +64,91 @@ public class ReservationLogic : IReservationLogic
         
     public void ReserveTable(DateTime reservationDate, int timeSlot, int partySize, string note, Guid userId)
     {
+        MonitorService.Log.Information("ReserveTable called with date: {@reservationDate}, time slot: {@timeSlot}, party size: {@partySize}, note: {@note}, userId: {@userId}", 
+            reservationDate, timeSlot, partySize, note, userId);
         ValidateReservationInputs(reservationDate, timeSlot, partySize, userId);
-    
-        var tables = _tableRepository.GetTables()
-            .Where(t => t.Capacity >= partySize)
-            .ToList();
-    
-        var availableTables = tables
-            .Where(t => !_reservationRepository.IsTableReservedAt(t.TableId, reservationDate ,timeSlot))
-            .ToList();
-    
-        if (!availableTables.Any())
-            throw new InvalidOperationException("No available table at this time slot.");
-    
-        var selectedTable = availableTables[new Random().Next(availableTables.Count)];
-    
-        var reservation = new Reservation
+        MonitorService.Log.Information("Inputs validated successfully");
+        try
         {
-            ReservationId = Guid.NewGuid(),
-            TableId = selectedTable.TableId,
-            ReservationDate = reservationDate,
-            UserId = userId,
-            PartySize = partySize,
-            TimeSlot = timeSlot,
-            Note = note
-        };
-    
-        _reservationRepository.ReserveTable(reservation);
+            var tables = _tableRepository.GetTables()
+                .Where(t => t.Capacity >= partySize)
+                .ToList();
+
+            MonitorService.Log.Information("Found {@tableCount} suitable tables for party size {@partySize}", tables.Count, partySize);
+
+            var availableTables = tables
+                .Where(t => !_reservationRepository.IsTableReservedAt(t.TableId, reservationDate, timeSlot))
+                .ToList();
+
+            if (!availableTables.Any())
+            {
+                MonitorService.Log.Warning("No available tables for reservation date: {@reservationDate}, time slot: {@timeSlot}", reservationDate, timeSlot);
+                throw new InvalidOperationException("No available table at this time slot.");
+            }
+
+            var selectedTable = availableTables[new Random().Next(availableTables.Count)];
+            MonitorService.Log.Information("Selected table {@tableId} for reservation", selectedTable.TableId);
+
+            var reservation = new Reservation
+            {
+                ReservationId = Guid.NewGuid(),
+                TableId = selectedTable.TableId,
+                ReservationDate = reservationDate,
+                UserId = userId,
+                PartySize = partySize,
+                TimeSlot = timeSlot,
+                Note = note
+            };
+
+            _reservationRepository.ReserveTable(reservation);
+            MonitorService.Log.Information("Reservation successfully saved with ID {@reservationId}", reservation.ReservationId);
+        }
+
+        catch (Exception ex)
+        {
+            MonitorService.Log.Error(ex, "Unexpected error occurred while reserving a table");
+            throw;
+        }
     }
 
     private  void ValidateReservationInputs(DateTime reservationDate, int timeSlot, int partySize,
         Guid userId)
     {
- 
+        MonitorService.Log.Information("Validating reservation inputs: {@reservationDate}, {@timeSlot}, {@partySize}, {@userId}", 
+            reservationDate, timeSlot, partySize, userId);
         if (reservationDate.Date < DateTime.Now.Date)
             throw new ArgumentException("Reservation date cannot be in the past.");
+        
+
+        if (reservationDate.Date < DateTime.Now.Date)
+        {
+            MonitorService.Log.Warning("Validation failed: reservation date is in the past ({@reservationDate})", reservationDate);
+            throw new ArgumentException("Reservation date cannot be in the past.");
+        }
 
         if (timeSlot <= 9 || timeSlot >= 23)
+        {
+            MonitorService.Log.Warning("Validation failed: invalid time slot ({@timeSlot})", timeSlot);
             throw new ArgumentException("Time slot must be between 10 AM and 10 PM.");
+        }
 
         if (partySize <= 0 || partySize >= 11)
+        {
+            MonitorService.Log.Warning("Validation failed: invalid party size ({@partySize})", partySize);
             throw new ArgumentException("Party size must be between 1 and 10.");
+        }
 
         if (userId == Guid.Empty)
+        {
+            MonitorService.Log.Warning("Validation failed: user ID is empty");
             throw new ArgumentException("User ID cannot be empty.");
-        
-        var availableTimeSlots = GetAvailableTimeSlot(reservationDate, partySize);
+        }
 
+        var availableTimeSlots = GetAvailableTimeSlot(reservationDate, partySize);
         if (!availableTimeSlots.Any(x => x.Hour == timeSlot))
+        {
+            MonitorService.Log.Warning("Validation failed: selected time slot {@timeSlot} not available for date {@reservationDate}", timeSlot, reservationDate);
             throw new ArgumentException("The selected time slot is not available.");
+        }
     }
 }

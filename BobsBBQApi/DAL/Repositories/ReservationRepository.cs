@@ -1,6 +1,7 @@
 using BobsBBQApi.BE;
 using BobsBBQApi.DAL.Repositories.Interfaces;
 using BobsBBQApi.Helpers;
+using BobsBBQApi.Services;
 
 namespace BobsBBQApi.DAL.Repositories;
 
@@ -15,6 +16,7 @@ public class ReservationRepository : IReservationRepository
     
     public List<DateTime> GetReservedSlots(DateTime date)
     {
+        MonitorService.Log.Information("GetReservedSlots called with date: {@date}", date);
         var targetDate = date.Date;
 
         // Get all reservations for the specified date
@@ -22,6 +24,8 @@ public class ReservationRepository : IReservationRepository
             .Where(r => r.ReservationDate == targetDate)
             .Select(r => r.TimeSlot) // TimeSlot is int
             .ToList();
+        MonitorService.Log.Information("Found {@reservedSlotCount} reserved slots for date {@targetDate}",
+            reservedHours.Count, targetDate);
 
         // Convert each hour to a DateTime on the target date
         var reservedSlots = reservedHours
@@ -33,18 +37,37 @@ public class ReservationRepository : IReservationRepository
 
     public void ReserveTable(Reservation reservation)
     {
-        _context.Reservations.Add(reservation);
-        _context.SaveChanges();
+        try
+        {
+            MonitorService.Log.Information("ReserveTable called for reservation {@reservationId} with table ID {@tableId}, time slot {@timeSlot}, party size {@partySize}, user ID {@userId}",
+                reservation.ReservationId, reservation.TableId, reservation.TimeSlot, reservation.PartySize, reservation.UserId);
+            _context.Reservations.Add(reservation);
+            _context.SaveChanges();
+
+            MonitorService.Log.Information("Reservation {@reservationId} successfully saved", reservation.ReservationId);
+        }
+        catch (Exception ex)
+        {
+            MonitorService.Log.Error(ex, "Error while saving reservation {@reservationId}", reservation.ReservationId);
+            throw;
+        }
     }
 
     public bool IsTableReservedAt(Guid tableId, DateTime reservationDate, int timeSlotHour)
     {
+        MonitorService.Log.Information("Checking if table {@tableId} is reserved at {@reservationDate} for time slot {@timeSlotHour}", tableId, reservationDate, timeSlotHour);
+
         var targetDate = reservationDate.Date;
         var hour = timeSlotHour;
 
-        return _context.Reservations.Any(r =>
+        var isReserved = _context.Reservations.Any(r =>
             r.TableId == tableId &&
             r.ReservationDate.Date == targetDate &&
             r.TimeSlot == hour);
+
+        MonitorService.Log.Information("Table {@tableId} is {reservationStatus} at {@reservationDate} for time slot {@timeSlotHour}",
+            tableId, isReserved ? "reserved" : "available", reservationDate, timeSlotHour);
+
+        return isReserved;
     }
 }

@@ -73,6 +73,15 @@
                 <label for="signupPassword">Password</label>
                 <input type="password" id="signupPassword" name="password" required>
             </div>
+            <div class="input-group">
+                <label for="signupRole">Role</label>
+                <select id="signupRole" name="role" required>
+                    <option value="">Select a role</option>
+                    <option value="Admin">Admin</option>
+                    <option value="Customer">Customer</option>
+                </select>
+            </div>
+
             <div class="button-group">
                 <button type="submit">Opret Konto</button>
             </div>
@@ -89,7 +98,7 @@
     const paragraph = document.getElementById('about-paragraph');
     const editor = document.getElementById('about-editor');
     const nav = document.getElementById('nav-buttons');
-
+    
     // Modal handling
     window.addEventListener('click', (event) => {
         if (event.target === loginModal) loginModal.style.display = 'none';
@@ -127,8 +136,22 @@
             nav.innerHTML = `
                 <button id="loginBtnOpen">Login</button>
                 <button id="signupBtnOpen">Sign Up</button>`;
-            document.getElementById('loginBtnOpen').onclick = () => loginModal.style.display = 'block';
-            document.getElementById('signupBtnOpen').onclick = () => signupModal.style.display = 'block';
+            // Show sign-up modal when the "Sign Up" button is clicked
+            signupBtnOpen.onclick = () => {
+                signupModal.style.display = 'block';  // Show the sign-up modal
+            };
+
+            // Close sign-up modal when the close button (×) is clicked
+            closeSignupModal.onclick = () => {
+                signupModal.style.display = 'none';  // Hide the sign-up modal
+            };
+
+            // Close sign-up modal when clicking outside of it
+            window.addEventListener('click', (event) => {
+                if (event.target === signupModal) {
+                    signupModal.style.display = 'none';  // Close the modal if clicked outside
+                }
+            });
         } else if (role === 'Customer') {
             nav.innerHTML = `
                 <a href="BordBestilling.html"><button>Bestil Bord</button></a>
@@ -149,12 +172,19 @@
         const email = document.getElementById('signupEmail').value;
         const phone = document.getElementById('signupPhone').value;
         const password = document.getElementById('signupPassword').value;
+        const role = document.getElementById('signupRole').value;       
 
         try {
             const res = await fetch('http://localhost:5251/RegisterUser', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ name, email, phone, password })
+                body: JSON.stringify({
+                    userName: name,
+                    email: email,
+                    phoneNumber: phone,
+                    password: password,
+                    userRole: role
+                })
             });
             if (!res.ok) throw new Error('Signup fejlede');
             signupModal.style.display = 'none';

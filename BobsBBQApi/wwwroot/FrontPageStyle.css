@@ -86,32 +86,30 @@ textarea {
 
 /* Modal Styles */
 .modal {
-    display: none; /* Hidden by default */
+    display: none; /* Initially hidden */
     position: fixed;
-    z-index: 1; /* Sit on top */
-    left: 0;
     top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgba(0, 0, 0, 0.4); /* Black with opacity */
-    padding-top: 60px;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
 }
 
 .modal-content {
-    background-color: #fefefe;
-    margin: 5% auto;
+    background-color: white;
     padding: 20px;
-    border: 1px solid #888;
-    width: 80%;
-    max-width: 400px;
+    border-radius: 10px;
+    width: 300px;
 }
 
 .close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
+    cursor: pointer;
+    position: absolute;
+    top: 10px;
+    right: 10px;
 }
 
 .close:hover,
@@ -155,4 +153,19 @@ input[type="submit"] {
     background-color: #4CAF50;
     color: white;
     border: none;
+}
+select {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    color: #000;
+    border: 2px solid red;  
+}
+.input-group {
+    margin-bottom: 15px;
+}
+#signupModal.modal {
+    display: block 
 }
