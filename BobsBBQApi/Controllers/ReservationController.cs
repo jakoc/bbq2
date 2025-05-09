@@ -41,7 +41,7 @@ public class ReservationController : Controller
          }
     }
     
-    [HttpPost("[action]")]
+    [HttpGet("[action]")]
     public IActionResult GetAvailableTimeSlots(DateTime date, int partySize)
     {
         using var activity = MonitorService.ActivitySource.StartActivity("GetAvailableTimeSlots called from controller");

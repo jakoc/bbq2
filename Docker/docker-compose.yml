@@ -1,6 +1,44 @@
 ﻿services:
-  bobsbbqapi:
-    image: bobsbbqapi
-    build:
-      context: .
-      dockerfile: BobsBBQApi/Docker/Dockerfile
+  mariadb:
+    image: mariadb:latest
+    container_name: mariadb
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: bobsbbq
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+    ports:
+      - "3306:3306"
+    volumes:
+      - mariadb_data:/var/lib/mysql
+
+  flyway:
+    image: flyway/flyway:latest
+    container_name: flyway
+    depends_on:
+      - mariadb
+    volumes:
+      - ./dbmigrations:/flyway/sql
+    environment:
+      - FLYWAY_URL=jdbc:mariadb://mariadb:3306/bobsbbq
+      - FLYWAY_USER=user
+      - FLYWAY_PASSWORD=password
+    command: migrate
+  
+  solution:
+    image: ghcr.io/anderswith/bobsbbq:latest
+    container_name: bobsbbq_solution
+    restart: always
+    depends_on:
+      - mariadb
+    environment:
+      - DB_HOST=mariadb
+      - DB_USER=user
+      - DB_PASSWORD=password
+      - DB_NAME=bobsbbq
+    ports:
+      - "5000:5000"
+
+volumes:
+  mariadb_data:

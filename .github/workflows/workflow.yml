@@ -94,3 +94,57 @@ jobs:
         run: |
           dotnet sonarscanner end \
             /d:sonar.token="${{secrets.SECRET_SONAR_TOKEN}}"
+          
+      - name: Deliver database migrations to staging server
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ vars.STAGING_SERVER_IP }}
+          username: ${{ vars.STAGING_SERVER_USERNAME }}
+          key: ${{ secrets.STAGING_SERVER_SSH_KEY }}
+          source: "dbmigration/*"
+          target: "dowa/dbmigration"
+          overwrite: true
+          debug: true
+
+      - name: Log in to GHCR
+        uses: docker/login-action@v2
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.SECRET_GITHUB_TOKEN }}
+
+      - name: Build and push Docker image 
+        run: |
+          docker build -t ghcr.io/anderswith/bobsbbq:latest -f docker/Dockerfile .
+          docker push ghcr.io/anderswith/bobsbbq:latest
+
+      - name: Deliver Compose file to staging server
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ vars.STAGING_SERVER_IP }}
+          username: ${{ vars.STAGING_SERVER_USERNAME }}
+          key: ${{ secrets.STAGING_SERVER_SSH_KEY }}
+          source: "docker/docker-compose.yml"
+          target: "dowa/"
+          debug: true
+
+      - name: Deploy and restart services
+        uses: appleboy/ssh-action@v0.1.7
+        with:
+          host: ${{ vars.STAGING_SERVER_IP }}
+          username: ${{ vars.STAGING_SERVER_USERNAME }}
+          key: ${{ secrets.STAGING_SERVER_SSH_KEY }}
+          script: |
+            cd dowa/docker/
+            docker compose pull
+            docker compose up -d --force-recreate
+            
+      - name: Setup K6
+        run: |
+          curl -LO https://github.com/k6io/k6/releases/download/v0.44.0/k6-v0.44.0-linux-amd64.tar.gz
+          tar -xvzf k6-v0.44.0-linux-amd64.tar.gz
+          sudo mv k6-v0.44.0-linux-amd64/k6 /usr/local/bin/
+          k6 version
+
+      - name: Run K6 Spike Test
+        run: k6 run k6-tests/spike-test.js
