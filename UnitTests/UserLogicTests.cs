@@ -4,15 +4,17 @@ using BobsBBQApi.DAL.Repositories.Interfaces;
 using BobsBBQApi.Helpers.Interfaces;
 using Moq;
 
-[TestFixture]
-public class UserLogicTests
+namespace UnitTests
 {
-    private Mock<IUserRepository> _mockUserRepository;
-    private Mock<IPasswordEncrypter> _mockPasswordEncrypter;
-    private Mock<IJwtToken> _mockJwtToken;
-    private Mock<IEmail> _mockEmail;
-    private UserLogic _userLogic;
-    
+    [TestFixture]
+    public class UserLogicTests
+    {
+        private Mock<IUserRepository> _mockUserRepository;
+        private Mock<IPasswordEncrypter> _mockPasswordEncrypter;
+        private Mock<IJwtToken> _mockJwtToken;
+        private Mock<IEmail> _mockEmail;
+        private UserLogic _userLogic;
+
         [SetUp]
         public void SetUp()
         {
@@ -42,10 +44,11 @@ public class UserLogicTests
             var note = "Test note";
 
             // Act & Assert
-            var ex = Assert.Throws<ArgumentException>(() => _userLogic.RegisterUser(username, password, email, phoneNumber, note));
-            Assert.AreEqual("Username cannot be null or empty.", ex.Message);
+            var ex = Assert.Throws<ArgumentException>(() =>
+                _userLogic.RegisterUser(username, password, email, phoneNumber, note));
+            Assert.That("Username cannot be null or empty.", Is.EqualTo(ex.Message));
         }
-        
+
 
         [Test]
         public void RegisterUser_ShouldThrowArgumentException_WhenPasswordIsEmpty()
@@ -58,8 +61,9 @@ public class UserLogicTests
             var note = "Test note";
 
             // Act & Assert
-            var ex = Assert.Throws<ArgumentException>(() => _userLogic.RegisterUser(username, password, email, phoneNumber, note));
-            Assert.AreEqual("Password cannot be null or empty.", ex.Message);
+            var ex = Assert.Throws<ArgumentException>(() =>
+                _userLogic.RegisterUser(username, password, email, phoneNumber, note));
+            Assert.That("Password cannot be null or empty.", Is.EqualTo(ex.Message));
         }
 
         [Test]
@@ -71,11 +75,12 @@ public class UserLogicTests
             var email = "test@example.com";
             var phoneNumber = 1234567890;
             var note = "Test note";
-            _mockUserRepository.Setup(r => r.GetUserByEmail(email)).Returns(new User());  // Simulate existing user
+            _mockUserRepository.Setup(r => r.GetUserByEmail(email)).Returns(new User()); // Simulate existing user
 
             // Act & Assert
-            var ex = Assert.Throws<ArgumentException>(() => _userLogic.RegisterUser(username, password, email, phoneNumber, note));
-            Assert.AreEqual("Email is already taken.", ex.Message);
+            var ex = Assert.Throws<ArgumentException>(() =>
+                _userLogic.RegisterUser(username, password, email, phoneNumber, note));
+            Assert.That("Email is already taken.", Is.EqualTo(ex.Message));
         }
 
         [Test]
@@ -91,16 +96,20 @@ public class UserLogicTests
             var salt = "randomSalt";
             var hash = "hashedPassword";
             _mockPasswordEncrypter.Setup(p => p.EncryptPassword(password)).Returns((hash, salt));
-            _mockUserRepository.Setup(r => r.GetUserByEmail(email)).Returns((User)null);  // Simulate no existing user
-            _mockUserRepository.Setup(r => r.RegisterUser(It.IsAny<User>())).Returns(true);  // Simulate successful registration
+            _mockUserRepository.Setup(r => r.GetUserByEmail(email)).Returns((User)null); // Simulate no existing user
+            _mockUserRepository.Setup(r => r.RegisterUser(It.IsAny<User>()))
+                .Returns(true); // Simulate successful registration
 
             // Act
             var user = _userLogic.RegisterUser(username, password, email, phoneNumber, note);
 
             // Assert
-            Assert.IsNotNull(user);
-            Assert.AreEqual(username, user.UserName);
-            Assert.AreEqual(email, user.Email);
+            Assert.Multiple(() =>
+            {
+                Assert.That(user, Is.Not.Null);
+                Assert.That(username, Is.EqualTo(user.UserName));
+                Assert.That(email, Is.EqualTo(user.Email));
+            });
             _mockEmail.Verify(e => e.SendSuccessfullAccountCreationEmail(email, username), Times.Once);
         }
 
@@ -115,7 +124,7 @@ public class UserLogicTests
 
             // Act & Assert
             var ex = Assert.Throws<ArgumentException>(() => _userLogic.LoginUser(email, password));
-            Assert.AreEqual("Email cannot be null or empty.", ex.Message);
+            Assert.That("Email cannot be null or empty.", Is.EqualTo(ex.Message));
         }
 
         [Test]
@@ -127,7 +136,7 @@ public class UserLogicTests
 
             // Act & Assert
             var ex = Assert.Throws<ArgumentException>(() => _userLogic.LoginUser(email, password));
-            Assert.AreEqual("Password cannot be null or empty.", ex.Message);
+            Assert.That("Password cannot be null or empty.", Is.EqualTo(ex.Message));
         }
 
         [Test]
@@ -136,11 +145,12 @@ public class UserLogicTests
             // Arrange
             var email = "nonexistent@example.com";
             var password = "password123";
-            _mockUserRepository.Setup(r => r.GetUserByEmail(email)).Returns((User)null);  // Simulate user not found
+            
+            _mockUserRepository.Setup(r => r.GetUserByEmail(email)).Returns((User?)null); // Simulate user not found
 
             // Act & Assert
             var ex = Assert.Throws<ArgumentException>(() => _userLogic.LoginUser(email, password));
-            Assert.AreEqual("Invalid email or password.", ex.Message);
+            Assert.That("Invalid email or password.", Is.EqualTo(ex.Message));
         }
 
         [Test]
@@ -150,13 +160,14 @@ public class UserLogicTests
             var email = "test@example.com";
             var password = "wrongPassword";
             var existingUser = new User { Email = email, UserSalt = "randomSalt", UserHash = "correctHash" };
-            _mockUserRepository.Setup(r => r.GetUserByEmail(email)).Returns(existingUser);  // Simulate user found
+            _mockUserRepository.Setup(r => r.GetUserByEmail(email)).Returns(existingUser); // Simulate user found
 
-            _mockPasswordEncrypter.Setup(p => p.EncryptPasswordWithUsersSalt(password, existingUser.UserSalt)).Returns("wrongHash");
+            _mockPasswordEncrypter.Setup(p => p.EncryptPasswordWithUsersSalt(password, existingUser.UserSalt))
+                .Returns("wrongHash");
 
             // Act & Assert
             var ex = Assert.Throws<ArgumentException>(() => _userLogic.LoginUser(email, password));
-            Assert.AreEqual("Invalid email or password.", ex.Message);
+            Assert.That("Invalid email or password.", Is.EqualTo(ex.Message));
         }
 
         [Test]
@@ -169,7 +180,8 @@ public class UserLogicTests
             var userSalt = "randomSalt";
             var userHash = "hashedPassword";
             var role = "Customer";
-            var existingUser = new User { UserId = userId, Email = email, UserSalt = userSalt, UserHash = userHash, UserRole = role };
+            var existingUser = new User
+                { UserId = userId, Email = email, UserSalt = userSalt, UserHash = userHash, UserRole = role };
 
             _mockUserRepository.Setup(r => r.GetUserByEmail(email)).Returns(existingUser);
             _mockPasswordEncrypter.Setup(p => p.EncryptPasswordWithUsersSalt(password, userSalt)).Returns(userHash);
@@ -179,7 +191,8 @@ public class UserLogicTests
             var token = _userLogic.LoginUser(email, password);
 
             // Assert
-            Assert.AreEqual("fakeToken", token.ToString());  // Ensure both are of the same type
+            Assert.That("fakeToken", Is.EqualTo(token.ToString())); // Ensure both are of the same type
             _mockJwtToken.Verify(j => j.GenerateJwtToken(userId, email, role), Times.Once);
         }
+    }
 }

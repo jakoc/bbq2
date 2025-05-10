@@ -10,11 +10,9 @@ public class ReservationLogic : IReservationLogic
 {
     private readonly IReservationRepository _reservationRepository;
     private readonly ITableRepository _tableRepository;
-    private readonly IUserRepository _userRepository;
-    public ReservationLogic(IReservationRepository reservationRepository, ITableRepository tableRepository, IUserRepository userRepository)
+    public ReservationLogic(IReservationRepository reservationRepository, ITableRepository tableRepository)
     {
         _tableRepository = tableRepository;
-        _userRepository = userRepository;
         _reservationRepository = reservationRepository;
     }
     public List<DateTime> GetAvailableTimeSlot(DateTime date, int partySize)
@@ -24,7 +22,7 @@ public class ReservationLogic : IReservationLogic
             .Where(t => t.Capacity >= partySize)
             .ToList();
 
-        if (!tables.Any())
+        if (tables.Count == 0)
         {
             MonitorService.Log.Warning("No tables available for party size: {@PartySize}", partySize);
             throw new ArgumentException("No tables available for this party size.");
@@ -80,7 +78,7 @@ public class ReservationLogic : IReservationLogic
                 .Where(t => !_reservationRepository.IsTableReservedAt(t.TableId, reservationDate, timeSlot))
                 .ToList();
 
-            if (!availableTables.Any())
+            if (availableTables.Count == 0)
             {
                 MonitorService.Log.Warning("No available tables for reservation date: {@ReservationDate}, time slot: {@TimeSlot}", reservationDate, timeSlot);
                 throw new ArgumentException("No available table at this time slot.");
@@ -107,7 +105,7 @@ public class ReservationLogic : IReservationLogic
         catch (Exception ex)
         {
             MonitorService.Log.Error(ex, "Unexpected error occurred while reserving a table");
-            throw;
+            throw new ArgumentException("Unexpected error occurred while reserving a table", ex);
         }
     }
 
