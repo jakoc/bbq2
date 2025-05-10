@@ -47,11 +47,7 @@ public class Program
         builder.Services.AddScoped<IReservationRepository, ReservationRepository>();
         builder.Services.AddScoped<IUserRepository, UserRepository>();
         builder.Services.AddScoped<ITableRepository, TableRepository>();
-        
-        
-        
-        
-        
+
         var key = Encoding.ASCII.GetBytes("your_new_32_byte_or_longer_key_here_12345");
         builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
         {
