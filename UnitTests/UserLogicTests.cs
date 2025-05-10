@@ -191,7 +191,7 @@ namespace UnitTests
             var token = _userLogic.LoginUser(email, password);
 
             // Assert
-            Assert.That("fakeToken", Is.EqualTo(token.ToString())); // Ensure both are of the same type
+            Assert.That(token, Is.EqualTo("fakeToken")); // Ensure both are of the same type
             _mockJwtToken.Verify(j => j.GenerateJwtToken(userId, email, role), Times.Once);
         }
     }

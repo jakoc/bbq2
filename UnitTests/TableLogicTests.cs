@@ -70,8 +70,11 @@ namespace UnitTests
             var result = _tableLogic.GetTables();
 
             // Assert
-            Assert.That(result.ToList(), Has.Count.EqualTo(tables.Count));
-            Assert.That(tables, Is.EqualTo(result));
+            Assert.Multiple(() =>
+            {
+                Assert.That(result.ToList(), Has.Count.EqualTo(tables.Count));  // Assert count is equal
+                Assert.That(tables, Is.EqualTo(result));  // Assert the collections are equal
+            });
         }
 
         [Test]
