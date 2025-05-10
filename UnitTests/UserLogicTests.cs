@@ -46,7 +46,7 @@ namespace UnitTests
             // Act & Assert
             var ex = Assert.Throws<ArgumentException>(() =>
                 _userLogic.RegisterUser(username, password, email, phoneNumber, note));
-            Assert.That("Username cannot be null or empty.", Is.EqualTo(ex.Message));
+            Assert.That(ex.Message, Is.EqualTo("Username cannot be null or empty."));
         }
 
 
@@ -63,7 +63,7 @@ namespace UnitTests
             // Act & Assert
             var ex = Assert.Throws<ArgumentException>(() =>
                 _userLogic.RegisterUser(username, password, email, phoneNumber, note));
-            Assert.That("Password cannot be null or empty.", Is.EqualTo(ex.Message));
+            Assert.That(ex.Message, Is.EqualTo("Password cannot be null or empty."));
         }
 
         [Test]
@@ -80,7 +80,7 @@ namespace UnitTests
             // Act & Assert
             var ex = Assert.Throws<ArgumentException>(() =>
                 _userLogic.RegisterUser(username, password, email, phoneNumber, note));
-            Assert.That("Email is already taken.", Is.EqualTo(ex.Message));
+            Assert.That(ex.Message, Is.EqualTo("Email is already taken."));
         }
 
         [Test]
@@ -96,7 +96,7 @@ namespace UnitTests
             var salt = "randomSalt";
             var hash = "hashedPassword";
             _mockPasswordEncrypter.Setup(p => p.EncryptPassword(password)).Returns((hash, salt));
-            _mockUserRepository.Setup(r => r.GetUserByEmail(email)).Returns((User)null); // Simulate no existing user
+            _mockUserRepository.Setup(r => r.GetUserByEmail(email)).Returns((User?)null); // Simulate no existing user
             _mockUserRepository.Setup(r => r.RegisterUser(It.IsAny<User>()))
                 .Returns(true); // Simulate successful registration
 
@@ -124,7 +124,7 @@ namespace UnitTests
 
             // Act & Assert
             var ex = Assert.Throws<ArgumentException>(() => _userLogic.LoginUser(email, password));
-            Assert.That("Email cannot be null or empty.", Is.EqualTo(ex.Message));
+            Assert.That(ex.Message, Is.EqualTo("Email cannot be null or empty."));
         }
 
         [Test]
@@ -136,7 +136,7 @@ namespace UnitTests
 
             // Act & Assert
             var ex = Assert.Throws<ArgumentException>(() => _userLogic.LoginUser(email, password));
-            Assert.That("Password cannot be null or empty.", Is.EqualTo(ex.Message));
+            Assert.That(ex.Message, Is.EqualTo("Password cannot be null or empty."));
         }
 
         [Test]
@@ -150,7 +150,7 @@ namespace UnitTests
 
             // Act & Assert
             var ex = Assert.Throws<ArgumentException>(() => _userLogic.LoginUser(email, password));
-            Assert.That("Invalid email or password.", Is.EqualTo(ex.Message));
+            Assert.That(ex.Message, Is.EqualTo("Invalid email or password."));
         }
 
         [Test]
@@ -167,7 +167,7 @@ namespace UnitTests
 
             // Act & Assert
             var ex = Assert.Throws<ArgumentException>(() => _userLogic.LoginUser(email, password));
-            Assert.That("Invalid email or password.", Is.EqualTo(ex.Message));
+            Assert.That(ex.Message, Is.EqualTo("Invalid email or password."));
         }
 
         [Test]

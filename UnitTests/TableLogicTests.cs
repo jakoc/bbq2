@@ -32,7 +32,7 @@ namespace UnitTests
             // Act & Assert
             var ex = Assert.Throws<ArgumentException>(() =>
                 _tableLogic.AddTable(invalidCapacity));
-            Assert.That("Capacity and table number must be greater than zero.", Is.EqualTo(ex.Message));
+            Assert.That(ex.Message, Is.EqualTo("Capacity and table number must be greater than zero."));
         }
 
         [Test]
@@ -70,7 +70,7 @@ namespace UnitTests
             var result = _tableLogic.GetTables();
 
             // Assert
-            Assert.That(tables.Count, Is.EqualTo(result.Count()));
+            Assert.That(result.ToList(), Has.Count.EqualTo(tables.Count));
             Assert.That(tables, Is.EqualTo(result));
         }
 

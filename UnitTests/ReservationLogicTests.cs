@@ -13,7 +13,6 @@ namespace UnitTests
     {
         private Mock<IReservationRepository> _reservationRepoMock;
         private Mock<ITableRepository> _tableRepoMock;
-        private Mock<IUserRepository> _userRepoMock;
         private ReservationLogic _reservationLogic;
 
         [SetUp]
@@ -46,8 +45,8 @@ namespace UnitTests
 
             var result = _reservationLogic.GetAvailableTimeSlot(date, partySize);
 
-            Assert.IsNotEmpty(result);
-            Assert.That(defaultSlots.Count, Is.EqualTo(result.Count));
+            Assert.That(result, Is.Not.Empty);
+            Assert.That(result, Has.Count.EqualTo(defaultSlots.Count));
         }
 
         [Test]
@@ -244,7 +243,7 @@ namespace UnitTests
 
             var result = _reservationLogic.GetAvailableTimeSlot(date, partySize);
 
-            Assert.That(availableSlots.Count, Is.EqualTo(result.Count));
+            Assert.That(result, Has.Count.EqualTo(availableSlots.Count));
         }
 
         [Test]
@@ -398,7 +397,7 @@ namespace UnitTests
             var ex = Assert.Throws<ArgumentException>(() =>
                 _reservationLogic.ReserveTable(reservationDate, timeSlot, partySize, note, userId));
 
-            Assert.That("Reservation date cannot be in the past.", Is.EqualTo(ex.Message));
+            Assert.That(ex.Message, Is.EqualTo("Reservation date cannot be in the past."));
         }
 
         [Test]
@@ -415,7 +414,7 @@ namespace UnitTests
             var ex = Assert.Throws<ArgumentException>(() =>
                 _reservationLogic.ReserveTable(reservationDate, timeSlot, partySize, note, userId));
 
-            Assert.That("Time slot must be between 10 AM and 10 PM.", Is.EqualTo(ex.Message));
+            Assert.That(ex.Message, Is.EqualTo("Time slot must be between 10 AM and 10 PM."));
         }
 
         [Test]
@@ -432,7 +431,7 @@ namespace UnitTests
             var ex = Assert.Throws<ArgumentException>(() =>
                 _reservationLogic.ReserveTable(reservationDate, timeSlot, partySize, note, userId));
 
-            Assert.That("Time slot must be between 10 AM and 10 PM.", Is.EqualTo(ex.Message));
+            Assert.That(ex.Message, Is.EqualTo("Time slot must be between 10 AM and 10 PM."));
         }
 
         [Test]
@@ -472,7 +471,7 @@ namespace UnitTests
             var ex = Assert.Throws<ArgumentException>(() =>
                 _reservationLogic.ReserveTable(reservationDate, timeSlot, partySize, note, userId));
 
-            Assert.That("Party size must be between 1 and 10.", Is.EqualTo(ex.Message));
+            Assert.That(ex.Message, Is.EqualTo("Party size must be between 1 and 10."));
         }
     }
 }
