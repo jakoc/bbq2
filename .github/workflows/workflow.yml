@@ -114,7 +114,7 @@ jobs:
 
       - name: Build and push Docker image 
         run: |
-          docker build -t ghcr.io/anderswith/bobsbbq:latest -f docker/Dockerfile .
+          docker build -t ghcr.io/anderswith/bobsbbq:latest -f Docker/Dockerfile .
           docker push ghcr.io/anderswith/bobsbbq:latest
 
       - name: Deliver Compose file to staging server
