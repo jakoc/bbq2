@@ -19,13 +19,13 @@
     depends_on:
       - mariadb
     volumes:
-      - ./dbmigrations:/flyway/sql
+      - ./dbmigration:/flyway/sql
     environment:
-      - FLYWAY_URL=jdbc:mariadb://mariadb:3306/bobsbbq
-      - FLYWAY_USER=user
-      - FLYWAY_PASSWORD=password
+      FLYWAY_URL: jdbc:mariadb://mariadb:3306/bobsbbq
+      FLYWAY_USER: user
+      FLYWAY_PASSWORD: password
     command: migrate
-  
+
   solution:
     image: ghcr.io/anderswith/bobsbbq:latest
     container_name: bobsbbq_solution
@@ -33,10 +33,10 @@
     depends_on:
       - mariadb
     environment:
-      - DB_HOST=mariadb
-      - DB_USER=user
-      - DB_PASSWORD=password
-      - DB_NAME=bobsbbq
+      DB_HOST: mariadb
+      DB_USER: user
+      DB_PASSWORD: password
+      DB_NAME: bobsbbq
     ports:
       - "5000:5000"
 
