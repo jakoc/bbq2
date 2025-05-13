@@ -6,7 +6,6 @@ on:
     tags:
       - 'v*'
 
-
 jobs:
   integration:
     runs-on: ubuntu-latest
@@ -21,40 +20,18 @@ jobs:
           dotnet tool install --global dotnet-stryker
           dotnet tool install --global dotnet-sonarscanner
 
-      - name: Set up Git
-        run: |
-          git config --global user.name "github-actions"
-          git config --global user.email "github-actions@github.com"
-
-      - name: Fetch tags from origin
-        run: git fetch --tags
-
-      - name: Get latest tag
-        id: get_version
-        run: |
-          VERSION=$(git tag -l "v*" | sort -V | tail -n 1)
-          echo "Current version: $VERSION"
-          echo "VERSION=$VERSION" >> $GITHUB_ENV
-
-      - name: Set new version based on commit message
-        id: set_version
+      - name: Application Version
+        id: semver-app
         uses: paulhatch/semantic-version@v5.4.0
         with:
           bump_each_commit: true
-          bump_each_commit_patch_pattern: 'bugfix'   # bump for bugfixes (patch)
-          minor_pattern: 'feat'                      # bump for new features (minor)
-          major_pattern: 'breaking'                  # bump for breaking changes (major)
-          tag_prefix: "v"                            # use "v" as the tag prefix
-          
+          bump_each_commit_patch_pattern: 'bugfix'
+          tag_prefix: "v"
 
-      - name: Create and push new tag
-        run: |
-          NEW_VERSION=${{ steps.set_version.outputs.version }}
-          echo "New version: v$NEW_VERSION"
-          git tag v$NEW_VERSION
-          git push origin v$NEW_VERSION
-
-      - name: Display current tags
+      - name: Display Version
+        run: echo "Generated version is ${{ steps.semver-app.outputs.version}}"
+        
+      - name: Check git tags
         run: git tag
 
       - name: Run unit tests
