@@ -25,27 +25,25 @@ jobs:
         uses: paulhatch/semantic-version@v5.4.0
         with:
           bump_each_commit: true
-          bump_each_commit_patch_pattern: 'bugfix' #v1.0.1
-          minor_pattern: "feat:"   # 1.1.0
-          major_pattern: "breaking:" # 2.0.0
+          bump_each_commit_patch_pattern: 'bugfix'
+          minor_pattern: 'feat'
+          major_pattern: 'breaking'
           tag_prefix: "v"
           
+      - name: Configure Git Identity
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "github-actions@github.com"
+      
       - name: Push version tag
         if: steps.semver-app.outputs.version != ''
         run: |
-          git fetch --tags
-          if git tag | grep -q "v${{ steps.semver-app.outputs.version }}"; then
-            echo "Tag v${{ steps.semver-app.outputs.version }} already exists. Skipping."
-          else
-            git config --global user.name "github-actions"
-            git config --global user.email "github-actions@github.com"
-            git tag v${{ steps.semver-app.outputs.version }}
-            git push origin v${{ steps.semver-app.outputs.version }}
-          fi
-
+          git tag v${{ steps.semver-app.outputs.version }}
+          git push origin v${{ steps.semver-app.outputs.version }}
+      
       - name: Display Version
-        run: echo "Generated version is ${{ steps.semver-app.outputs.version}}"
-        
+        run: echo "Generated version is ${{ steps.semver-app.outputs.version }}"
+      
       - name: Check git tags
         run: git tag
 
