@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="da">
 <head>
+    <title>Bob's BBQ</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="FrontPageStyle.css">
@@ -18,17 +19,23 @@
     Velkommen til Bob's BBQ
 </div>
 
-<div class="content">
-    <h2>Om os</h2>
+<div class="indhold">
 
-    <div id="about-text">
-        <p id="about-paragraph">
-            Hos Bob's BBQ serverer vi saftige grillretter og hygge med hjertet. Vi har røgede specialiteter, hjemmelavet BBQ-sauce og en stemning, du aldrig vil glemme.
-        </p>
-        <textarea id="about-editor" style="display: none;"></textarea>
-        <button id="edit-button" style="display: none;">Redigér tekst</button>
+    <div class="grid1">
+        <img class="infoIMG" src="OmOS.png" alt="">
     </div>
-    <img src="lokation.png" alt="Lokation af Bob's BBQ" class="location-image">
+    <div class="grid2">
+        <img class="bbq" src="billede1.jpg" alt="">
+        <img class="bbq" src="billede2.jpg" alt="">
+        <img class="bbq" src="billede3.jpg" alt="">
+    </div>
+    <div class="grid3">
+        <img class="infoIMG" src="BBQMenu.png" alt="Menukort">
+    </div>
+</div>
+
+<div class="Footer">
+    
 </div>
 
 <!-- Login Modal -->
@@ -89,6 +96,45 @@
     </div>
 </div>
 
+<!-- Modal -->
+<div class="modal fade" id="reservationModal" tabindex="-1" aria-labelledby="reservationModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="reservationModalLabel">Bestil Bord</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Luk"></button>
+            </div>
+            <div class="modal-body">
+                <form id="reservationForm">
+                    <div class="mb-3">
+                        <label for="reservationDate" class="form-label">Dato</label>
+                        <input type="date" class="form-control" id="reservationDate" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="reservationGuests" class="form-label">Antal gæster</label>
+                        <input type="number" class="form-control" id="reservationGuests" min="1" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="reservationTime" class="form-label">Tidspunkt</label>
+                        <select class="form-select" id="reservationTime" required>
+                            <option value="">Vælg et tidspunkt</option>
+                            <!-- Tider indsættes dynamisk -->
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="reservationNote" class="form-label">Besked (valgfri)</label>
+                        <textarea class="form-control" id="reservationNote" rows="2" placeholder="Skriv evt. en besked..."></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-primary" id="submitReservationBtn">Send reservation</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 <script>
     const loginModal = document.getElementById('loginModal');
     const signupModal = document.getElementById('signupModal');
@@ -136,6 +182,7 @@
             nav.innerHTML = `
                 <button id="loginBtnOpen">Login</button>
                 <button id="signupBtnOpen">Sign Up</button>`;
+            console.log("buttons added");
             // Show sign-up modal when the "Sign Up" button is clicked
             signupBtnOpen.onclick = () => {
                 signupModal.style.display = 'block';  // Show the sign-up modal
@@ -154,7 +201,7 @@
             });
         } else if (role === 'Customer') {
             nav.innerHTML = `
-                <a href="BordBestilling.html"><button>Bestil Bord</button></a>
+                <button id ="bestilBtn">Bestil Bord</button>
                 <button id="logoutBtn">Log Ud</button>`;
             document.getElementById('logoutBtn').onclick = logout;
         } else if (role === 'Admin') {
@@ -244,6 +291,84 @@
     window.onload = () => {
         setupNavbar();
     };
+
+    document.addEventListener("DOMContentLoaded", function () {
+        const reservationDate = document.getElementById("reservationDate");
+        const reservationGuests = document.getElementById("reservationGuests");
+        const reservationTime = document.getElementById("reservationTime");
+        const reservationNote = document.getElementById("reservationNote");
+        const submitReservationBtn = document.getElementById("submitReservationBtn");
+
+        async function fetchAvailableTimes(date, guests) {
+            try {
+                const response = await fetch(`http://localhost:5000/api/reservation/times?date=${date}&people=${guests}`);
+                const data = await response.json();
+
+                // Ryd og indsæt nye tidspunkter
+                reservationTime.innerHTML = `<option value="">Vælg et tidspunkt</option>`;
+                data.forEach(time => {
+                    const option = document.createElement("option");
+                    option.value = time;
+                    option.textContent = time;
+                    reservationTime.appendChild(option);
+                });
+            } catch (error) {
+                console.error("Fejl ved hentning af tider:", error);
+            }
+        }
+
+        // Hent ledige tider når dato og antal ændres
+        [reservationDate, reservationGuests].forEach(el =>
+            el.addEventListener("change", () => {
+                const date = reservationDate.value;
+                const guests = reservationGuests.value;
+                if (date && guests) {
+                    fetchAvailableTimes(date, guests);
+                }
+            })
+        );
+
+        submitReservationBtn.addEventListener("click", async () => {
+            const date = reservationDate.value;
+            const guests = parseInt(reservationGuests.value);
+            const time = reservationTime.value;
+            const note = reservationNote.value;
+
+            if (!date || !guests || !time) {
+                alert("Udfyld venligst alle påkrævede felter.");
+                return;
+            }
+
+            const reservationData = {
+                date: date,
+                people: guests,
+                time: time,
+                note: note
+            };
+
+            try {
+                const response = await fetch("http://localhost:5000/api/reservation", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(reservationData)
+                });
+
+                if (response.ok) {
+                    alert("Reservation sendt!");
+                    bootstrap.Modal.getInstance(document.getElementById("reservationModal")).hide();
+                    document.getElementById("reservationForm").reset();
+                    reservationTime.innerHTML = `<option value="">Vælg et tidspunkt</option>`;
+                } else {
+                    const err = await response.text();
+                    alert("Fejl ved reservation: " + err);
+                }
+            } catch (error) {
+                console.error("Fejl:", error);
+                alert("Noget gik galt. Prøv igen senere.");
+            }
+        });
+    });
+
 </script>
 
 </body>
