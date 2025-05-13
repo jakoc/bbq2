@@ -111,9 +111,14 @@ jobs:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.SECRET_GITHUB_TOKEN }}
+          
+      - name: Verify Docker Login
+        run: docker info
 
       - name: Build and push Docker image 
         run: |
+          cd Docker
+          cd ..
           docker build -t ghcr.io/anderswith/bobsbbq/bobsbbqsolution:latest -f Docker/Dockerfile .
           docker push ghcr.io/anderswith/bobsbbq/bobsbbqsolution:latest
           
@@ -121,7 +126,7 @@ jobs:
         run: docker images
       
       - name: Verify Docker push result
-        run: |
+        run: |        
           echo "Checking pushed image tags..."
           curl -u ${{ github.actor }}:${{ secrets.SECRET_GITHUB_TOKEN }} \
             https://ghcr.io/v2/anderswith/bobsbbq/bobsbbqsolution/tags/list
