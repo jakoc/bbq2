@@ -25,7 +25,9 @@ jobs:
         uses: paulhatch/semantic-version@v5.4.0
         with:
           bump_each_commit: true
-          bump_each_commit_patch_pattern: 'bugfix'
+          bump_each_commit_patch_pattern: 'bugfix' #v1.0.1
+          bump_each_commit_minor_pattern: 'feat'   # 1.1.0
+          bump_each_commit_major_pattern: 'breaking' # 2.0.0
           tag_prefix: "v"
 
       - name: Display Version

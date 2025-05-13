@@ -48,7 +48,7 @@ public class Program
                     .SetResourceBuilder(ResourceBuilder.CreateDefault().AddService("BobsBBQApi"))
                     .AddAspNetCoreInstrumentation()
                     .AddHttpClientInstrumentation();
-            });
+            }); 
         //BLL
         builder.Services.AddScoped<IReservationLogic, ReservationLogic>();
         builder.Services.AddScoped<IUserLogic, UserLogic>();
@@ -71,8 +71,8 @@ public class Program
                 ValidateAudience = false,
                 ValidateLifetime = true
             };
-            
         });
+        
         builder.Services.AddAuthorization(options =>
         {
             options.AddPolicy("UserOnly", policy =>

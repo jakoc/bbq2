@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "HCTOManbeMM=",
+  "dgSpecHash": "/AS3HfX4628=",
   "success": true,
-  "projectFilePath": "C:\\Users\\Anders\\RiderProjects\\BobsBBQ\\BobsBBQApi\\BobsBBQApi.csproj",
+  "projectFilePath": "C:\\Users\\Anders\\RiderProjects\\BobsBBQ\\BoBsBBQApi\\BobsBBQApi.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Anders\\.nuget\\packages\\azure.core\\1.35.0\\azure.core.1.35.0.nupkg.sha512",
     "C:\\Users\\Anders\\.nuget\\packages\\azure.identity\\1.10.3\\azure.identity.1.10.3.nupkg.sha512",
