@@ -27,8 +27,8 @@
     command: migrate
 
   solution:
-    image: ghcr.io/anderswith/bobsbbq:latest
-    container_name: bobsbbq_solution
+    image: ghcr.io/anderswith/bobsbbqsolution:latest
+    container_name: bobsbbqsolution
     restart: always
     depends_on:
       - mariadb
