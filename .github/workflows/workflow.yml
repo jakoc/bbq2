@@ -20,35 +20,41 @@ jobs:
           dotnet tool install --global dotnet-reportgenerator-globaltool
           dotnet tool install --global dotnet-stryker
           dotnet tool install --global dotnet-sonarscanner
-      
-      - name: Fetch tags
-        run: git fetch --tags
-          
-      - name: Application Version
-        id: semver-app
-        uses: paulhatch/semantic-version@v5.4.0
-        with:
-          bump_each_commit: true
-          bump_each_commit_patch_pattern: 'bugfix'
-          minor_pattern: 'feat'
-          major_pattern: 'breaking'
-          tag_prefix: "v"
-          
-      - name: Configure Git Identity
+
+      - name: Set up Git
         run: |
           git config --global user.name "github-actions"
           git config --global user.email "github-actions@github.com"
-      
-      - name: Push version tag
-        if: steps.semver-app.outputs.version != ''
+
+      - name: Fetch tags from origin
+        run: git fetch --tags
+
+      - name: Get latest tag
+        id: get_version
         run: |
-          git tag v${{ steps.semver-app.outputs.version }}
-          git push origin v${{ steps.semver-app.outputs.version }}
-      
-      - name: Display Version
-        run: echo "Generated version is ${{ steps.semver-app.outputs.version }}"
-      
-      - name: Check git tags
+          VERSION=$(git tag -l "v*" | sort -V | tail -n 1)
+          echo "Current version: $VERSION"
+          echo "VERSION=$VERSION" >> $GITHUB_ENV
+
+      - name: Set new version based on commit message
+        id: set_version
+        uses: paulhatch/semantic-version@v5.4.0
+        with:
+          bump_each_commit: true
+          bump_each_commit_patch_pattern: 'bugfix'   # bump for bugfixes (patch)
+          minor_pattern: 'feat'                      # bump for new features (minor)
+          major_pattern: 'breaking'                  # bump for breaking changes (major)
+          tag_prefix: "v"                            # use "v" as the tag prefix
+          
+
+      - name: Create and push new tag
+        run: |
+          NEW_VERSION=${{ steps.set_version.outputs.version }}
+          echo "New version: v$NEW_VERSION"
+          git tag v$NEW_VERSION
+          git push origin v$NEW_VERSION
+
+      - name: Display current tags
         run: git tag
 
       - name: Run unit tests
