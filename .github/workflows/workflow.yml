@@ -123,7 +123,7 @@ jobs:
           host: ${{ vars.STAGING_SERVER_IP }}
           username: ${{ vars.STAGING_SERVER_USERNAME }}
           key: ${{ secrets.STAGING_SERVER_SSH_KEY }}
-          source: "docker/docker-compose.yml"
+          source: "Docker/docker-compose.yml"
           target: "dowa/"
           debug: true
 
