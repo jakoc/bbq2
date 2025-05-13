@@ -9,6 +9,8 @@ using BobsBBQApi.Helpers.Interfaces;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using OpenTelemetry.Resources;
+using OpenTelemetry.Trace;
 
 namespace BobsBBQApi;
 
@@ -39,6 +41,14 @@ public class Program
             var smtpPass = configuration["Email:SmtpPass"];
             return new Email(smtpServer, smtpPort, smtpUser, smtpPass);
         });
+        builder.Services.AddOpenTelemetry()
+            .WithTracing(tracerProviderBuilder =>
+            {
+                tracerProviderBuilder
+                    .SetResourceBuilder(ResourceBuilder.CreateDefault().AddService("BobsBBQApi"))
+                    .AddAspNetCoreInstrumentation()
+                    .AddHttpClientInstrumentation();
+            });
         //BLL
         builder.Services.AddScoped<IReservationLogic, ReservationLogic>();
         builder.Services.AddScoped<IUserLogic, UserLogic>();
