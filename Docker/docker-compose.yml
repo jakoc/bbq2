@@ -38,7 +38,7 @@
       DB_PASSWORD: password
       DB_NAME: bobsbbq
     ports:
-      - "5000:8080"
+      - "8080:8080"
 
 volumes:
   mariadb_data:
