@@ -124,6 +124,7 @@ jobs:
           
       - name: List all Docker images
         run: docker images
+        
       
       - name: Verify Docker push result
         run: |        
