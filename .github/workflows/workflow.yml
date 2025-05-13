@@ -29,6 +29,18 @@ jobs:
           bump_each_commit_minor_pattern: 'feat'   # 1.1.0
           bump_each_commit_major_pattern: 'breaking' # 2.0.0
           tag_prefix: "v"
+          
+      - name: Configure Git Identity
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "github-actions@github.com"
+          
+      - name: Push version tag
+        if: steps.semver-app.outputs.version != ''
+        run: |
+          git fetch --tags  # Ensure latest tags are available locally
+          git tag v${{ steps.semver-app.outputs.version }}
+          git push origin v${{ steps.semver-app.outputs.version }}
 
       - name: Display Version
         run: echo "Generated version is ${{ steps.semver-app.outputs.version}}"
