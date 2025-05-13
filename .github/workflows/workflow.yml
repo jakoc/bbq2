@@ -30,17 +30,18 @@ jobs:
           major_pattern: "breaking:" # 2.0.0
           tag_prefix: "v"
           
-      - name: Configure Git Identity
-        run: |
-          git config --global user.name "github-actions"
-          git config --global user.email "github-actions@github.com"
-          
       - name: Push version tag
         if: steps.semver-app.outputs.version != ''
         run: |
-          git fetch --tags  # Ensure latest tags are available locally
-          git tag v${{ steps.semver-app.outputs.version }}
-          git push origin v${{ steps.semver-app.outputs.version }}
+          git fetch --tags
+          if git tag | grep -q "v${{ steps.semver-app.outputs.version }}"; then
+            echo "Tag v${{ steps.semver-app.outputs.version }} already exists. Skipping."
+          else
+            git config --global user.name "github-actions"
+            git config --global user.email "github-actions@github.com"
+            git tag v${{ steps.semver-app.outputs.version }}
+            git push origin v${{ steps.semver-app.outputs.version }}
+          fi
 
       - name: Display Version
         run: echo "Generated version is ${{ steps.semver-app.outputs.version}}"
