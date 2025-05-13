@@ -131,7 +131,7 @@ jobs:
         
       
       - name: Verify Docker push result
-        run: |        
+        run: |       
           echo "Checking pushed image tags..."
           curl -u ${{ github.actor }}:${{ secrets.SECRET_GITHUB_TOKEN }} \
             https://ghcr.io/v2/anderswith/bobsbbq/bobsbbqsolution/tags/list
