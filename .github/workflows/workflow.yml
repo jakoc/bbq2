@@ -125,6 +125,10 @@ jobs:
       - name: List all Docker images
         run: docker images
         
+      - name: Check pushed image tags
+        run: |
+          curl -u ${{ secrets.GHCR_USERNAME }}:${{ secrets.SECRET_GITHUB_TOKEN }} https://ghcr.io/v2/anderswith/bobsbbq/tags/list
+        
       
       - name: Verify Docker push result
         run: |        
