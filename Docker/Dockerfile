@@ -6,7 +6,7 @@ EXPOSE 8080
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
-COPY ["BobsBBQ/BobsBBQApi/BobsBBQApi.csproj", "BobsBBQApi/"]
+COPY ["BobsBBQApi/BobsBBQApi.csproj", "BobsBBQApi/"]
 RUN dotnet restore "BobsBBQApi/BobsBBQApi.csproj"
 COPY . .
 WORKDIR "/src/BobsBBQApi"
