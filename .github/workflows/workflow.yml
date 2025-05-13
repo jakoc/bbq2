@@ -19,7 +19,10 @@ jobs:
           dotnet tool install --global dotnet-reportgenerator-globaltool
           dotnet tool install --global dotnet-stryker
           dotnet tool install --global dotnet-sonarscanner
-
+      
+      - name: Fetch tags
+        run: git fetch --tags
+          
       - name: Application Version
         id: semver-app
         uses: paulhatch/semantic-version@v5.4.0
