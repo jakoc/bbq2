@@ -1,25 +1,27 @@
 {
   "format": 1,
   "restore": {
-    "/Users/malenevonwildenradt/Documents/GitHub/BobsBBQ/UnitTests/UnitTests.csproj": {}
+    "C:\\Users\\Anders\\RiderProjects\\BobsBBQ\\UnitTests\\UnitTests.csproj": {}
   },
   "projects": {
-    "/Users/malenevonwildenradt/Documents/GitHub/BobsBBQ/BobsBBQApi/BobsBBQApi.csproj": {
+    "C:\\Users\\Anders\\RiderProjects\\BobsBBQ\\BobsBBQApi\\BobsBBQApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/malenevonwildenradt/Documents/GitHub/BobsBBQ/BobsBBQApi/BobsBBQApi.csproj",
+        "projectUniqueName": "C:\\Users\\Anders\\RiderProjects\\BobsBBQ\\BobsBBQApi\\BobsBBQApi.csproj",
         "projectName": "BobsBBQApi",
-        "projectPath": "/Users/malenevonwildenradt/Documents/GitHub/BobsBBQ/BobsBBQApi/BobsBBQApi.csproj",
-        "packagesPath": "/Users/malenevonwildenradt/.nuget/packages/",
-        "outputPath": "/Users/malenevonwildenradt/Documents/GitHub/BobsBBQ/BobsBBQApi/obj/",
+        "projectPath": "C:\\Users\\Anders\\RiderProjects\\BobsBBQ\\BobsBBQApi\\BobsBBQApi.csproj",
+        "packagesPath": "C:\\Users\\Anders\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Anders\\RiderProjects\\BobsBBQ\\BobsBBQApi\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/malenevonwildenradt/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\Anders\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -36,7 +38,7 @@
         "restoreAuditProperties": {
           "enableAudit": "true",
           "auditLevel": "low",
-          "auditMode": "all"
+          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -153,20 +155,6 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "downloadDependencies": [
-            {
-              "name": "Microsoft.AspNetCore.App.Ref",
-              "version": "[8.0.11, 8.0.11]"
-            },
-            {
-              "name": "Microsoft.NETCore.App.Host.osx-x64",
-              "version": "[8.0.11, 8.0.11]"
-            },
-            {
-              "name": "Microsoft.NETCore.App.Ref",
-              "version": "[8.0.11, 8.0.11]"
-            }
-          ],
           "frameworkReferences": {
             "Microsoft.AspNetCore.App": {
               "privateAssets": "none"
@@ -175,34 +163,36 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/Users/malenevonwildenradt/.dotnet/sdk/9.0.100/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.401/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "/Users/malenevonwildenradt/Documents/GitHub/BobsBBQ/UnitTests/UnitTests.csproj": {
+    "C:\\Users\\Anders\\RiderProjects\\BobsBBQ\\UnitTests\\UnitTests.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/malenevonwildenradt/Documents/GitHub/BobsBBQ/UnitTests/UnitTests.csproj",
+        "projectUniqueName": "C:\\Users\\Anders\\RiderProjects\\BobsBBQ\\UnitTests\\UnitTests.csproj",
         "projectName": "UnitTests",
-        "projectPath": "/Users/malenevonwildenradt/Documents/GitHub/BobsBBQ/UnitTests/UnitTests.csproj",
-        "packagesPath": "/Users/malenevonwildenradt/.nuget/packages/",
-        "outputPath": "/Users/malenevonwildenradt/Documents/GitHub/BobsBBQ/UnitTests/obj/",
+        "projectPath": "C:\\Users\\Anders\\RiderProjects\\BobsBBQ\\UnitTests\\UnitTests.csproj",
+        "packagesPath": "C:\\Users\\Anders\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Anders\\RiderProjects\\BobsBBQ\\UnitTests\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/malenevonwildenradt/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\Anders\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "/Users/malenevonwildenradt/Documents/GitHub/BobsBBQ/BobsBBQApi/BobsBBQApi.csproj": {
-                "projectPath": "/Users/malenevonwildenradt/Documents/GitHub/BobsBBQ/BobsBBQApi/BobsBBQApi.csproj"
+              "C:\\Users\\Anders\\RiderProjects\\BobsBBQ\\BobsBBQApi\\BobsBBQApi.csproj": {
+                "projectPath": "C:\\Users\\Anders\\RiderProjects\\BobsBBQ\\BobsBBQApi\\BobsBBQApi.csproj"
               }
             }
           }
@@ -215,7 +205,7 @@
         "restoreAuditProperties": {
           "enableAudit": "true",
           "auditLevel": "low",
-          "auditMode": "all"
+          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -258,22 +248,12 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "downloadDependencies": [
-            {
-              "name": "Microsoft.AspNetCore.App.Ref",
-              "version": "[8.0.11, 8.0.11]"
-            },
-            {
-              "name": "Microsoft.NETCore.App.Ref",
-              "version": "[8.0.11, 8.0.11]"
-            }
-          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/Users/malenevonwildenradt/.dotnet/sdk/9.0.100/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.401/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
