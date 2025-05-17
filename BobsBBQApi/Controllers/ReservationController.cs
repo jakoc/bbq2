@@ -62,7 +62,7 @@ public class ReservationController : Controller
          }
     }
     
-    [HttpGet("[action]")]
+    [HttpPost("[action]")]
     public IActionResult GetAvailableTimeSlots([FromBody] GetAvailableTimeSlotDto dto)
     {
         using var activity = MonitorService.ActivitySource.StartActivity("GetAvailableTimeSlots called from controller");
@@ -98,7 +98,8 @@ public class ReservationController : Controller
             MonitorService.Log.Information("GetAvailableTimeSlot in ReservationLogic called from controller");
             var availableTimeSlots = _reservationLogic.GetAvailableTimeSlot(date, partySize);
             MonitorService.Log.Information("Available time slots retrieved successfully");
-            return Ok(availableTimeSlots);
+            return Ok(availableTimeSlots
+                .Select(t => t.ToString("HH"))); 
         }
         catch (Exception ex)
         {

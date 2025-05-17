@@ -32,8 +32,7 @@
     <div class="grid3">
         <img class="infoIMG" src="BBQMenu.png" alt="Menukort">
     </div>
-</div>
-dotnet 
+</div> 
 <div class="Footer">
     
 </div>
@@ -97,40 +96,41 @@ dotnet
 </div>
 
 <!-- Modal -->
-<div class="modal fade" id="reservationModal" tabindex="-1" aria-labelledby="reservationModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="reservationModalLabel">Bestil Bord</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Luk"></button>
-            </div>
-            <div class="modal-body">
-                <form id="reservationForm">
-                    <div class="mb-3">
-                        <label for="reservationDate" class="form-label">Dato</label>
-                        <input type="date" class="form-control" id="reservationDate" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="reservationGuests" class="form-label">Antal gæster</label>
-                        <input type="number" class="form-control" id="reservationGuests" min="1" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="reservationTime" class="form-label">Tidspunkt</label>
-                        <select class="form-select" id="reservationTime" required>
-                            <option value="">Vælg et tidspunkt</option>
-                            <!-- Tider indsættes dynamisk -->
-                        </select>
-                    </div>
-                    <div class="mb-3">
-                        <label for="reservationNote" class="form-label">Besked (valgfri)</label>
-                        <textarea class="form-control" id="reservationNote" rows="2" placeholder="Skriv evt. en besked..."></textarea>
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="submit" class="btn btn-primary" id="submitReservationBtn">Send reservation</button>
-            </div>
-        </div>
+<!-- Reservation modal uden Bootstrap -->
+<div id="reservationModal" class="modal" style="display:none;">
+    <div class="modal-content">
+        <span id="closeReservationModal" class="close">&times;</span>
+        <h2>Bestil Bord</h2>
+        <form id="reservationForm">
+            <label for="reservationDate">Dato</label>
+            <input type="date" id="reservationDate" required>
+
+            <label for="reservationGuests">Antal gæster</label>
+            <input type="number" id="reservationGuests" min="1" required>
+
+            <label for="reservationTime">Tidspunkt</label>
+            <select id="reservationTime" required>
+                <option value="">Vælg et tidspunkt</option>
+            </select>
+
+            <label for="reservationNote">Besked (valgfri)</label>
+            <textarea id="reservationNote" rows="2" placeholder="Skriv evt. en besked..."></textarea>
+
+            <button type="submit">Send reservation</button>
+        </form>
+    </div>
+</div>
+
+<!-- Opret Bord Modal -->
+<div id="createTableModal" class="modal" style="display:none;">
+    <div class="modal-content">
+        <span id="closeCreateTableModal" class="close">&times;</span>
+        <h2>Opret Bord</h2>
+        <form id="createTableForm">
+            <label for="tableCapacity">Antal pladser</label>
+            <input type="number" id="tableCapacity" min="1" required>
+            <button type="submit">Opret Bord</button>
+        </form>
     </div>
 </div>
 
@@ -140,15 +140,16 @@ dotnet
     const signupModal = document.getElementById('signupModal');
     const closeLoginModal = document.getElementById('closeLoginModal');
     const closeSignupModal = document.getElementById('closeSignupModal');
-    const editButton = document.getElementById('edit-button');
-    const paragraph = document.getElementById('about-paragraph');
-    const editor = document.getElementById('about-editor');
+    const reservationModal = document.getElementById('reservationModal');
+    const createTableModal = document.getElementById('createTableModal');
     const nav = document.getElementById('nav-buttons');
 
     // Modal handling
     window.addEventListener('click', (event) => {
         if (event.target === loginModal) loginModal.style.display = 'none';
         if (event.target === signupModal) signupModal.style.display = 'none';
+        if (event.target === reservationModal) reservationModal.style.display = 'none';
+        if (event.target === createTableModal) createTableModal.style.display = 'none';
     });
 
     if (closeLoginModal) {
@@ -159,82 +160,97 @@ dotnet
     }
 
     // Hent brugerrolle fra API
+    function parseJwt(token) {
+        try {
+            const base64Url = token.split('.')[1];
+            const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+            const jsonPayload = decodeURIComponent(atob(base64).split('')
+                .map(c => '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2))
+                .join(''));
+
+            return JSON.parse(jsonPayload);
+        } catch (e) {
+            return null;
+        }
+    }
+
     async function fetchUserRole() {
         const token = localStorage.getItem('jwtToken');
         if (!token) return '';
-        try {
-            const res = await fetch('https://din-api-url.com/brugerinformatioon', {
-                headers: { 'Authorization': `Bearer ${token}` }
-            });
-            if (!res.ok) throw new Error('Brugerinfo fejl');
-            const data = await res.json();
-            return data.UserRole || '';
-        } catch (err) {
-            console.error(err);
-            return '';
-        }
+
+        const decoded = parseJwt(token);
+        console.log('Decoded JWT:', decoded);
+
+        if (!decoded || !decoded.role) return '';
+
+        return decoded.role;
+        
     }
 
     // Opsæt navbar
     async function setupNavbar() {
         const token = localStorage.getItem('jwtToken');
-        const role = await fetchUserRole();
-
+        const role = await fetchUserRole()
+        
         nav.innerHTML = '';
-        if (editButton) editButton.style.display = 'none';
 
         if (!token || role === '') {
             nav.innerHTML = `
-                <button id="loginBtnOpen">Login</button>
-                <button id="signupBtnOpen">Sign Up</button>`;
-
-            console.log("buttons added");
-
-            const loginBtnOpen = document.getElementById("loginBtnOpen");
-            const signupBtnOpen = document.getElementById("signupBtnOpen");
-
-            if (signupBtnOpen && signupModal && closeSignupModal) {
-                signupBtnOpen.onclick = () => {
-                    signupModal.style.display = 'block';
-                };
-
-                closeSignupModal.onclick = () => {
-                    signupModal.style.display = 'none';
-                };
-
-                window.addEventListener('click', (event) => {
-                    if (event.target === signupModal) {
-                        signupModal.style.display = 'none';
-                    }
-                });
-            }
-
-            if (loginBtnOpen && loginModal) {
-                loginBtnOpen.onclick = () => {
-                    loginModal.style.display = 'block';
-                };
-            }
-
+            <button id="loginBtnOpen">Login</button>
+            <button id="signupBtnOpen">Sign Up</button>
+        `;
         } else if (role === 'Customer') {
             nav.innerHTML = `
-                <button id="bestilBtn">Bestil Bord</button>
-                <button id="logoutBtn">Log Ud</button>`;
-
-            const logoutBtn = document.getElementById('logoutBtn');
-            if (logoutBtn) logoutBtn.onclick = logout;
-
+            <button id="bestilBtn">Bestil Bord</button>
+            <button id="logoutBtn">Log Ud</button>
+        `;
         } else if (role === 'Admin') {
             nav.innerHTML = `
-                <a href="OpretBord.html"><button>Opret Bord</button></a>
-                <button id="logoutBtn">Log Ud</button>`;
-
-            const logoutBtn = document.getElementById('logoutBtn');
-            if (logoutBtn) logoutBtn.onclick = logout;
-
-            if (editButton) editButton.style.display = 'inline-block';
+            <button id="newTableBtn">Opret Bord</button>
+            <button id="logoutBtn">Log Ud</button>
+        `;
         }
+
+        localStorage.setItem('jwtToken', data.token);
+        localStorage.setItem('userId', data.userId); // Gem userId i localStorage
     }
 
+    // Event delegation for all buttons in the navbar
+    nav.addEventListener('click', (event) => {
+        if (event.target.tagName === 'BUTTON') {
+            const id = event.target.id;
+
+            switch (id) {
+                case 'loginBtnOpen':
+                    loginModal.style.display = 'flex';
+                    break;
+                case 'signupBtnOpen':
+                    signupModal.style.display = 'flex';
+                    break;
+                case 'logoutBtn':
+                    localStorage.removeItem('jwtToken');
+                    setupNavbar();
+                    break;
+                case 'bestilBtn':
+                    const reservationModal = document.getElementById('reservationModal');
+                    if (reservationModal) reservationModal.style.display = 'flex';
+                    break;
+                case 'newTableBtn':
+                    const createTableModal = document.getElementById('createTableModal');
+                    if (createTableModal) createTableModal.style.display = 'flex';
+                    break;
+                default:
+                    console.warn('Unknown button clicked:', id);
+            }
+        }
+    });
+    
+
+    window.onload = () => {
+        setupNavbar();
+    };
+    
+    
     // Signup form
     document.getElementById('signupForm').addEventListener('submit', async (e) => {
         e.preventDefault();
@@ -265,134 +281,208 @@ dotnet
         }
     });
 
-    // Login form
-    document.getElementById('loginForm').addEventListener('submit', async (e) => {
-        e.preventDefault();
-        const username = document.getElementById('username').value;
-        const password = document.getElementById('password').value;
+    document.addEventListener('DOMContentLoaded', () => {
+        setupNavbar();
 
-        try {
-            const res = await fetch('http://localhost:5251/LoginUser', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ username, password })
-            });
-            if (!res.ok) throw new Error('Login fejlede');
-            const data = await res.json();
-            localStorage.setItem('jwtToken', data.token);
-            loginModal.style.display = 'none';
-            await setupNavbar();
-        } catch (err) {
-            alert('Login mislykkedes – prøv igen.');
-            console.error(err);
-        }
-    });
+        const loginForm = document.getElementById('loginForm');
+        const loginModal = document.getElementById('loginModal');
 
-    // Redigér knap
-    if (editButton) {
-        editButton.addEventListener('click', () => {
-            if (editor.style.display === 'none') {
-                editor.value = paragraph.textContent.trim();
-                paragraph.style.display = 'none';
-                editor.style.display = 'block';
-                editButton.textContent = 'Gem';
-            } else {
-                paragraph.textContent = editor.value;
-                editor.style.display = 'none';
-                paragraph.style.display = 'block';
-                editButton.textContent = 'Redigér tekst';
+        // LOGIN
+        loginForm?.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const email = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            try {
+                const res = await fetch('http://localhost:5251/LoginUser', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, password })
+                });
+
+                if (!res.ok) throw new Error('Login fejlede');
+
+                const data = await res.json();
+                localStorage.setItem('jwtToken', data.token);
+                localStorage.setItem('userId', data.userId); // Gem userId i localStorage
+                console.log('User ID:', data.userId);
+
+                loginModal.style.display = 'none';
+                await setupNavbar();
+            } catch (err) {
+                alert('Login mislykkedes – prøv igen.');
+                console.error(err);
             }
         });
-    }
+        
+    });
 
-    // Log ud
-    function logout() {
-        localStorage.removeItem('jwtToken');
-        location.reload();
-    }
+    document.addEventListener('DOMContentLoaded', () => {
+        const modal = document.getElementById('reservationModal');
+        const reservationDateInput = document.getElementById('reservationDate');
+        const partySizeInput = document.getElementById('reservationGuests');
+        const reservationTimeSelect = document.getElementById('reservationTime');
+        const reservationForm = document.getElementById('reservationForm');
 
-    // Kør navbar setup ved indlæsning
-    window.onload = () => {
-        setupNavbar();
-    };
+        // Kontrollér, om modal-elementet findes
+        if (!modal || !reservationDateInput || !partySizeInput || !reservationTimeSelect || !reservationForm) {
+            console.error('Et eller flere nødvendige elementer mangler i DOM\'en.');
+            return;
+        }
 
-    // Reservation setup
-    document.addEventListener("DOMContentLoaded", function () {
-        const reservationDate = document.getElementById("reservationDate");
-        const reservationGuests = document.getElementById("reservationGuests");
-        const reservationTime = document.getElementById("reservationTime");
-        const reservationNote = document.getElementById("reservationNote");
-        const submitReservationBtn = document.getElementById("submitReservationBtn");
+        // Hent tilgængelige tider ved dato og party size ændring
+        async function fetchAvailableTimes() {
+            const date      = reservationDateInput.value;
+            const partySize = Number(partySizeInput.value);
 
-        async function fetchAvailableTimes(date, guests) {
+            // reset, hvis dato eller antal ikke er valgt
+            if (!date || !partySize) {
+                reservationTimeSelect.innerHTML =
+                    '<option value="">Vælg tidspunkt</option>';
+                return;
+            }
+
             try {
-                const response = await fetch(`http://localhost:5000/api/reservation/times?date=${date}&people=${guests}`);
-                const data = await response.json();
-
-                reservationTime.innerHTML = `<option value="">Vælg et tidspunkt</option>`;
-                data.forEach(time => {
-                    const option = document.createElement("option");
-                    option.value = time;
-                    option.textContent = time;
-                    reservationTime.appendChild(option);
+                const res = await fetch('http://localhost:5251/GetAvailableTimeSlots', {
+                    method : 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body   : JSON.stringify({ date, partySize })
                 });
-            } catch (error) {
-                console.error("Fejl ved hentning af tider:", error);
+
+                if (!res.ok) {
+                    const msg = await res.text();
+                    throw new Error(msg || 'Kunne ikke hente tider');
+                }
+
+                const availableTimeSlots = await res.json();   // fx [18,19,20] eller ["18:00","19:00"]
+                // byg <option>-listen
+                reservationTimeSelect.innerHTML =
+                    '<option value="">Vælg tidspunkt</option>';
+
+                availableTimeSlots.forEach(t => {
+                    const label = String(t).includes(':') ? t : `${t}:00`;
+                    const opt   = document.createElement('option');
+                    opt.value   = label;
+                    opt.textContent = label;
+                    reservationTimeSelect.appendChild(opt);
+                });
+
+            } catch (err) {
+                console.error('Fejl ved ledige tider:', err);
+                alert('Kunne ikke hente ledige tidspunkter – prøv igen.');
+                reservationTimeSelect.innerHTML =
+                    '<option value="">Vælg tidspunkt</option>';
             }
         }
 
-        [reservationDate, reservationGuests].forEach(el =>
-            el.addEventListener("change", () => {
-                const date = reservationDate.value;
-                const guests = reservationGuests.value;
-                if (date && guests) {
-                    fetchAvailableTimes(date, guests);
-                }
-            })
-        );
+        // bind én gang
+        reservationDateInput.addEventListener('change', fetchAvailableTimes);
+        partySizeInput  .addEventListener('input',  fetchAvailableTimes);
 
-        submitReservationBtn.addEventListener("click", async () => {
-            const date = reservationDate.value;
-            const guests = parseInt(reservationGuests.value);
-            const time = reservationTime.value;
-            const note = reservationNote.value;
-            const userId = localStorage.getItem("userId");
+        // Håndter form submit
+        reservationForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
 
-            if (!date || !guests || !time) {
-                alert("Udfyld venligst alle påkrævede felter.");
+            const userId = localStorage.getItem('userId');
+            console.log('User ID:', userId);
+            if (!userId) {
+                alert('Du skal være logget ind for at reservere bord.');
                 return;
             }
 
             const reservationData = {
-                reservationDate: date,
-                timeSlot: time,
-                partySize: guests,
-                note: note,
-                userId: userId
+                userId:     userId,                              // Guid
+                reservationDate: reservationDateInput.value,     // YYYY-MM-DD
+                partySize:  Number(partySizeInput.value),        // int
+                timeSlot:   Number(reservationTimeSelect.value), // int
+                note:       document.getElementById('reservationNote').value
             };
 
             try {
-                const response = await fetch("http://localhost:5000/api/reservation", {
+                const response = await fetch("http://localhost:5251/api/ReserveTable", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify(reservationData)
                 });
 
-                if (response.ok) {
-                    alert("Reservation sendt!");
-                    bootstrap.Modal.getInstance(document.getElementById("reservationModal")).hide();
-                    document.getElementById("reservationForm").reset();
-                    reservationTime.innerHTML = `<option value="">Vælg et tidspunkt</option>`;
-                } else {
-                    const err = await response.text();
-                    alert("Fejl ved reservation: " + err);
-                }
+                if (!response.ok) throw new Error("Reservation mislykkedes");
+
+                alert("Reservationen er sendt!");
+                modal.style.display = 'none';
+                reservationForm.reset();
             } catch (error) {
-                console.error("Fejl:", error);
-                alert("Noget gik galt. Prøv igen senere.");
+                alert("Der opstod en fejl: " + error.message);
             }
         });
     });
+
+    window.addEventListener('DOMContentLoaded', () => {
+        const signupModal = document.getElementById('signupModal');
+        if (signupModal) {
+            signupModal.style.display = 'none';
+        }
+    });
+
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const createTableModal = document.getElementById('createTableModal');
+        const closeCreateTableModal = document.getElementById('closeCreateTableModal');
+        const createTableForm = document.getElementById('createTableForm');
+
+        // Funktion til at åbne modal - fx tilknyt denne til en knap på admin siden
+        window.openCreateTableModal = function() {
+            createTableModal.style.display = 'block';
+        }
+
+        // Luk modal når klik på kryds
+        closeCreateTableModal.addEventListener('click', () => {
+            createTableModal.style.display = 'none';
+        });
+
+        // Luk modal ved klik udenfor modal-content
+        window.addEventListener('click', (event) => {
+            if (event.target === createTableModal) {
+                createTableModal.style.display = 'none';
+            }
+        });
+
+        // Submit form - opret bord
+        createTableForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const capacity = Number(document.getElementById('tableCapacity').value);
+
+            if (capacity <= 0) {
+                alert('Antal pladser skal være større end 0.');
+                return;
+            }
+
+            try {
+                const token = localStorage.getItem('jwtToken'); // hvis du kræver auth token
+                const res = await fetch('http://localhost:5251/AddTable', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        ...(token ? { 'Authorization': `Bearer ${token}` } : {})
+                    },
+                    body: JSON.stringify({ capacity })
+                });
+
+                if (!res.ok) {
+                    const errorText = await res.text();
+                    throw new Error(errorText || 'Fejl ved oprettelse af bord');
+                }
+
+                alert('Bord oprettet succesfuldt!');
+                createTableModal.style.display = 'none';
+                createTableForm.reset();
+            } catch (err) {
+                alert('Kunne ikke oprette bord: ' + err.message);
+                console.error(err);
+            }
+        });
+    });
+
 </script>
 
 

@@ -49,7 +49,7 @@ public class UserController : ControllerBase
             if (token != null)
             {
                 MonitorService.Log.Information("User logged in successfully");
-                return Ok(new { userToken = token });
+                return Ok(new { token = token });
             }
             else
             {

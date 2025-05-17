@@ -57,6 +57,17 @@ public class Program
         builder.Services.AddScoped<IReservationRepository, ReservationRepository>();
         builder.Services.AddScoped<IUserRepository, UserRepository>();
         builder.Services.AddScoped<ITableRepository, TableRepository>();
+        
+        builder.Services.AddCors(options =>
+        {
+            options.AddPolicy("AllowAll",
+                policy =>
+                {
+                    policy.AllowAnyOrigin()
+                        .AllowAnyHeader()
+                        .AllowAnyMethod();
+                });
+        });
 
         var key = Encoding.ASCII.GetBytes("your_new_32_byte_or_longer_key_here_12345");
         builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
@@ -71,6 +82,17 @@ public class Program
                 ValidateAudience = false,
                 ValidateLifetime = true
             };
+            options.Events = new JwtBearerEvents
+            {
+            OnMessageReceived = context =>
+            {
+                if (context.HttpContext.Request.Method.Equals("OPTIONS", StringComparison.OrdinalIgnoreCase))
+                {
+                    context.NoResult();  // Ignore token validation for OPTIONS requests
+                }
+                return Task.CompletedTask;
+            }
+        };
         });
         
         builder.Services.AddAuthorization(options =>
@@ -89,11 +111,10 @@ public class Program
             app.UseSwagger();
             app.UseSwaggerUI();
         }
-        app.UseCors(builder => builder.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin());
+        app.UseCors("AllowAll");
         app.UseHttpsRedirection();
         app.UseAuthentication();
         app.UseAuthorization();
-        app.UseCors();
         app.UseDefaultFiles(); 
         app.UseStaticFiles();
         app.MapControllers();

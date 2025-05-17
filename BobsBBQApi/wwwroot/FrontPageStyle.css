@@ -16,17 +16,17 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 120px; /* Adjust height to make it higher */
+    height: 80px; /* Adjust height to make it higher */
     z-index: 10; /* Ensure it appears above the banner */
 }
 
 .Footer{
-    height: 500px;
+    height: 350px;
     background-color: #800000;
 }
 
 .logo {
-    font-size: 3rem;
+    font-size: 2rem;
     font-weight: bold;
 }
 
@@ -38,33 +38,27 @@ nav button {
     border-radius: 5px;
     cursor: pointer;
     width: 150px;
-    height: 80px;
-    font-size: 1.8rem;
+    height: 50px;
+    font-size: 1.2rem;
     font-weight: bold;
     font-family: "Marker Felt", sans-serif;
 }
 
 nav button:hover {
-    background-color: #f1d1d1;
-}
-
-nav {
-    background-color: #ddd;
-    padding: 1rem;
-    width: 500px;
+    background-color: dimgrey;
 }
 
 .hero {
     background-image: url("banner.jpg");
     background-size: cover;
     background-position: center;
-    height: 500pX;
+    height: 350px;
     display: flex;
     justify-content: center;
     align-items: center;
     color: white;
     text-shadow: 2px 2px 5px #000;
-    font-size: 4rem;
+    font-size: 3rem;
     margin-top: 0; /* Sørg for ingen ekstra afstand oppefra */
     font-family: "Marker Felt", sans-serif;
 }
@@ -74,8 +68,8 @@ nav {
     padding: 2rem;
     display: grid !important;
     grid-template-columns: 1fr 1fr 1fr;
-    margin-top: 50px;
-    margin-bottom: 50px;
+    margin-top: 30px;
+    margin-bottom: 30px;
 }
 
 .grid1{
@@ -94,14 +88,14 @@ nav {
 }
 
 .bbq{
-    width: 569px;
+    width: 373px;
     margin-left: auto;
     margin-right: auto;
     display: block;
 }
 
 .infoIMG{
-    width: 1100px;
+    width: 720px;
 }
 /* Basic Reset */
 * {
@@ -154,7 +148,7 @@ input[type="text"], input[type="password"] {
 }
 
 button {
-    background-color: #4CAF50;
+    background-color: black;
     color: white;
     padding: 10px 20px;
     border: none;
@@ -163,7 +157,7 @@ button {
 }
 
 button:hover {
-    background-color: #45a049;
+    background-color: dimgray;
 }
 
 button:disabled {
@@ -176,7 +170,7 @@ input[type="submit"] {
     padding: 10px;
     margin: 10px 0;
     border-radius: 5px;
-    background-color: #4CAF50;
+    background-color: black !important;
     color: white;
     border: none;
 }
@@ -193,5 +187,42 @@ select {
     margin-bottom: 15px;
 }
 #signupModal.modal {
-    display: block 
+    display: none;
 }
+
+
+#reservationModal .modal-content label{
+    display:block;          /* label over input */
+    margin-top:15px;        /* luft før hvert label */
+    font-size:1rem;
+}
+
+#reservationModal .modal-content input,
+#reservationModal .modal-content select,
+#reservationModal .modal-content textarea{
+    width:100%;
+    padding:10px;
+    margin-top:5px;         /* lille luft mellem label og felt */
+    border:1px solid #ccc;
+    border-radius:6px;
+    font-family:inherit;
+}
+
+
+#reservationModal select{
+    border:1px solid #ccc;  /* normal grå kant */
+}
+
+/* validering – sæt rød kant hvis feltet er tomt ved submit */
+#reservationModal select:invalid{
+    border-color:red;
+}
+
+#reservationModal button[type="submit"]{
+    margin-top:20px;
+    width:100%;
+    padding:12px 0;
+    font-size:1rem;
+    border-radius:6px;
+}
+

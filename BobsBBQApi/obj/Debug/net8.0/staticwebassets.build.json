@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "nkY2WUr2mbzeRwEnsrOOYoTXnLuNxlDJGdnrQxLaEO4=",
+  "Hash": "z7EaMipu3ppq45amP3iOn88D3TRc5ZHISGHRQupmTkU=",
   "Source": "BobsBBQApi",
   "BasePath": "_content/BobsBBQApi",
   "Mode": "Default",
@@ -8,19 +8,19 @@
   "ReferencedProjectsConfiguration": [],
   "DiscoveryPatterns": [
     {
-      "Name": "BobsBBQApi\\wwwroot",
+      "Name": "BobsBBQApi/wwwroot",
       "Source": "BobsBBQApi",
-      "ContentRoot": "C:\\Users\\Anders\\RiderProjects\\BobsBBQ\\BobsBBQApi\\wwwroot\\",
+      "ContentRoot": "/Users/malenevonwildenradt/Documents/GitHub/BobsBBQ/BobsBBQApi/wwwroot/",
       "BasePath": "_content/BobsBBQApi",
       "Pattern": "**"
     }
   ],
   "Assets": [
     {
-      "Identity": "C:\\Users\\Anders\\RiderProjects\\BobsBBQ\\BobsBBQApi\\wwwroot\\banner.jpg",
+      "Identity": "/Users/malenevonwildenradt/Documents/GitHub/BobsBBQ/BobsBBQApi/wwwroot/banner.jpg",
       "SourceId": "BobsBBQApi",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Anders\\RiderProjects\\BobsBBQ\\BobsBBQApi\\wwwroot\\",
+      "ContentRoot": "/Users/malenevonwildenradt/Documents/GitHub/BobsBBQ/BobsBBQApi/wwwroot/",
       "BasePath": "_content/BobsBBQApi",
       "RelativePath": "banner.jpg",
       "AssetKind": "All",
@@ -33,13 +33,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\banner.jpg"
+      "OriginalItemSpec": "wwwroot/banner.jpg"
     },
     {
-      "Identity": "C:\\Users\\Anders\\RiderProjects\\BobsBBQ\\BobsBBQApi\\wwwroot\\BBQMenu.png",
+      "Identity": "/Users/malenevonwildenradt/Documents/GitHub/BobsBBQ/BobsBBQApi/wwwroot/BBQMenu.png",
       "SourceId": "BobsBBQApi",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Anders\\RiderProjects\\BobsBBQ\\BobsBBQApi\\wwwroot\\",
+      "ContentRoot": "/Users/malenevonwildenradt/Documents/GitHub/BobsBBQ/BobsBBQApi/wwwroot/",
       "BasePath": "_content/BobsBBQApi",
       "RelativePath": "BBQMenu.png",
       "AssetKind": "All",
@@ -52,13 +52,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\BBQMenu.png"
+      "OriginalItemSpec": "wwwroot/BBQMenu.png"
     },
     {
-      "Identity": "C:\\Users\\Anders\\RiderProjects\\BobsBBQ\\BobsBBQApi\\wwwroot\\billede1.jpg",
+      "Identity": "/Users/malenevonwildenradt/Documents/GitHub/BobsBBQ/BobsBBQApi/wwwroot/billede1.jpg",
       "SourceId": "BobsBBQApi",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Anders\\RiderProjects\\BobsBBQ\\BobsBBQApi\\wwwroot\\",
+      "ContentRoot": "/Users/malenevonwildenradt/Documents/GitHub/BobsBBQ/BobsBBQApi/wwwroot/",
       "BasePath": "_content/BobsBBQApi",
       "RelativePath": "billede1.jpg",
       "AssetKind": "All",
@@ -71,13 +71,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\billede1.jpg"
+      "OriginalItemSpec": "wwwroot/billede1.jpg"
     },
     {
-      "Identity": "C:\\Users\\Anders\\RiderProjects\\BobsBBQ\\BobsBBQApi\\wwwroot\\billede2.jpg",
+      "Identity": "/Users/malenevonwildenradt/Documents/GitHub/BobsBBQ/BobsBBQApi/wwwroot/billede2.jpg",
       "SourceId": "BobsBBQApi",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Anders\\RiderProjects\\BobsBBQ\\BobsBBQApi\\wwwroot\\",
+      "ContentRoot": "/Users/malenevonwildenradt/Documents/GitHub/BobsBBQ/BobsBBQApi/wwwroot/",
       "BasePath": "_content/BobsBBQApi",
       "RelativePath": "billede2.jpg",
       "AssetKind": "All",
@@ -90,13 +90,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\billede2.jpg"
+      "OriginalItemSpec": "wwwroot/billede2.jpg"
     },
     {
-      "Identity": "C:\\Users\\Anders\\RiderProjects\\BobsBBQ\\BobsBBQApi\\wwwroot\\billede3.jpg",
+      "Identity": "/Users/malenevonwildenradt/Documents/GitHub/BobsBBQ/BobsBBQApi/wwwroot/billede3.jpg",
       "SourceId": "BobsBBQApi",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Anders\\RiderProjects\\BobsBBQ\\BobsBBQApi\\wwwroot\\",
+      "ContentRoot": "/Users/malenevonwildenradt/Documents/GitHub/BobsBBQ/BobsBBQApi/wwwroot/",
       "BasePath": "_content/BobsBBQApi",
       "RelativePath": "billede3.jpg",
       "AssetKind": "All",
@@ -109,13 +109,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\billede3.jpg"
+      "OriginalItemSpec": "wwwroot/billede3.jpg"
     },
     {
-      "Identity": "C:\\Users\\Anders\\RiderProjects\\BobsBBQ\\BobsBBQApi\\wwwroot\\FrontPageStyle.css",
+      "Identity": "/Users/malenevonwildenradt/Documents/GitHub/BobsBBQ/BobsBBQApi/wwwroot/FrontPageStyle.css",
       "SourceId": "BobsBBQApi",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Anders\\RiderProjects\\BobsBBQ\\BobsBBQApi\\wwwroot\\",
+      "ContentRoot": "/Users/malenevonwildenradt/Documents/GitHub/BobsBBQ/BobsBBQApi/wwwroot/",
       "BasePath": "_content/BobsBBQApi",
       "RelativePath": "FrontPageStyle.css",
       "AssetKind": "All",
@@ -128,13 +128,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\FrontPageStyle.css"
+      "OriginalItemSpec": "wwwroot/FrontPageStyle.css"
     },
     {
-      "Identity": "C:\\Users\\Anders\\RiderProjects\\BobsBBQ\\BobsBBQApi\\wwwroot\\index.html",
+      "Identity": "/Users/malenevonwildenradt/Documents/GitHub/BobsBBQ/BobsBBQApi/wwwroot/index.html",
       "SourceId": "BobsBBQApi",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Anders\\RiderProjects\\BobsBBQ\\BobsBBQApi\\wwwroot\\",
+      "ContentRoot": "/Users/malenevonwildenradt/Documents/GitHub/BobsBBQ/BobsBBQApi/wwwroot/",
       "BasePath": "_content/BobsBBQApi",
       "RelativePath": "index.html",
       "AssetKind": "All",
@@ -147,13 +147,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\index.html"
+      "OriginalItemSpec": "wwwroot/index.html"
     },
     {
-      "Identity": "C:\\Users\\Anders\\RiderProjects\\BobsBBQ\\BobsBBQApi\\wwwroot\\Lokation.png",
+      "Identity": "/Users/malenevonwildenradt/Documents/GitHub/BobsBBQ/BobsBBQApi/wwwroot/Lokation.png",
       "SourceId": "BobsBBQApi",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Anders\\RiderProjects\\BobsBBQ\\BobsBBQApi\\wwwroot\\",
+      "ContentRoot": "/Users/malenevonwildenradt/Documents/GitHub/BobsBBQ/BobsBBQApi/wwwroot/",
       "BasePath": "_content/BobsBBQApi",
       "RelativePath": "Lokation.png",
       "AssetKind": "All",
@@ -166,13 +166,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\Lokation.png"
+      "OriginalItemSpec": "wwwroot/Lokation.png"
     },
     {
-      "Identity": "C:\\Users\\Anders\\RiderProjects\\BobsBBQ\\BobsBBQApi\\wwwroot\\OmOS.png",
+      "Identity": "/Users/malenevonwildenradt/Documents/GitHub/BobsBBQ/BobsBBQApi/wwwroot/OmOS.png",
       "SourceId": "BobsBBQApi",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Anders\\RiderProjects\\BobsBBQ\\BobsBBQApi\\wwwroot\\",
+      "ContentRoot": "/Users/malenevonwildenradt/Documents/GitHub/BobsBBQ/BobsBBQApi/wwwroot/",
       "BasePath": "_content/BobsBBQApi",
       "RelativePath": "OmOS.png",
       "AssetKind": "All",
@@ -185,7 +185,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\OmOS.png"
+      "OriginalItemSpec": "wwwroot/OmOS.png"
     }
   ]
 }
