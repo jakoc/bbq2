@@ -42,7 +42,7 @@ public class ReservationController : Controller
             activity?.SetTag("reservation.userId", userId);
             MonitorService.Log.Information("Received reservation request: {@ReservationDate}, {@TimeSlot}, {@PartySize}, {@Note}, {@UserId}", 
                 reservationDate, timeSlot, partySize, note, userId);
-         if (reservationDate == default || timeSlot == default || partySize <= 0 || partySize > 10 || string.IsNullOrWhiteSpace(note) || userId == Guid.Empty )
+         if (reservationDate == default || timeSlot == default || partySize <= 0 || partySize > 10 || userId == Guid.Empty )
          {
              MonitorService.Log.Warning("Invalid reservation request received");
               return BadRequest("All fields are required.");

@@ -383,9 +383,11 @@
 
             } catch (err) {
                 console.error('Fejl ved ledige tider:', err);
-                alert('Kunne ikke hente ledige tidspunkter – prøv igen.');
+                alert(`Kunne ikke hente ledige tidspunkter, vi har ikke et ledigt bord til ${partySize} den ${date}`);
+                reservationDateInput.value = ''; // Reset date picker
+                partySizeInput.value = '';      // Reset party size field
                 reservationTimeSelect.innerHTML =
-                    '<option value="">Vælg tidspunkt</option>';
+                    '<option value="">Vælg tidspunkt</option>'; // Reset time slots
             }
         }
 
