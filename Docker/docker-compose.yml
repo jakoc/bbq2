@@ -39,6 +39,17 @@
       DB_NAME: bobsbbq
     ports:
       - "8080:8080"
+    
+    
+  featurehub:
+    image: featurehub/party-server:latest
+    container_name: featurehub
+    restart: always
+    volumes:
+      - featurehub-h2-data:/db
+    ports:
+      - "8085:8085"
 
 volumes:
   mariadb_data:
+  featurehub-h2-data:

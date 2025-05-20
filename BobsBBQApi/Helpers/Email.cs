@@ -2,8 +2,10 @@ using BobsBBQApi.Helpers.Interfaces;
 using BobsBBQApi.Services;
 using MailKit.Net.Smtp;
 using MimeKit;
+using FeatureHubSDK;
 
 namespace BobsBBQApi.Helpers;
+
 
 public class Email : IEmail
 {
@@ -11,17 +13,27 @@ public class Email : IEmail
     private readonly int _smtpPort;
     private readonly string _smtpUser;
     private readonly string _smtpPass;
+    private readonly IClientContext _featureContext;
+    
 
-    public Email(string smtpServer, int smtpPort, string smtpUser, string smtpPass)
+    public Email(string smtpServer, int smtpPort, string smtpUser, string smtpPass, IClientContext featureContext)
     {
         _smtpServer = smtpServer;
         _smtpPort = smtpPort;
         _smtpUser = smtpUser;
         _smtpPass = smtpPass;
+        _featureContext = featureContext;
     }
 
     public async Task SendSuccessfullAccountCreationEmail(string toEmail, string firstName)
     {
+        //toggle
+        if (!_featureContext["SEND_EMAIL_CONFIRMATION"].IsEnabled)
+        {
+            MonitorService.Log.Information("Email feature toggle is OFF – skipping sending email to {ToEmail}", toEmail);
+            return;
+        }
+        
         MonitorService.Log.Information("Preparing to send successful account creation email to {@ToEmail} for user {@FirstName}",
             toEmail, firstName);
         var email = new MimeMessage();
@@ -66,6 +78,13 @@ public class Email : IEmail
     public async Task SendSuccessfullTableReservationEmail(string toEmail, string firstName, 
         DateTime reservationDate, DateTime reservationTime)
     {
+        //toggle
+        if (!_featureContext["SEND_EMAIL_CONFIRMATION"].IsEnabled)
+        {
+            MonitorService.Log.Information("Email feature toggle is OFF – skipping sending email to {ToEmail}", toEmail);
+            return;
+        }
+        
         MonitorService.Log.Information("Preparing to send successful table reservation email to {@ToEmail} for user {@FirstName}",
             toEmail, firstName);
         var email = new MimeMessage();
