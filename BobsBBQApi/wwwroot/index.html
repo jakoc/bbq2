@@ -190,29 +190,35 @@
     // Opsæt navbar
     async function setupNavbar() {
         const token = localStorage.getItem('jwtToken');
-        const role = await fetchUserRole()
-        
+        const role  = await fetchUserRole();
+
+        if (token && !localStorage.getItem('userId')) {
+            const dec = parseJwt(token);
+
+            // prøv flere mulige claim‑navne
+            const uid = dec?.userId ||
+                dec?.nameid ||
+                dec?.['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier'];
+
+            if (uid) localStorage.setItem('userId', uid);
+        }
+
+
         nav.innerHTML = '';
 
-        if (!token || role === '') {
+        if (!token || !role) {
             nav.innerHTML = `
             <button id="loginBtnOpen">Login</button>
-            <button id="signupBtnOpen">Sign Up</button>
-        `;
+            <button id="signupBtnOpen">Sign Up</button>`;
         } else if (role === 'Customer') {
             nav.innerHTML = `
             <button id="bestilBtn">Bestil Bord</button>
-            <button id="logoutBtn">Log Ud</button>
-        `;
+            <button id="logoutBtn">Log Ud</button>`;
         } else if (role === 'Admin') {
             nav.innerHTML = `
             <button id="newTableBtn">Opret Bord</button>
-            <button id="logoutBtn">Log Ud</button>
-        `;
+            <button id="logoutBtn">Log Ud</button>`;
         }
-
-        localStorage.setItem('jwtToken', data.token);
-        localStorage.setItem('userId', data.userId); // Gem userId i localStorage
     }
 
     // Event delegation for all buttons in the navbar
@@ -305,8 +311,12 @@
 
                 const data = await res.json();
                 localStorage.setItem('jwtToken', data.token);
-                localStorage.setItem('userId', data.userId); // Gem userId i localStorage
-                console.log('User ID:', data.userId);
+                const { userId } = parseJwt(data.token);
+                localStorage.setItem('userId', userId);
+                console.log('Token:', data.token,'User ID:', data.userId);
+
+                const payload = parseJwt(data.token);
+                console.log('Payload:', payload);
 
                 loginModal.style.display = 'none';
                 await setupNavbar();
@@ -361,10 +371,13 @@
                     '<option value="">Vælg tidspunkt</option>';
 
                 availableTimeSlots.forEach(t => {
-                    const label = String(t).includes(':') ? t : `${t}:00`;
-                    const opt   = document.createElement('option');
-                    opt.value   = label;
-                    opt.textContent = label;
+                    // t er fx 18 eller "18:00" – normaliser først
+                    const hour  = String(t).includes(':') ? parseInt(t, 10) : Number(t);
+                    const label = `${hour}:00`;
+
+                    const opt = document.createElement('option');
+                    opt.value = hour;         // <-- tallet 18
+                    opt.textContent = label;  //   vises som 18:00
                     reservationTimeSelect.appendChild(opt);
                 });
 
@@ -398,9 +411,11 @@
                 timeSlot:   Number(reservationTimeSelect.value), // int
                 note:       document.getElementById('reservationNote').value
             };
+            
+            console.log('Reservation data:', reservationData);
 
             try {
-                const response = await fetch("http://localhost:5251/api/ReserveTable", {
+                const response = await fetch("http://localhost:5251/ReserveTable", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify(reservationData)
