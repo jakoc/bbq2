@@ -316,7 +316,7 @@
                 console.log('Token:', data.token,'User ID:', data.userId);
 
                 const payload = parseJwt(data.token);
-                console.log('Payload:', payload);
+                console.log('Payload:', payload); 
 
                 loginModal.style.display = 'none';
                 await setupNavbar();
