@@ -49,6 +49,8 @@
       - featurehub-h2-data:/db
     ports:
       - "8085:8085"
+    environment:
+      FEATUREHUB_DNS: 0.0.0.0
 
 volumes:
   mariadb_data:
