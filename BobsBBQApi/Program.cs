@@ -36,20 +36,15 @@ public class Program
         builder.Services.AddScoped<IPasswordEncrypter, PasswordEncrypter>();
         builder.Services.AddScoped<IJwtToken, JwtToken>();
         
-        //featurehub + mail
-        var configuration = builder.Configuration;
-
-        var smtpServer = configuration["Email:SmtpServer"];
-        var smtpPort = int.Parse(configuration["Email:SmtpPort"]);
-        var smtpUser = configuration["Email:SmtpUser"];
-        var smtpPass = configuration["Email:SmtpPass"];
-
-        var featureConfig = new EdgeFeatureHubConfig("http://featurehub:8085", "a21a1bf9-9db9-438a-b4d8-4bbf0e3907d0/mWsGbfAGnMEpXvKd2uTlTBLwdQ78RWYQmCTDAW9y");
-        var featureContext = await featureConfig.NewContext().Build();
-
-        var emailService = new Email(smtpServer, smtpPort, smtpUser, smtpPass, featureContext);
-
-        builder.Services.AddSingleton<IEmail>(emailService);
+        builder.Services.AddSingleton<IEmail, Email>(sp =>
+        {
+            var configuration = sp.GetRequiredService<IConfiguration>();
+            var smtpServer = configuration["Email:SmtpServer"];
+            var smtpPort = int.Parse(configuration["Email:SmtpPort"]);
+            var smtpUser = configuration["Email:SmtpUser"];
+            var smtpPass = configuration["Email:SmtpPass"];
+            return new Email(smtpServer, smtpPort, smtpUser, smtpPass);
+        });
         
         builder.Services.AddOpenTelemetry()
             .WithTracing(tracerProviderBuilder =>
