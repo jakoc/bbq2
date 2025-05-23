@@ -267,7 +267,7 @@
         const role = document.getElementById('signupRole').value;
 
         try {
-            const res = await fetch('http://localhost:5251/RegisterUser', {
+            const res = await fetch('http://79.76.101.254:8080/RegisterUser', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
@@ -301,7 +301,7 @@
             const password = document.getElementById('password').value;
 
             try {
-                const res = await fetch('http://localhost:5251/LoginUser', {
+                const res = await fetch('http://79.76.101.254:8080/LoginUser', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ email, password })
@@ -354,7 +354,7 @@
             }
 
             try {
-                const res = await fetch('http://localhost:5251/GetAvailableTimeSlots', {
+                const res = await fetch('http://79.76.101.254:8080/GetAvailableTimeSlots', {
                     method : 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body   : JSON.stringify({ date, partySize })
@@ -417,7 +417,7 @@
             console.log('Reservation data:', reservationData);
 
             try {
-                const response = await fetch("http://localhost:5251/ReserveTable", {
+                const response = await fetch("http://79.76.101.254:8080/ReserveTable", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify(reservationData)
@@ -476,7 +476,7 @@
 
             try {
                 const token = localStorage.getItem('jwtToken'); // hvis du kræver auth token
-                const res = await fetch('http://localhost:5251/AddTable', {
+                const res = await fetch('http://79.76.101.254:8080/AddTable', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',

@@ -14,8 +14,10 @@ public class BobsBBQContext : DbContext
 
     }
 
-    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    /*protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        
         modelBuilder.HasDefaultSchema("dbo");
-    }
+        
+    }*/
 }

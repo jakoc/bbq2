@@ -29,7 +29,10 @@ public class Program
         
         builder.Services.AddDbContext<BobsBBQContext>(options =>
         {
-            options.UseSqlServer(builder.Configuration.GetConnectionString("DBConnection"));
+            options.UseMySql(
+                builder.Configuration.GetConnectionString("DBConnection"),
+                new MySqlServerVersion(new Version(10, 8, 2)) // Brug den MariaDB version du kører på staging
+            );
         });
         
         //helpers
