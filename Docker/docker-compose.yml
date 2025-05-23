@@ -40,21 +40,6 @@
     ports:
       - "8080:8080"
     
-  seq:
-    image: datalust/seq:latest
-    container_name: seq
-    restart: always
-    environment:
-      - ACCEPT_EULA=Y
-    ports:
-      - "5341:80"
-
-  zipkin:
-    image: openzipkin/zipkin
-    container_name: zipkin
-    restart: always
-    ports:
-      - "9411:9411"
     
 volumes:
   mariadb_data:
