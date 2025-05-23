@@ -23,7 +23,7 @@ CREATE TABLE Reservations (
     UserID CHAR(36) NOT NULL,                    
     PartySize INT NOT NULL,
     Timeslot INT NOT NULL,
-    Note NVARCHAR(MAX),
+    Note TEXT,
     FOREIGN KEY (TableID) REFERENCES RestaurantTables(TableID) ON DELETE CASCADE,
     FOREIGN KEY (UserID) REFERENCES Users(UserID) ON DELETE CASCADE
 );
