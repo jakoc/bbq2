@@ -73,7 +73,7 @@ jobs:
           host: ${{ vars.STAGING_SERVER_IP }}
           username: ${{ vars.STAGING_SERVER_USERNAME }}
           key: ${{ secrets.STAGING_SERVER_SSH_KEY }}
-          source: "dbmigration/*"
+          source: "dbmigration/**"
           target: "dowa/dbmigration"
           overwrite: true
           debug: true
