@@ -157,6 +157,22 @@ jobs:
             docker compose pull
             docker compose up -d --force-recreate
             
+      - name: Run Flyway migrations on staging server
+        uses: appleboy/ssh-action@v0.1.7
+        with:
+          host: ${{ vars.STAGING_SERVER_IP }}
+          username: ${{ vars.STAGING_SERVER_USERNAME }}
+          key: ${{ secrets.STAGING_SERVER_SSH_KEY }}
+          script: |
+            docker run --rm \
+              --network host \
+              -v ~/dowa/dbmigration:/flyway/sql \
+              flyway/flyway:latest \
+              -url=jdbc:mariadb://localhost:3306/bobsbbq \
+              -user=user \
+              -password=password \
+              migrate
+            
       - name: Setup K6
         run: |
           curl -LO https://github.com/k6io/k6/releases/download/v0.44.0/k6-v0.44.0-linux-amd64.tar.gz
