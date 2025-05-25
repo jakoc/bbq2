@@ -163,7 +163,10 @@ jobs:
           host: ${{ vars.STAGING_SERVER_IP }}
           username: ${{ vars.STAGING_SERVER_USERNAME }}
           key: ${{ secrets.STAGING_SERVER_SSH_KEY }}
+          command_timeout: 180
           script: |
+            echo "🕒 Venter på at MariaDB bliver klar..."
+            sleep 15
             docker run --rm \
               --network host \
               -v ~/dowa/dbmigration:/flyway/sql \
