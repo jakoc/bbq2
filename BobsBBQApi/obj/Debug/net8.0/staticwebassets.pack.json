@@ -1,55 +1,59 @@
 {
   "Files": [
     {
-      "Id": "/Users/malenevonwildenradt/Documents/GitHub/BobsBBQ/BobsBBQApi/wwwroot/BBQMenu.png",
-      "PackagePath": "staticwebassets/BBQMenu.png"
+      "Id": "C:\\Users\\Jacob\\Documents\\GitHub\\BobsBBQ\\BobsBBQApi\\wwwroot\\BBQMenu.png",
+      "PackagePath": "staticwebassets\\BBQMenu.png"
     },
     {
-      "Id": "/Users/malenevonwildenradt/Documents/GitHub/BobsBBQ/BobsBBQApi/wwwroot/FrontPageStyle.css",
-      "PackagePath": "staticwebassets/FrontPageStyle.css"
+      "Id": "C:\\Users\\Jacob\\Documents\\GitHub\\BobsBBQ\\BobsBBQApi\\wwwroot\\FrontPageStyle.css",
+      "PackagePath": "staticwebassets\\FrontPageStyle.css"
     },
     {
-      "Id": "/Users/malenevonwildenradt/Documents/GitHub/BobsBBQ/BobsBBQApi/wwwroot/Lokation.png",
-      "PackagePath": "staticwebassets/Lokation.png"
+      "Id": "C:\\Users\\Jacob\\Documents\\GitHub\\BobsBBQ\\BobsBBQApi\\wwwroot\\Lokation.png",
+      "PackagePath": "staticwebassets\\Lokation.png"
     },
     {
-      "Id": "/Users/malenevonwildenradt/Documents/GitHub/BobsBBQ/BobsBBQApi/wwwroot/OmOS.png",
-      "PackagePath": "staticwebassets/OmOS.png"
+      "Id": "C:\\Users\\Jacob\\Documents\\GitHub\\BobsBBQ\\BobsBBQApi\\wwwroot\\OmOS.png",
+      "PackagePath": "staticwebassets\\OmOS.png"
     },
     {
-      "Id": "/Users/malenevonwildenradt/Documents/GitHub/BobsBBQ/BobsBBQApi/wwwroot/banner.jpg",
-      "PackagePath": "staticwebassets/banner.jpg"
+      "Id": "C:\\Users\\Jacob\\Documents\\GitHub\\BobsBBQ\\BobsBBQApi\\wwwroot\\banner.jpg",
+      "PackagePath": "staticwebassets\\banner.jpg"
     },
     {
-      "Id": "/Users/malenevonwildenradt/Documents/GitHub/BobsBBQ/BobsBBQApi/wwwroot/billede1.jpg",
-      "PackagePath": "staticwebassets/billede1.jpg"
+      "Id": "C:\\Users\\Jacob\\Documents\\GitHub\\BobsBBQ\\BobsBBQApi\\wwwroot\\billede1.jpg",
+      "PackagePath": "staticwebassets\\billede1.jpg"
     },
     {
-      "Id": "/Users/malenevonwildenradt/Documents/GitHub/BobsBBQ/BobsBBQApi/wwwroot/billede2.jpg",
-      "PackagePath": "staticwebassets/billede2.jpg"
+      "Id": "C:\\Users\\Jacob\\Documents\\GitHub\\BobsBBQ\\BobsBBQApi\\wwwroot\\billede2.jpg",
+      "PackagePath": "staticwebassets\\billede2.jpg"
     },
     {
-      "Id": "/Users/malenevonwildenradt/Documents/GitHub/BobsBBQ/BobsBBQApi/wwwroot/billede3.jpg",
-      "PackagePath": "staticwebassets/billede3.jpg"
+      "Id": "C:\\Users\\Jacob\\Documents\\GitHub\\BobsBBQ\\BobsBBQApi\\wwwroot\\billede3.jpg",
+      "PackagePath": "staticwebassets\\billede3.jpg"
     },
     {
-      "Id": "/Users/malenevonwildenradt/Documents/GitHub/BobsBBQ/BobsBBQApi/wwwroot/index.html",
-      "PackagePath": "staticwebassets/index.html"
+      "Id": "C:\\Users\\Jacob\\Documents\\GitHub\\BobsBBQ\\BobsBBQApi\\wwwroot\\index.html",
+      "PackagePath": "staticwebassets\\index.html"
     },
     {
-      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.BobsBBQApi.Microsoft.AspNetCore.StaticWebAssets.props",
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.BobsBBQApi.Microsoft.AspNetCore.StaticWebAssetEndpoints.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssetEndpoints.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.BobsBBQApi.Microsoft.AspNetCore.StaticWebAssets.props",
       "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
     },
     {
-      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.build.BobsBBQApi.props",
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.BobsBBQApi.props",
       "PackagePath": "build\\BobsBBQApi.props"
     },
     {
-      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.buildMultiTargeting.BobsBBQApi.props",
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.BobsBBQApi.props",
       "PackagePath": "buildMultiTargeting\\BobsBBQApi.props"
     },
     {
-      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.buildTransitive.BobsBBQApi.props",
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.BobsBBQApi.props",
       "PackagePath": "buildTransitive\\BobsBBQApi.props"
     }
   ],
