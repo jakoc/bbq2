@@ -6327,11 +6327,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Jacob\\Documents\\GitHub\\BobsBBQ\\BobsBBQApi\\BobsBBQApi.csproj",
+      "projectUniqueName": "C:\\Users\\Jacob\\RiderProjects\\BobsBBQ\\BobsBBQApi\\BobsBBQApi.csproj",
       "projectName": "BobsBBQApi",
-      "projectPath": "C:\\Users\\Jacob\\Documents\\GitHub\\BobsBBQ\\BobsBBQApi\\BobsBBQApi.csproj",
+      "projectPath": "C:\\Users\\Jacob\\RiderProjects\\BobsBBQ\\BobsBBQApi\\BobsBBQApi.csproj",
       "packagesPath": "C:\\Users\\Jacob\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Jacob\\Documents\\GitHub\\BobsBBQ\\BobsBBQApi\\obj\\",
+      "outputPath": "C:\\Users\\Jacob\\RiderProjects\\BobsBBQ\\BobsBBQApi\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Jacob\\AppData\\Roaming\\NuGet\\NuGet.Config"

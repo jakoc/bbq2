@@ -27,7 +27,7 @@
     command: migrate
 
   solution:
-    image: ghcr.io/anderswith/bobsbbq/bobsbbqsolution:latest
+    image: ghcr.io/jakoc/bobsbbqsolution:latest
     container_name: bobsbbqsolution
     restart: always
     depends_on:

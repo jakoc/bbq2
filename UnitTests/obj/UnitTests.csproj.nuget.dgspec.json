@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Jacob\\Documents\\GitHub\\BobsBBQ\\UnitTests\\UnitTests.csproj": {}
+    "C:\\Users\\Jacob\\RiderProjects\\BobsBBQ\\UnitTests\\UnitTests.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Jacob\\Documents\\GitHub\\BobsBBQ\\BobsBBQApi\\BobsBBQApi.csproj": {
+    "C:\\Users\\Jacob\\RiderProjects\\BobsBBQ\\BobsBBQApi\\BobsBBQApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Jacob\\Documents\\GitHub\\BobsBBQ\\BobsBBQApi\\BobsBBQApi.csproj",
+        "projectUniqueName": "C:\\Users\\Jacob\\RiderProjects\\BobsBBQ\\BobsBBQApi\\BobsBBQApi.csproj",
         "projectName": "BobsBBQApi",
-        "projectPath": "C:\\Users\\Jacob\\Documents\\GitHub\\BobsBBQ\\BobsBBQApi\\BobsBBQApi.csproj",
+        "projectPath": "C:\\Users\\Jacob\\RiderProjects\\BobsBBQ\\BobsBBQApi\\BobsBBQApi.csproj",
         "packagesPath": "C:\\Users\\Jacob\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Jacob\\Documents\\GitHub\\BobsBBQ\\BobsBBQApi\\obj\\",
+        "outputPath": "C:\\Users\\Jacob\\RiderProjects\\BobsBBQ\\BobsBBQApi\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Jacob\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -192,14 +192,14 @@
         }
       }
     },
-    "C:\\Users\\Jacob\\Documents\\GitHub\\BobsBBQ\\UnitTests\\UnitTests.csproj": {
+    "C:\\Users\\Jacob\\RiderProjects\\BobsBBQ\\UnitTests\\UnitTests.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Jacob\\Documents\\GitHub\\BobsBBQ\\UnitTests\\UnitTests.csproj",
+        "projectUniqueName": "C:\\Users\\Jacob\\RiderProjects\\BobsBBQ\\UnitTests\\UnitTests.csproj",
         "projectName": "UnitTests",
-        "projectPath": "C:\\Users\\Jacob\\Documents\\GitHub\\BobsBBQ\\UnitTests\\UnitTests.csproj",
+        "projectPath": "C:\\Users\\Jacob\\RiderProjects\\BobsBBQ\\UnitTests\\UnitTests.csproj",
         "packagesPath": "C:\\Users\\Jacob\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Jacob\\Documents\\GitHub\\BobsBBQ\\UnitTests\\obj\\",
+        "outputPath": "C:\\Users\\Jacob\\RiderProjects\\BobsBBQ\\UnitTests\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Jacob\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -214,8 +214,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\Jacob\\Documents\\GitHub\\BobsBBQ\\BobsBBQApi\\BobsBBQApi.csproj": {
-                "projectPath": "C:\\Users\\Jacob\\Documents\\GitHub\\BobsBBQ\\BobsBBQApi\\BobsBBQApi.csproj"
+              "C:\\Users\\Jacob\\RiderProjects\\BobsBBQ\\BobsBBQApi\\BobsBBQApi.csproj": {
+                "projectPath": "C:\\Users\\Jacob\\RiderProjects\\BobsBBQ\\BobsBBQApi\\BobsBBQApi.csproj"
               }
             }
           }

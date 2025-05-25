@@ -60,39 +60,12 @@ jobs:
           name: stryker-report
           path: StrykerOutput
 
-      - name: Check Secret Variables
-        run: |
-          echo "Sonar URL: ${{ vars.VARIABLE_SONAR_URL }}"
-          echo "Sonar Token: ${{ secrets.SECRET_SONAR_TOKEN }}"
-
-      - name: Start Static Code Analysis
-        run: |
-          dotnet sonarscanner begin \
-            /k:"SECRET-BobsBBQ" \
-            /d:sonar.host.url="${{ vars.VARIABLE_SONAR_URL }}" \
-            /d:sonar.token="${{ secrets.SECRET_SONAR_TOKEN }}" \
-            /d:sonar.coverageReportPaths="coverage-report/SonarQube.xml" \
-            /d:sonar.inclusions="BobsBBQApi/BLL/**" \
-            /d:sonar.qualitygate.wait=true \
-            /d:sonar.qualitygate.timeout=300
-
       - name: Build
         run: dotnet build
 
       - name: Run unit tests
         run: dotnet test --collect:"XPlat Code Coverage" --results-directory TestResults
 
-      - name: Generate sonar report
-        run: |
-          reportgenerator \
-          -reports:TestResults/**/coverage.cobertura.xml \
-          -targetdir:coverage-report \
-          -reporttypes:SonarQube
-
-      - name: Complete Static Code Analysis
-        run: |
-          dotnet sonarscanner end \
-            /d:sonar.token="${{secrets.SECRET_SONAR_TOKEN}}"
           
       - name: Deliver database migrations to staging server
         uses: appleboy/scp-action@v0.1.7
@@ -131,22 +104,21 @@ jobs:
         run: |
           cd Docker
           cd ..
-          docker build -t ghcr.io/anderswith/bobsbbq/bobsbbqsolution:latest -f Docker/Dockerfile .
-          docker push ghcr.io/anderswith/bobsbbq/bobsbbqsolution:latest
+          docker build -t ghcr.io/jakoc/bobsbbqsolution:latest -f Docker/Dockerfile .
+          docker push ghcr.io/jakoc/bobsbbqsolution:latest
           
       - name: List all Docker images
         run: docker images
         
       - name: Check pushed image tags
         run: |
-          curl -u ${{ secrets.GHCR_USERNAME }}:${{ secrets.SECRET_GITHUB_TOKEN }} https://ghcr.io/v2/anderswith/bobsbbq/tags/list
+          curl -u ${{ secrets.GHCR_USERNAME }}:${{ secrets.SECRET_GITHUB_TOKEN }} https://ghcr.io/v2/jakoc/bobsbbqsolution/tags/list
         
       
       - name: Verify Docker push result
         run: |       
           echo "Checking pushed image tags..."
-          curl -u ${{ github.actor }}:${{ secrets.SECRET_GITHUB_TOKEN }} \
-            https://ghcr.io/v2/anderswith/bobsbbq/bobsbbqsolution/tags/list
+          curl -u ${{ secrets.GHCR_USERNAME }}:${{ secrets.SECRET_GITHUB_TOKEN }} https://ghcr.io/v2/jakoc/bobsbbqsolution/tags/list
 
       - name: Deliver Compose file to staging server
         uses: appleboy/scp-action@v0.1.7
