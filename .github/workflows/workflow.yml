@@ -75,10 +75,12 @@ jobs:
           key: ${{ secrets.STAGING_SERVER_SSH_KEY }}
           source: "dbmigration/**"
           target: "dowa/dbmigration"
+          strip_components: 1
           overwrite: true
           debug: true
-
-          
+      
+      
+      
       - name: Log in to GHCR
         uses: docker/login-action@v2
         with:
