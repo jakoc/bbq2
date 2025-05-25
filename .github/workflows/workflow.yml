@@ -105,6 +105,18 @@ jobs:
           overwrite: true
           debug: true
 
+      - name: Run Flyway migration on staging server
+        uses: appleboy/ssh-action@v0.1.7
+        with:
+          host: ${{ vars.STAGING_SERVER_IP }}
+          username: ${{ vars.STAGING_SERVER_USERNAME }}
+          key: ${{ secrets.STAGING_SERVER_SSH_KEY }}
+          script: |
+            cd dowa/dbmigration
+            chmod +x flyway
+            ./flyway migrate
+      
+      
       - name: Log in to GHCR
         uses: docker/login-action@v2
         with:
