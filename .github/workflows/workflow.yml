@@ -94,12 +94,6 @@ jobs:
           dotnet sonarscanner end \
             /d:sonar.token="${{secrets.SECRET_SONAR_TOKEN}}"
           
-      - name: Set up SSH
-        run: |
-          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa
-          ssh-keyscan -H 79.76.101.254 >> ~/.ssh/known_hosts
-          
       - name: Deliver database migrations to staging server
         uses: appleboy/scp-action@v0.1.7
         with:
