@@ -26,4 +26,5 @@ CREATE TABLE Reservations (
     Note TEXT,
     FOREIGN KEY (TableID) REFERENCES RestaurantTables(TableID) ON DELETE CASCADE,
     FOREIGN KEY (UserID) REFERENCES Users(UserID) ON DELETE CASCADE
+                          
 );
