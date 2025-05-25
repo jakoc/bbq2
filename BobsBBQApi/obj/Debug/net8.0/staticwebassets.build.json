@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "z7EaMipu3ppq45amP3iOn88D3TRc5ZHISGHRQupmTkU=",
+  "Hash": "QfqbwAsQZC9YQJf/J3no/kDfbMEyDiVl4y6h9VNGXtk=",
   "Source": "BobsBBQApi",
   "BasePath": "_content/BobsBBQApi",
   "Mode": "Default",
@@ -8,184 +8,942 @@
   "ReferencedProjectsConfiguration": [],
   "DiscoveryPatterns": [
     {
-      "Name": "BobsBBQApi/wwwroot",
+      "Name": "BobsBBQApi\\wwwroot",
       "Source": "BobsBBQApi",
-      "ContentRoot": "/Users/malenevonwildenradt/Documents/GitHub/BobsBBQ/BobsBBQApi/wwwroot/",
+      "ContentRoot": "C:\\Users\\Jacob\\Documents\\GitHub\\BobsBBQ\\BobsBBQApi\\wwwroot\\",
       "BasePath": "_content/BobsBBQApi",
       "Pattern": "**"
     }
   ],
   "Assets": [
     {
-      "Identity": "/Users/malenevonwildenradt/Documents/GitHub/BobsBBQ/BobsBBQApi/wwwroot/banner.jpg",
+      "Identity": "C:\\Users\\Jacob\\Documents\\GitHub\\BobsBBQ\\BobsBBQApi\\wwwroot\\banner.jpg",
       "SourceId": "BobsBBQApi",
       "SourceType": "Discovered",
-      "ContentRoot": "/Users/malenevonwildenradt/Documents/GitHub/BobsBBQ/BobsBBQApi/wwwroot/",
+      "ContentRoot": "C:\\Users\\Jacob\\Documents\\GitHub\\BobsBBQ\\BobsBBQApi\\wwwroot\\",
       "BasePath": "_content/BobsBBQApi",
-      "RelativePath": "banner.jpg",
+      "RelativePath": "banner#[.{fingerprint}]?.jpg",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeBehavior": "",
       "AssetMergeSource": "",
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
+      "Fingerprint": "7utvrmvlhw",
+      "Integrity": "z+vj/zDlA8kVujO9QNVl962JTPkYb+eHjOmEYcwM5Ig=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot/banner.jpg"
+      "OriginalItemSpec": "wwwroot\\banner.jpg"
     },
     {
-      "Identity": "/Users/malenevonwildenradt/Documents/GitHub/BobsBBQ/BobsBBQApi/wwwroot/BBQMenu.png",
+      "Identity": "C:\\Users\\Jacob\\Documents\\GitHub\\BobsBBQ\\BobsBBQApi\\wwwroot\\BBQMenu.png",
       "SourceId": "BobsBBQApi",
       "SourceType": "Discovered",
-      "ContentRoot": "/Users/malenevonwildenradt/Documents/GitHub/BobsBBQ/BobsBBQApi/wwwroot/",
+      "ContentRoot": "C:\\Users\\Jacob\\Documents\\GitHub\\BobsBBQ\\BobsBBQApi\\wwwroot\\",
       "BasePath": "_content/BobsBBQApi",
-      "RelativePath": "BBQMenu.png",
+      "RelativePath": "BBQMenu#[.{fingerprint}]?.png",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeBehavior": "",
       "AssetMergeSource": "",
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
+      "Fingerprint": "p52qenzxkt",
+      "Integrity": "k3jUrUg0CfyUK9Ev/k7gn9q5KAIqKv9c/Lt+uh8HF+Y=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot/BBQMenu.png"
+      "OriginalItemSpec": "wwwroot\\BBQMenu.png"
     },
     {
-      "Identity": "/Users/malenevonwildenradt/Documents/GitHub/BobsBBQ/BobsBBQApi/wwwroot/billede1.jpg",
+      "Identity": "C:\\Users\\Jacob\\Documents\\GitHub\\BobsBBQ\\BobsBBQApi\\wwwroot\\billede1.jpg",
       "SourceId": "BobsBBQApi",
       "SourceType": "Discovered",
-      "ContentRoot": "/Users/malenevonwildenradt/Documents/GitHub/BobsBBQ/BobsBBQApi/wwwroot/",
+      "ContentRoot": "C:\\Users\\Jacob\\Documents\\GitHub\\BobsBBQ\\BobsBBQApi\\wwwroot\\",
       "BasePath": "_content/BobsBBQApi",
-      "RelativePath": "billede1.jpg",
+      "RelativePath": "billede1#[.{fingerprint}]?.jpg",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeBehavior": "",
       "AssetMergeSource": "",
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
+      "Fingerprint": "l3n37zk5yu",
+      "Integrity": "sepI/2/ulB5n+OCTYEJvi5T8Bb1dEgEjS/wY4Zy5rzI=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot/billede1.jpg"
+      "OriginalItemSpec": "wwwroot\\billede1.jpg"
     },
     {
-      "Identity": "/Users/malenevonwildenradt/Documents/GitHub/BobsBBQ/BobsBBQApi/wwwroot/billede2.jpg",
+      "Identity": "C:\\Users\\Jacob\\Documents\\GitHub\\BobsBBQ\\BobsBBQApi\\wwwroot\\billede2.jpg",
       "SourceId": "BobsBBQApi",
       "SourceType": "Discovered",
-      "ContentRoot": "/Users/malenevonwildenradt/Documents/GitHub/BobsBBQ/BobsBBQApi/wwwroot/",
+      "ContentRoot": "C:\\Users\\Jacob\\Documents\\GitHub\\BobsBBQ\\BobsBBQApi\\wwwroot\\",
       "BasePath": "_content/BobsBBQApi",
-      "RelativePath": "billede2.jpg",
+      "RelativePath": "billede2#[.{fingerprint}]?.jpg",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeBehavior": "",
       "AssetMergeSource": "",
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
+      "Fingerprint": "egwtho8v4e",
+      "Integrity": "cmWJQ0Mz7qHaCXSJb2dcttAwAvn5YqeDPNe68FYT3dQ=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot/billede2.jpg"
+      "OriginalItemSpec": "wwwroot\\billede2.jpg"
     },
     {
-      "Identity": "/Users/malenevonwildenradt/Documents/GitHub/BobsBBQ/BobsBBQApi/wwwroot/billede3.jpg",
+      "Identity": "C:\\Users\\Jacob\\Documents\\GitHub\\BobsBBQ\\BobsBBQApi\\wwwroot\\billede3.jpg",
       "SourceId": "BobsBBQApi",
       "SourceType": "Discovered",
-      "ContentRoot": "/Users/malenevonwildenradt/Documents/GitHub/BobsBBQ/BobsBBQApi/wwwroot/",
+      "ContentRoot": "C:\\Users\\Jacob\\Documents\\GitHub\\BobsBBQ\\BobsBBQApi\\wwwroot\\",
       "BasePath": "_content/BobsBBQApi",
-      "RelativePath": "billede3.jpg",
+      "RelativePath": "billede3#[.{fingerprint}]?.jpg",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeBehavior": "",
       "AssetMergeSource": "",
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
+      "Fingerprint": "3ea2zgvrpv",
+      "Integrity": "5Wu61pmqV4Ln2qeGCDogBjt/FdavX2135MopfKsY778=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot/billede3.jpg"
+      "OriginalItemSpec": "wwwroot\\billede3.jpg"
     },
     {
-      "Identity": "/Users/malenevonwildenradt/Documents/GitHub/BobsBBQ/BobsBBQApi/wwwroot/FrontPageStyle.css",
+      "Identity": "C:\\Users\\Jacob\\Documents\\GitHub\\BobsBBQ\\BobsBBQApi\\wwwroot\\FrontPageStyle.css",
       "SourceId": "BobsBBQApi",
       "SourceType": "Discovered",
-      "ContentRoot": "/Users/malenevonwildenradt/Documents/GitHub/BobsBBQ/BobsBBQApi/wwwroot/",
+      "ContentRoot": "C:\\Users\\Jacob\\Documents\\GitHub\\BobsBBQ\\BobsBBQApi\\wwwroot\\",
       "BasePath": "_content/BobsBBQApi",
-      "RelativePath": "FrontPageStyle.css",
+      "RelativePath": "FrontPageStyle#[.{fingerprint}]?.css",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeBehavior": "",
       "AssetMergeSource": "",
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
+      "Fingerprint": "1bhn1hp5pt",
+      "Integrity": "XQy8+JVF8DlAYpLxqwy/pKDY+JN0ZgmDBN91PNsvEt4=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot/FrontPageStyle.css"
+      "OriginalItemSpec": "wwwroot\\FrontPageStyle.css"
     },
     {
-      "Identity": "/Users/malenevonwildenradt/Documents/GitHub/BobsBBQ/BobsBBQApi/wwwroot/index.html",
+      "Identity": "C:\\Users\\Jacob\\Documents\\GitHub\\BobsBBQ\\BobsBBQApi\\wwwroot\\index.html",
       "SourceId": "BobsBBQApi",
       "SourceType": "Discovered",
-      "ContentRoot": "/Users/malenevonwildenradt/Documents/GitHub/BobsBBQ/BobsBBQApi/wwwroot/",
+      "ContentRoot": "C:\\Users\\Jacob\\Documents\\GitHub\\BobsBBQ\\BobsBBQApi\\wwwroot\\",
       "BasePath": "_content/BobsBBQApi",
-      "RelativePath": "index.html",
+      "RelativePath": "index#[.{fingerprint}]?.html",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeBehavior": "",
       "AssetMergeSource": "",
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
+      "Fingerprint": "217k7zky30",
+      "Integrity": "lvOq4g3oiJISMq7UMMOi5qjh1jMOW7iFX6Rq/CFWPTU=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot/index.html"
+      "OriginalItemSpec": "wwwroot\\index.html"
     },
     {
-      "Identity": "/Users/malenevonwildenradt/Documents/GitHub/BobsBBQ/BobsBBQApi/wwwroot/Lokation.png",
+      "Identity": "C:\\Users\\Jacob\\Documents\\GitHub\\BobsBBQ\\BobsBBQApi\\wwwroot\\Lokation.png",
       "SourceId": "BobsBBQApi",
       "SourceType": "Discovered",
-      "ContentRoot": "/Users/malenevonwildenradt/Documents/GitHub/BobsBBQ/BobsBBQApi/wwwroot/",
+      "ContentRoot": "C:\\Users\\Jacob\\Documents\\GitHub\\BobsBBQ\\BobsBBQApi\\wwwroot\\",
       "BasePath": "_content/BobsBBQApi",
-      "RelativePath": "Lokation.png",
+      "RelativePath": "Lokation#[.{fingerprint}]?.png",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeBehavior": "",
       "AssetMergeSource": "",
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
+      "Fingerprint": "a2etuwh0c7",
+      "Integrity": "clqibNdp1E1YITbBWpaCnqCJs8W3tdQ8Ov+ul1PR1SU=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot/Lokation.png"
+      "OriginalItemSpec": "wwwroot\\Lokation.png"
     },
     {
-      "Identity": "/Users/malenevonwildenradt/Documents/GitHub/BobsBBQ/BobsBBQApi/wwwroot/OmOS.png",
+      "Identity": "C:\\Users\\Jacob\\Documents\\GitHub\\BobsBBQ\\BobsBBQApi\\wwwroot\\OmOS.png",
       "SourceId": "BobsBBQApi",
       "SourceType": "Discovered",
-      "ContentRoot": "/Users/malenevonwildenradt/Documents/GitHub/BobsBBQ/BobsBBQApi/wwwroot/",
+      "ContentRoot": "C:\\Users\\Jacob\\Documents\\GitHub\\BobsBBQ\\BobsBBQApi\\wwwroot\\",
       "BasePath": "_content/BobsBBQApi",
-      "RelativePath": "OmOS.png",
+      "RelativePath": "OmOS#[.{fingerprint}]?.png",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeBehavior": "",
       "AssetMergeSource": "",
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
+      "Fingerprint": "ooqi73q5y4",
+      "Integrity": "aHXOPJuPnhuTC/aBO0KC3ye1/fccQLl4SIwJxUSETPI=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot/OmOS.png"
+      "OriginalItemSpec": "wwwroot\\OmOS.png"
+    }
+  ],
+  "Endpoints": [
+    {
+      "Route": "banner.7utvrmvlhw.jpg",
+      "AssetFile": "C:\\Users\\Jacob\\Documents\\GitHub\\BobsBBQ\\BobsBBQApi\\wwwroot\\banner.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "4522093"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"z+vj/zDlA8kVujO9QNVl962JTPkYb+eHjOmEYcwM5Ig=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 20 May 2025 11:20:36 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "7utvrmvlhw"
+        },
+        {
+          "Name": "label",
+          "Value": "banner.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-z+vj/zDlA8kVujO9QNVl962JTPkYb+eHjOmEYcwM5Ig="
+        }
+      ]
+    },
+    {
+      "Route": "banner.jpg",
+      "AssetFile": "C:\\Users\\Jacob\\Documents\\GitHub\\BobsBBQ\\BobsBBQApi\\wwwroot\\banner.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "4522093"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"z+vj/zDlA8kVujO9QNVl962JTPkYb+eHjOmEYcwM5Ig=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 20 May 2025 11:20:36 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-z+vj/zDlA8kVujO9QNVl962JTPkYb+eHjOmEYcwM5Ig="
+        }
+      ]
+    },
+    {
+      "Route": "BBQMenu.p52qenzxkt.png",
+      "AssetFile": "C:\\Users\\Jacob\\Documents\\GitHub\\BobsBBQ\\BobsBBQApi\\wwwroot\\BBQMenu.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "340024"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"k3jUrUg0CfyUK9Ev/k7gn9q5KAIqKv9c/Lt+uh8HF+Y=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 20 May 2025 11:20:36 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "p52qenzxkt"
+        },
+        {
+          "Name": "label",
+          "Value": "BBQMenu.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-k3jUrUg0CfyUK9Ev/k7gn9q5KAIqKv9c/Lt+uh8HF+Y="
+        }
+      ]
+    },
+    {
+      "Route": "BBQMenu.png",
+      "AssetFile": "C:\\Users\\Jacob\\Documents\\GitHub\\BobsBBQ\\BobsBBQApi\\wwwroot\\BBQMenu.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "340024"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"k3jUrUg0CfyUK9Ev/k7gn9q5KAIqKv9c/Lt+uh8HF+Y=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 20 May 2025 11:20:36 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-k3jUrUg0CfyUK9Ev/k7gn9q5KAIqKv9c/Lt+uh8HF+Y="
+        }
+      ]
+    },
+    {
+      "Route": "billede1.jpg",
+      "AssetFile": "C:\\Users\\Jacob\\Documents\\GitHub\\BobsBBQ\\BobsBBQApi\\wwwroot\\billede1.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "7772158"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"sepI/2/ulB5n+OCTYEJvi5T8Bb1dEgEjS/wY4Zy5rzI=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 20 May 2025 11:20:36 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-sepI/2/ulB5n+OCTYEJvi5T8Bb1dEgEjS/wY4Zy5rzI="
+        }
+      ]
+    },
+    {
+      "Route": "billede1.l3n37zk5yu.jpg",
+      "AssetFile": "C:\\Users\\Jacob\\Documents\\GitHub\\BobsBBQ\\BobsBBQApi\\wwwroot\\billede1.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "7772158"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"sepI/2/ulB5n+OCTYEJvi5T8Bb1dEgEjS/wY4Zy5rzI=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 20 May 2025 11:20:36 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "l3n37zk5yu"
+        },
+        {
+          "Name": "label",
+          "Value": "billede1.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-sepI/2/ulB5n+OCTYEJvi5T8Bb1dEgEjS/wY4Zy5rzI="
+        }
+      ]
+    },
+    {
+      "Route": "billede2.egwtho8v4e.jpg",
+      "AssetFile": "C:\\Users\\Jacob\\Documents\\GitHub\\BobsBBQ\\BobsBBQApi\\wwwroot\\billede2.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "3909104"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"cmWJQ0Mz7qHaCXSJb2dcttAwAvn5YqeDPNe68FYT3dQ=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 20 May 2025 11:20:36 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "egwtho8v4e"
+        },
+        {
+          "Name": "label",
+          "Value": "billede2.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-cmWJQ0Mz7qHaCXSJb2dcttAwAvn5YqeDPNe68FYT3dQ="
+        }
+      ]
+    },
+    {
+      "Route": "billede2.jpg",
+      "AssetFile": "C:\\Users\\Jacob\\Documents\\GitHub\\BobsBBQ\\BobsBBQApi\\wwwroot\\billede2.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "3909104"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"cmWJQ0Mz7qHaCXSJb2dcttAwAvn5YqeDPNe68FYT3dQ=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 20 May 2025 11:20:36 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-cmWJQ0Mz7qHaCXSJb2dcttAwAvn5YqeDPNe68FYT3dQ="
+        }
+      ]
+    },
+    {
+      "Route": "billede3.3ea2zgvrpv.jpg",
+      "AssetFile": "C:\\Users\\Jacob\\Documents\\GitHub\\BobsBBQ\\BobsBBQApi\\wwwroot\\billede3.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "4150193"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"5Wu61pmqV4Ln2qeGCDogBjt/FdavX2135MopfKsY778=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 20 May 2025 11:20:36 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "3ea2zgvrpv"
+        },
+        {
+          "Name": "label",
+          "Value": "billede3.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-5Wu61pmqV4Ln2qeGCDogBjt/FdavX2135MopfKsY778="
+        }
+      ]
+    },
+    {
+      "Route": "billede3.jpg",
+      "AssetFile": "C:\\Users\\Jacob\\Documents\\GitHub\\BobsBBQ\\BobsBBQApi\\wwwroot\\billede3.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "4150193"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"5Wu61pmqV4Ln2qeGCDogBjt/FdavX2135MopfKsY778=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 20 May 2025 11:20:36 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-5Wu61pmqV4Ln2qeGCDogBjt/FdavX2135MopfKsY778="
+        }
+      ]
+    },
+    {
+      "Route": "FrontPageStyle.1bhn1hp5pt.css",
+      "AssetFile": "C:\\Users\\Jacob\\Documents\\GitHub\\BobsBBQ\\BobsBBQApi\\wwwroot\\FrontPageStyle.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "4421"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"XQy8+JVF8DlAYpLxqwy/pKDY+JN0ZgmDBN91PNsvEt4=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 20 May 2025 11:20:36 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "1bhn1hp5pt"
+        },
+        {
+          "Name": "label",
+          "Value": "FrontPageStyle.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-XQy8+JVF8DlAYpLxqwy/pKDY+JN0ZgmDBN91PNsvEt4="
+        }
+      ]
+    },
+    {
+      "Route": "FrontPageStyle.css",
+      "AssetFile": "C:\\Users\\Jacob\\Documents\\GitHub\\BobsBBQ\\BobsBBQApi\\wwwroot\\FrontPageStyle.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "4421"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"XQy8+JVF8DlAYpLxqwy/pKDY+JN0ZgmDBN91PNsvEt4=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 20 May 2025 11:20:36 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-XQy8+JVF8DlAYpLxqwy/pKDY+JN0ZgmDBN91PNsvEt4="
+        }
+      ]
+    },
+    {
+      "Route": "index.217k7zky30.html",
+      "AssetFile": "C:\\Users\\Jacob\\Documents\\GitHub\\BobsBBQ\\BobsBBQApi\\wwwroot\\index.html",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "19341"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/html"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"lvOq4g3oiJISMq7UMMOi5qjh1jMOW7iFX6Rq/CFWPTU=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 23 May 2025 17:46:21 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "217k7zky30"
+        },
+        {
+          "Name": "label",
+          "Value": "index.html"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-lvOq4g3oiJISMq7UMMOi5qjh1jMOW7iFX6Rq/CFWPTU="
+        }
+      ]
+    },
+    {
+      "Route": "index.html",
+      "AssetFile": "C:\\Users\\Jacob\\Documents\\GitHub\\BobsBBQ\\BobsBBQApi\\wwwroot\\index.html",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "19341"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/html"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"lvOq4g3oiJISMq7UMMOi5qjh1jMOW7iFX6Rq/CFWPTU=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 23 May 2025 17:46:21 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-lvOq4g3oiJISMq7UMMOi5qjh1jMOW7iFX6Rq/CFWPTU="
+        }
+      ]
+    },
+    {
+      "Route": "Lokation.a2etuwh0c7.png",
+      "AssetFile": "C:\\Users\\Jacob\\Documents\\GitHub\\BobsBBQ\\BobsBBQApi\\wwwroot\\Lokation.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "197900"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"clqibNdp1E1YITbBWpaCnqCJs8W3tdQ8Ov+ul1PR1SU=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 13 May 2025 10:31:27 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "a2etuwh0c7"
+        },
+        {
+          "Name": "label",
+          "Value": "Lokation.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-clqibNdp1E1YITbBWpaCnqCJs8W3tdQ8Ov+ul1PR1SU="
+        }
+      ]
+    },
+    {
+      "Route": "Lokation.png",
+      "AssetFile": "C:\\Users\\Jacob\\Documents\\GitHub\\BobsBBQ\\BobsBBQApi\\wwwroot\\Lokation.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "197900"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"clqibNdp1E1YITbBWpaCnqCJs8W3tdQ8Ov+ul1PR1SU=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 13 May 2025 10:31:27 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-clqibNdp1E1YITbBWpaCnqCJs8W3tdQ8Ov+ul1PR1SU="
+        }
+      ]
+    },
+    {
+      "Route": "OmOS.ooqi73q5y4.png",
+      "AssetFile": "C:\\Users\\Jacob\\Documents\\GitHub\\BobsBBQ\\BobsBBQApi\\wwwroot\\OmOS.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "359095"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"aHXOPJuPnhuTC/aBO0KC3ye1/fccQLl4SIwJxUSETPI=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 20 May 2025 11:20:36 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "ooqi73q5y4"
+        },
+        {
+          "Name": "label",
+          "Value": "OmOS.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-aHXOPJuPnhuTC/aBO0KC3ye1/fccQLl4SIwJxUSETPI="
+        }
+      ]
+    },
+    {
+      "Route": "OmOS.png",
+      "AssetFile": "C:\\Users\\Jacob\\Documents\\GitHub\\BobsBBQ\\BobsBBQApi\\wwwroot\\OmOS.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "359095"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"aHXOPJuPnhuTC/aBO0KC3ye1/fccQLl4SIwJxUSETPI=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 20 May 2025 11:20:36 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-aHXOPJuPnhuTC/aBO0KC3ye1/fccQLl4SIwJxUSETPI="
+        }
+      ]
     }
   ]
 }
