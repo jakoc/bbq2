@@ -19,7 +19,7 @@
     depends_on:
       - mariadb
     volumes:
-      - ./dbmigration:/flyway/sql
+      - /home/ubuntu/dowa/dbmigration:/flyway/sql
     environment:
       FLYWAY_URL: jdbc:mariadb://mariadb:3306/bobsbbq
       FLYWAY_USER: user
