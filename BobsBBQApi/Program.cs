@@ -27,11 +27,17 @@ public class Program
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen();
         
+        var dbHost = builder.Configuration["DB_HOST"];
+        var dbName = builder.Configuration["DB_NAME"];
+        var dbUser = builder.Configuration["DB_USER"];
+        var dbPass = builder.Configuration["DB_PASSWORD"];
+        var connectionString = $"Server={dbHost};Port=3306;Database={dbName};User={dbUser};Password={dbPass};";
+
         builder.Services.AddDbContext<BobsBBQContext>(options =>
         {
             options.UseMySql(
-                builder.Configuration.GetConnectionString("DBConnection"),
-                new MySqlServerVersion(new Version(10, 8, 2)) // Brug den MariaDB version du kører på staging
+                connectionString,
+                new MySqlServerVersion(new Version(10, 8, 2))
             );
         });
         
