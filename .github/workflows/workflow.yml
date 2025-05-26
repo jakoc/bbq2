@@ -31,6 +31,14 @@ jobs:
       - name: Display Version
         run: echo "Generated version is ${{ steps.semver-app.outputs.version}}"
         
+      - name: Push generated tag
+        run: |
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+          git tag v${{ steps.semver-app.outputs.version }}
+          git push origin v${{ steps.semver-app.outputs.version }}
+      
+        
       - name: Create GitHub Release
         if: startsWith(github.ref, 'refs/tags/v')
         uses: softprops/action-gh-release@v1
