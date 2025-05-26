@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace BobsBBQApi.Controllers;
 
+[Route("api/[controller]")] 
 public class TableController : ControllerBase
 {
     private readonly ITableLogic _tableLogic;
@@ -14,7 +15,7 @@ public class TableController : ControllerBase
         _tableLogic = tableLogic;
     }
 
-    [HttpPost("[action]")]
+    [HttpPost("AddTable")]
     public IActionResult AddTable([FromBody] AddTableDto dto)
     {
         using var activity = MonitorService.ActivitySource.StartActivity("Add table called from controller");

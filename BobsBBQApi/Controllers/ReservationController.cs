@@ -4,7 +4,7 @@ using BobsBBQApi.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BobsBBQApi.Controllers;
-
+[Route("api/[controller]")] 
 public class ReservationController : Controller
 {
    private readonly IReservationLogic _reservationLogic;
@@ -12,7 +12,7 @@ public class ReservationController : Controller
    {
        _reservationLogic = reservationLogic;
    }
-   [HttpPost("[action]")]
+   [HttpPost("ReserveTable")]
     public IActionResult ReserveTable([FromBody] ReserveTableDto dto)
     {
         if (dto == null)
@@ -62,7 +62,7 @@ public class ReservationController : Controller
          }
     }
     
-    [HttpPost("[action]")]
+    [HttpPost("GetAvailableTimeSlots")]
     public IActionResult GetAvailableTimeSlots([FromBody] GetAvailableTimeSlotDto dto)
     {
         using var activity = MonitorService.ActivitySource.StartActivity("GetAvailableTimeSlots called from controller");

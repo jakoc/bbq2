@@ -17,7 +17,7 @@ public class UserController : ControllerBase
         _userLogic = userLogic;
     }
 
-    [HttpPost("[action]")]
+    [HttpPost("LogInUser")]
     public IActionResult LoginUser([FromBody] LogInDto dto)
     {
         if (dto == null)
