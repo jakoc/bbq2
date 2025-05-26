@@ -32,15 +32,11 @@
     restart: always
     depends_on:
       - mariadb
-      - zipkin
-      - seq
     environment:
       DB_HOST: mariadb
       DB_USER: user
       DB_PASSWORD: password
       DB_NAME: bobsbbq
-      OTEL_EXPORTER_ZIPKIN_ENDPOINT: http://zipkin:9411/api/v2/spans
-      Seq__ServerUrl: http://seq:5341
     ports:
       - "8080:8080"
         
