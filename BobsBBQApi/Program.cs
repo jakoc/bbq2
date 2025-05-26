@@ -119,8 +119,9 @@ public class Program
             app.UseSwagger();
             app.UseSwaggerUI();
         }
-        app.UseCors("AllowAll");
         app.UseHttpsRedirection();
+        app.UseRouting(); 
+        app.UseCors("AllowAll"); 
         app.UseAuthentication();
         app.UseAuthorization();
         app.UseDefaultFiles(); 
