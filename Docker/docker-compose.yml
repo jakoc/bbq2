@@ -56,31 +56,10 @@
     environment:
       FEATUREHUB_DNS: 0.0.0.0
       
-  seq:
-    image: datalust/seq:latest
-    container_name: seq
-    restart: always
-    environment:
-      - ACCEPT_EULA=Y
-    ports:
-      - "5341:5341"     
-      - "5342:80"   
-    volumes:
-      - rps_seq_data:/data
-  
-  zipkin:
-    image: openzipkin/zipkin
-    container_name: zipkin
-    restart: always
-    ports:
-      - "9411:9411"
-    environment:
-      - STORAGE_TYPE=mem
     
 volumes:
   mariadb_data:
   featurehub-db:
   featurehub-h2-data:
   featurehub-data:
-  rps_seq_data:
-  zipkin_data:
+  
