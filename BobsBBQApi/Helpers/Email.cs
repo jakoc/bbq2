@@ -13,7 +13,7 @@ public class Email : IEmail
     private readonly int _smtpPort;
     private readonly string _smtpUser;
     private readonly string _smtpPass;
-    
+    private readonly IClientContext _featureContext;
     
 
     public Email(string smtpServer, int smtpPort, string smtpUser, string smtpPass)
@@ -27,6 +27,12 @@ public class Email : IEmail
 
     public async Task SendSuccessfullAccountCreationEmail(string toEmail, string firstName)
     {
+        //toggle
+        if (!_featureContext["SEND_EMAIL_CONFIRMATION"].IsEnabled)
+        {
+            MonitorService.Log.Information("Email feature toggle is OFF – skipping sending email to {ToEmail}", toEmail);
+            return;
+        }
         
         MonitorService.Log.Information("Preparing to send successful account creation email to {@ToEmail} for user {@FirstName}",
             toEmail, firstName);
@@ -72,6 +78,12 @@ public class Email : IEmail
     public async Task SendSuccessfullTableReservationEmail(string toEmail, string firstName, 
         DateTime reservationDate, DateTime reservationTime)
     {
+        //toggle
+        if (!_featureContext["SEND_EMAIL_CONFIRMATION"].IsEnabled)
+        {
+            MonitorService.Log.Information("Email feature toggle is OFF – skipping sending email to {ToEmail}", toEmail);
+            return;
+        }
         
         MonitorService.Log.Information("Preparing to send successful table reservation email to {@ToEmail} for user {@FirstName}",
             toEmail, firstName);
