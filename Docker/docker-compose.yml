@@ -32,8 +32,6 @@
     restart: always
     depends_on:
       - mariadb
-      - zipkin
-      - seq
     environment:
       DB_HOST: mariadb
       DB_USER: user
