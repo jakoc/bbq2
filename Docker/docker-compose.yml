@@ -46,6 +46,7 @@
     restart: always
     volumes:
       - featurehub-h2-data:/db
+      - featurehub-data:/data
     ports:
       - "8085:8085"
     environment:
@@ -54,4 +55,5 @@
     
 volumes:
   mariadb_data:
+  featurehub-db:
   featurehub-h2-data:  
