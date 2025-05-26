@@ -267,7 +267,7 @@
         const role = document.getElementById('signupRole').value;
 
         try {
-            const res = await fetch('http://79.76.101.254:8080/RegisterUser', {
+            const res = await fetch('http://79.76.101.254:8080/api/User/RegisterUser', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({

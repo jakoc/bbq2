@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace BobsBBQApi.Controllers;
 
+[Route("api/[controller]")] 
 public class UserController : ControllerBase
 {
 
@@ -62,7 +63,7 @@ public class UserController : ControllerBase
             return StatusCode(500, "Error logging in user");
         }
     }
-    [HttpPost("[action]")]
+    [HttpPost("RegisterUser")]
     public IActionResult RegisterUser([FromBody] RegisterUserDto dto)
     {
         using var activity = MonitorService.ActivitySource.StartActivity("Register user called from controller");
