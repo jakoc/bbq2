@@ -81,5 +81,6 @@ volumes:
   mariadb_data:
   featurehub-db:
   featurehub-h2-data:
+  featurehub-data:
   rps_seq_data:
   zipkin_data:
