@@ -43,9 +43,12 @@ public class Program
         {
             var configuration = sp.GetRequiredService<IConfiguration>();
             var smtpServer = configuration["Email:SmtpServer"];
-            var smtpPort = int.Parse(configuration["Email:SmtpPort"]);
+            var smtpPortStr = configuration["Email:SmtpPort"];
             var smtpUser = configuration["Email:SmtpUser"];
             var smtpPass = configuration["Email:SmtpPass"];
+
+            var smtpPort = !string.IsNullOrWhiteSpace(smtpPortStr) ? int.Parse(smtpPortStr) : 587;
+
             return new Email(smtpServer, smtpPort, smtpUser, smtpPass);
         });
         
