@@ -267,7 +267,7 @@
         const role = document.getElementById('signupRole').value;
 
         try {
-            const res = await fetch('http://79.76.101.254:8080/api/User/RegisterUser', {
+            const res = await fetch('http://79.76.42.159:8080/api/User/RegisterUser', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
@@ -301,7 +301,7 @@
             const password = document.getElementById('password').value;
 
             try {
-                const res = await fetch('http://79.76.101.254:8080/api/User/LoginUser', {
+                const res = await fetch('http://79.76.42.159:8080/api/User/LoginUser', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ email, password })
@@ -354,7 +354,7 @@
             }
 
             try {
-                const res = await fetch('http://79.76.101.254:8080/api/Reservation/GetAvailableTimeSlots', {
+                const res = await fetch('http://79.76.42.159:8080/api/Reservation/GetAvailableTimeSlots', {
                     method : 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body   : JSON.stringify({ date, partySize })
@@ -417,7 +417,7 @@
             console.log('Reservation data:', reservationData);
 
             try {
-                const response = await fetch("http://79.76.101.254:8080/api/Reservation/ReserveTable", {
+                const response = await fetch("http://79.76.42.159:8080/api/Reservation/ReserveTable", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify(reservationData)
@@ -476,7 +476,7 @@
 
             try {
                 const token = localStorage.getItem('jwtToken'); // hvis du kræver auth token
-                const res = await fetch('http://79.76.101.254:8080/api/Table/AddTable', {
+                const res = await fetch('http://79.76.42.159:8080/:8080/api/Table/AddTable', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
