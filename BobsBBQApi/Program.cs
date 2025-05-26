@@ -42,6 +42,8 @@ public class Program
         builder.Services.AddSingleton<IEmail, Email>(sp =>
         {
             var configuration = sp.GetRequiredService<IConfiguration>();
+            
+            
             var smtpServer = configuration["Email:SmtpServer"];
             var smtpPortStr = configuration["Email:SmtpPort"];
             var smtpUser = configuration["Email:SmtpUser"];
