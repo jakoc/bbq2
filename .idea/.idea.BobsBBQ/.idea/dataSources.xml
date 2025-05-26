@@ -9,5 +9,12 @@
       <jdbc-url>Server=EASV-DB4.easv.dk;Database=BobsBBQ;User Id=CSe2023t_t_2;Password=CSe2023tT2#23;TrustServerCertificate=True;</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
+    <data-source source="LOCAL" name="bobsbbq@79.76.42.159" uuid="72920df5-549f-4844-912e-60fc1d28409b">
+      <driver-ref>mariadb</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.mariadb.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mariadb://79.76.42.159:3306/bobsbbq</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
   </component>
 </project>
