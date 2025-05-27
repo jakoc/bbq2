@@ -40,22 +40,22 @@
     ports:
       - "8080:8080"
         
-  featurehub:
-    image: featurehub/party-server:latest
-    container_name: featurehub
-    restart: always
-    volumes:
-      - featurehub-h2-data:/db
-      - featurehub-data:/data
-    ports:
-      - "8085:8085"
-    environment:
-      FEATUREHUB_DNS: 0.0.0.0
+  #featurehub:
+    #image: featurehub/party-server:latest
+    #container_name: featurehub
+    #restart: always
+    #volumes:
+    #  - featurehub-h2-data:/db
+    #  - featurehub-data:/data
+    #ports:
+    #  - "8085:8085"
+    #environment:
+    #  FEATUREHUB_DNS: 0.0.0.0
       
     
 volumes:
   mariadb_data:
-  featurehub-db:
-  featurehub-h2-data:
-  featurehub-data:
+  #featurehub-db:
+  #featurehub-h2-data:
+  #featurehub-data:
   
