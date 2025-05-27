@@ -4,8 +4,8 @@ CREATE TABLE Users (
     Email VARCHAR(100) NOT NULL,
     PhoneNumber INT NOT NULL,
     UserRole VARCHAR(50) NOT NULL,
-    UserHash VARCHAR(100) NOT NULL,
-    UserSalt VARCHAR(100) NOT NULL
+    UserHash VARCHAR(512) NOT NULL,
+    UserSalt VARCHAR(512) NOT NULL
 );
 
 
