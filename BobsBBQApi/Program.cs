@@ -41,6 +41,7 @@ public class Program
             );
         });
         
+        
         //helpers
         builder.Services.AddScoped<IPasswordEncrypter, PasswordEncrypter>();
         builder.Services.AddScoped<IJwtToken, JwtToken>();
@@ -48,8 +49,8 @@ public class Program
         builder.Services.AddSingleton<IEmail, Email>(sp =>
         {
             var configuration = sp.GetRequiredService<IConfiguration>();
-            
-            
+            var featureContext = sp.GetRequiredService<IClientContext>();
+    
             var smtpServer = configuration["Email:SmtpServer"];
             var smtpPortStr = configuration["Email:SmtpPort"];
             var smtpUser = configuration["Email:SmtpUser"];
@@ -57,7 +58,7 @@ public class Program
 
             var smtpPort = !string.IsNullOrWhiteSpace(smtpPortStr) ? int.Parse(smtpPortStr) : 587;
 
-            return new Email(smtpServer, smtpPort, smtpUser, smtpPass);
+            return new Email(smtpServer, smtpPort, smtpUser, smtpPass, featureContext);
         });
         
         builder.Services.AddOpenTelemetry()
