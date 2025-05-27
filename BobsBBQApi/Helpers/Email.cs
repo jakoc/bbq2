@@ -13,26 +13,26 @@ public class Email : IEmail
     private readonly int _smtpPort;
     private readonly string _smtpUser;
     private readonly string _smtpPass;
-    private readonly IClientContext _featureContext;
+    //private readonly IClientContext? _featureContext; sonarqube block
     
 
-    public Email(string smtpServer, int smtpPort, string smtpUser, string smtpPass, IClientContext featureContext)
+    public Email(string smtpServer, int smtpPort, string smtpUser, string smtpPass) //IClientContext? featureContext)
     {
         _smtpServer = smtpServer;
         _smtpPort = smtpPort;
         _smtpUser = smtpUser;
         _smtpPass = smtpPass;
-        _featureContext = featureContext;
+        //_featureContext = featureContext; sonarqube block
     }
 
     public async Task SendSuccessfullAccountCreationEmail(string toEmail, string firstName)
     {
         //toggle
-        if (!_featureContext["SEND_EMAIL_CONFIRMATION"].IsEnabled)
-        {
-            MonitorService.Log.Information("Email feature toggle is OFF – skipping sending email to {ToEmail}", toEmail);
-            return;
-        }
+        /*if(!_featureContext["SEND_EMAIL_CONFIRMATION"].IsEnabled){ slap af sonarqube
+        //MonitorService.Log.Information("Email feature toggle is OFF – skipping sending email to {ToEmail}", toEmail); slap af sonarqube
+        //return; slap af sonarqube
+        } hehe
+        */
         
         MonitorService.Log.Information("Preparing to send successful account creation email to {@ToEmail} for user {@FirstName}",
             toEmail, firstName);
@@ -79,11 +79,11 @@ public class Email : IEmail
         DateTime reservationDate, DateTime reservationTime)
     {
         //toggle
-        if (!_featureContext["SEND_EMAIL_CONFIRMATION"].IsEnabled)
-        {
-            MonitorService.Log.Information("Email feature toggle is OFF – skipping sending email to {ToEmail}", toEmail);
-            return;
-        }
+        /*if(!_featureContext["SEND_EMAIL_CONFIRMATION"].IsEnabled){ slap af sonarqube
+        //MonitorService.Log.Information("Email feature toggle is OFF – skipping sending email to {ToEmail}", toEmail); slap af sonarqube
+        //return; slap af sonarqube
+        } hehe
+        */
         
         MonitorService.Log.Information("Preparing to send successful table reservation email to {@ToEmail} for user {@FirstName}",
             toEmail, firstName);

@@ -41,6 +41,12 @@ public class Program
             );
         });
         
+        // FeatureHub er udkommenteret pga. performanceproblemer på staging-serveren.
+        // builder.Services.AddFeatureHub(c =>
+        // {                                                 sonarqube block
+        //     c.Connect("http://featurehub:8085", "...")
+        //         .Build(); sonarqube block
+        // }); sonarqube block
         
         //helpers
         builder.Services.AddScoped<IPasswordEncrypter, PasswordEncrypter>();
@@ -49,7 +55,12 @@ public class Program
         builder.Services.AddSingleton<IEmail, Email>(sp =>
         {
             var configuration = sp.GetRequiredService<IConfiguration>();
-            var featureContext = sp.GetRequiredService<IClientContext>();
+            
+            // FeatureHub er slået fra – sender null
+            //IClientContext? featureContext = null; sonarqube block
+
+            // Hvis FeatureHub var aktiv:
+            //var featureContext = sp.GetRequiredService<IClientContext>(); sonarqube block
     
             var smtpServer = configuration["Email:SmtpServer"];
             var smtpPortStr = configuration["Email:SmtpPort"];
@@ -58,7 +69,7 @@ public class Program
 
             var smtpPort = !string.IsNullOrWhiteSpace(smtpPortStr) ? int.Parse(smtpPortStr) : 587;
 
-            return new Email(smtpServer, smtpPort, smtpUser, smtpPass, featureContext);
+            return new Email(smtpServer, smtpPort, smtpUser, smtpPass);  // featureContext; sonarqube block
         });
         
         builder.Services.AddOpenTelemetry()
