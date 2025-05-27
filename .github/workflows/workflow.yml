@@ -187,4 +187,5 @@ jobs:
           k6 version
 
       - name: Run K6 Spike Test
-        run: k6 run k6-tests/spike-test.js
+        run: k6 run BobsBBQApi/K6-tests/spike-tests.js
+      
