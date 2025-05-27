@@ -39,7 +39,37 @@
       DB_NAME: bobsbbq
     ports:
       - "8080:8080"
-        
+  # SeriLog for logging
+  #seq:
+    #image: datalust/seq
+    #ports:
+     # - "5341:5341"
+     # - "5342:80"
+    #volumes:
+     # - rps_seq_data:/data
+    #environment:
+     # - ACCEPT_EULA=Y
+      
+  # OpenTelemetry for tracing
+  #zipkin:
+    #image: openzipkin/zipkin
+    #ports:
+      #- "9411:9411"
+    #environment:
+      #- STORAGE_TYPE=mysql
+      #- MYSQL_HOST=zipkin-storage
+      #- MYSQL_USER=zipkin
+      #- MYSQL_PASS=zipkin
+    #depends_on:
+      #- zipkin-storage
+  
+  #zipkin-storage:
+    #image: openzipkin/zipkin-mysql
+    #ports:
+      #- "3306:3306"
+    #volumes:
+      #- zipkin_data:/mysql/data
+      
     #featurehub:
   #image: featurehub/party-server:latest
     #container_name: featurehub
@@ -58,4 +88,5 @@ volumes:
   #featurehub-db:
   #featurehub-h2-data:
   #featurehub-data:
-  
+  #rps_seq_data:
+  #zipkin_data:
