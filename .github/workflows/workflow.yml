@@ -33,10 +33,16 @@ jobs:
         
       - name: Push generated tag
         run: |
-          git config user.name "GitHub Actions"
-          git config user.email "actions@github.com"
-          git tag v${{ steps.semver-app.outputs.version }}
-          git push origin v${{ steps.semver-app.outputs.version }}
+          git fetch --tags
+          TAG="v${{ steps.semver-app.outputs.version }}"
+          if git rev-parse "$TAG" >/dev/null 2>&1; then
+            echo "Tag $TAG already exists. Skipping push."
+          else
+            git config user.name "GitHub Actions"
+            git config user.email "actions@github.com"
+            git tag $TAG
+            git push origin $TAG
+          fi
       
         
       - name: Create GitHub Release
