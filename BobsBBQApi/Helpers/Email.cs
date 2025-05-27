@@ -16,13 +16,13 @@ public class Email : IEmail
     private readonly IClientContext _featureContext;
     
 
-    public Email(string smtpServer, int smtpPort, string smtpUser, string smtpPass)
+    public Email(string smtpServer, int smtpPort, string smtpUser, string smtpPass, IClientContext featureContext)
     {
         _smtpServer = smtpServer;
         _smtpPort = smtpPort;
         _smtpUser = smtpUser;
         _smtpPass = smtpPass;
-        
+        _featureContext = featureContext;
     }
 
     public async Task SendSuccessfullAccountCreationEmail(string toEmail, string firstName)
