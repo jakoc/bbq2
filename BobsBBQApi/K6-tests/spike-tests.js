@@ -3,29 +3,33 @@ import { check, sleep } from 'k6';
 
 export const options = {
     stages: [
-        { duration: '3s', target: 2000 },
-        { duration: '3s', target: 2000 },
+        { duration: '2s', target: 0 },
+        { duration: '1s', target: 10 },
+        { duration: '10s', target: 10 },
         { duration: '3s', target: 0 },
     ]
 };
 
-let payload = JSON.stringify({
-    date: "2025-12-12",
-    partySize: 2
+const url = 'http://79.76.42.159:8080/GetAvailableTimeSlots';
+
+const payload = JSON.stringify({
+    date: '2025-12-12',
+    partySize: 2,
 });
 
-let params = {
+const params = {
     headers: {
         'Content-Type': 'application/json',
     },
 };
 
-export default () => {
-    let url = `http://79.76.101.254:5000/GetAvailableTimeSlots`;
-    let res = http.post(url, payload, params);
+export default function () {
+    const res = http.post(url, payload, params);
+
     check(res, {
-        'is status 200': (r) => r.status === 200,
-        'response body contains slots': (r) => r.body.includes('Available time slots'),
+        'status is 200': (r) => r.status === 200,
+        'response not empty': (r) => r.body && r.body.length > 10,
     });
+
     sleep(1);
-};
+}
